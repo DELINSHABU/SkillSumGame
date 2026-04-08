@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MathFlow Practice Results | SkillSum 2.0</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;family=Nunito:wght@900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-fixed-dim": "#49dcc5",
+            "primary-container": "#ff80ab",
+            "error-container": "#ffdad6",
+            "tertiary-fixed": "#6bf9e1",
+            "on-tertiary-fixed": "#00201b",
+            "surface-tint": "#a23760",
+            "error": "#ba1a1a",
+            "surface-container": "#f4ecef",
+            "secondary": "#904d00",
+            "tertiary": "#006b5e",
+            "on-error": "#ffffff",
+            "on-background": "#1e1b1d",
+            "surface-container-highest": "#e8e0e3",
+            "on-tertiary-container": "#00473e",
+            "on-tertiary-fixed-variant": "#005046",
+            "outline": "#887177",
+            "on-secondary-fixed-variant": "#6e3900",
+            "primary": "#a23760",
+            "on-primary-fixed-variant": "#831e48",
+            "surface-dim": "#dfd8db",
+            "on-surface": "#1e1b1d",
+            "surface-container-low": "#f9f2f5",
+            "on-surface-variant": "#554247",
+            "surface-container-high": "#eee6e9",
+            "surface": "#fff7fa",
+            "on-tertiary": "#ffffff",
+            "on-primary": "#ffffff",
+            "primary-fixed": "#ffd9e2",
+            "inverse-primary": "#ffb1c7",
+            "background": "#fff7fa",
+            "inverse-on-surface": "#f7eff2",
+            "tertiary-container": "#11bea8",
+            "surface-container-lowest": "#ffffff",
+            "secondary-fixed": "#ffdcc3",
+            "outline-variant": "#dbc0c6",
+            "on-error-container": "#93000a",
+            "surface-variant": "#e8e0e3",
+            "secondary-fixed-dim": "#ffb77d",
+            "on-primary-fixed": "#3e001c",
+            "surface-bright": "#fff7fa",
+            "on-secondary-fixed": "#2f1500",
+            "on-secondary": "#ffffff",
+            "on-secondary-container": "#693600",
+            "secondary-container": "#fd983a",
+            "primary-fixed-dim": "#ffb1c7",
+            "on-primary-container": "#77133f",
+            "inverse-surface": "#332f32"
+          },
+          "borderRadius": {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "headline": ["Plus Jakarta Sans"],
+            "body": ["Be Vietnam Pro"],
+            "label": ["Space Grotesk"],
+            "display": ["Nunito"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .dot-grid {
+      background-image: radial-gradient(#dbc0c6 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+    .glass-nav {
+      backdrop-filter: blur(24px);
+    }
+    .pressable-primary {
+      box-shadow: 0 4px 0 #77133f;
+    }
+    .pressable-primary:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #77133f;
+    }
+    .pressable-secondary {
+      box-shadow: 0 4px 0 #e8e0e3;
+    }
+    .pressable-secondary:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #e8e0e3;
+    }
+    .gloss-overlay {
+      background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 50%);
+    }
+  </style>
+</head>
+<body class="bg-background font-body text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- Main Shell -->
+<div class="flex min-h-screen">
+<!-- SideNavBar (Predicted Component) -->
+<aside class="h-screen w-72 left-0 sticky flex flex-col py-8 border-r border-rose-100/10 bg-rose-50/50 dark:bg-stone-900/40 shrink-0 z-40 dot-grid overflow-y-auto">
+<!-- Profile Section -->
+<div class="px-8 mb-10 flex flex-col items-center">
+<div class="relative group">
+<div class="w-24 h-24 rounded-full bg-tertiary-container relative overflow-hidden shadow-lg border-4 border-white">
+<img alt="Mental Math Master Avatar" class="w-full h-full object-cover" data-alt="whimsical 3D avatar of a friendly ninja with a mathematical symbol on its headband in soft clay style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCof5xXNfJ4vrkHZRYnssnx3TRBodvjWastZn0thNoISp-f9MpNor0GoLnab18WccArYmN67obr6xvs6Jrt6tZf3yBkz83xqSUiwpQLxGAuRtOUTZ79hBjWZLHPC6PeFC9rXKnDhXikLX84OtrispUjYkQl0L8jBvC2CFIqrSsAQ2cOGe61Rw9TVXC92eEW9UtKu7M1LFkPy-s0xxQqYRxEKtwbeD43mT_C-eUJQwwTnRdM-r9BYHuoul1znqxqTdlBShtUUJzs_JBl"/>
+<div class="absolute inset-0 gloss-overlay pointer-events-none"></div>
+</div>
+<div class="absolute -bottom-2 -right-2 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label text-xs font-bold shadow-md">
+            LVL 42
+          </div>
+</div>
+<h2 class="mt-4 font-headline text-lg text-on-surface">Number Ninja</h2>
+<p class="font-label text-xs text-on-surface-variant uppercase tracking-widest mt-1">Mental Math Master</p>
+</div>
+<!-- Navigation Tabs -->
+<nav class="flex-1">
+<ul class="space-y-1">
+<!-- Daily Goals -->
+<li>
+<a class="flex items-center text-rose-400 dark:text-rose-600 py-4 pl-8 hover:translate-x-2 transition-all duration-300 group" href="#">
+<span class="material-symbols-outlined mr-4 group-hover:scale-110 transition-transform" data-icon="target">target</span>
+<span class="font-sans text-sm font-semibold tracking-wide">Daily Goals</span>
+</a>
+</li>
+<!-- Skill Tree -->
+<li>
+<a class="flex items-center text-rose-700 dark:text-rose-200 bg-white dark:bg-rose-900/40 rounded-r-full py-4 pl-8 border-l-8 border-rose-600 shadow-sm" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="account_tree">account_tree</span>
+<span class="font-sans text-sm font-semibold tracking-wide">Skill Tree</span>
+</a>
+</li>
+<!-- Match History -->
+<li>
+<a class="flex items-center text-rose-400 dark:text-rose-600 py-4 pl-8 hover:translate-x-2 transition-all duration-300 group" href="#">
+<span class="material-symbols-outlined mr-4 group-hover:scale-110 transition-transform" data-icon="history">history</span>
+<span class="font-sans text-sm font-semibold tracking-wide">Match History</span>
+</a>
+</li>
+<!-- Leaderboards -->
+<li>
+<a class="flex items-center text-rose-400 dark:text-rose-600 py-4 pl-8 hover:translate-x-2 transition-all duration-300 group" href="#">
+<span class="material-symbols-outlined mr-4 group-hover:scale-110 transition-transform" data-icon="leaderboard">leaderboard</span>
+<span class="font-sans text-sm font-semibold tracking-wide">Leaderboards</span>
+</a>
+</li>
+<!-- Help Center -->
+<li>
+<a class="flex items-center text-rose-400 dark:text-rose-600 py-4 pl-8 hover:translate-x-2 transition-all duration-300 group" href="#">
+<span class="material-symbols-outlined mr-4 group-hover:scale-110 transition-transform" data-icon="help">help</span>
+<span class="font-sans text-sm font-semibold tracking-wide">Help Center</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- CTA -->
+<div class="px-6 mt-auto">
+<button class="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary py-4 rounded-xl font-headline pressable-primary flex items-center justify-center gap-2 group overflow-hidden">
+<span class="material-symbols-outlined group-hover:rotate-12 transition-transform" data-icon="rocket_launch">rocket_launch</span>
+          Go Premium
+        </button>
+</div>
+</aside>
+<!-- Content Area -->
+<main class="flex-1 max-w-7xl mx-auto px-12 py-10">
+<!-- TopAppBar (Simulated) -->
+<header class="flex justify-between items-center mb-10">
+<h1 class="font-headline text-4xl font-extrabold tracking-tight text-rose-900">
+          ⚡ Practice Results
+        </h1>
+<div class="flex gap-4">
+<button class="w-12 h-12 flex items-center justify-center rounded-full bg-surface-container hover:bg-surface-container-high transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-full bg-surface-container hover:bg-surface-container-high transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</header>
+<!-- Hero Section: Results & Personal Best -->
+<div class="relative mb-12">
+<!-- New Personal Best Banner -->
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 z-10 bg-gradient-to-r from-secondary to-secondary-container text-white px-8 py-3 rounded-full font-headline text-lg shadow-xl flex items-center gap-2 border-4 border-white transform hover:scale-105 transition-transform duration-300">
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+          NEW PERSONAL BEST!
+          <span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<!-- Main Card -->
+<div class="bg-surface-container-lowest rounded-xl p-12 text-center shadow-sm relative overflow-hidden border border-outline-variant/10">
+<!-- Background Decor -->
+<div class="absolute -top-24 -left-24 w-64 h-64 rounded-full bg-primary-fixed/30 blur-3xl"></div>
+<div class="absolute -bottom-24 -right-24 w-64 h-64 rounded-full bg-tertiary-fixed-dim/20 blur-3xl"></div>
+<div class="relative z-10">
+<div class="font-display text-[12rem] leading-none text-primary font-black tracking-tighter drop-shadow-sm">42</div>
+<div class="font-headline text-2xl text-on-surface-variant tracking-widest uppercase mt-[-1rem]">correct answers</div>
+<div class="mt-8 inline-flex items-center gap-2 bg-primary-fixed text-on-primary-fixed px-6 py-2 rounded-full font-label text-sm">
+<span class="material-symbols-outlined text-sm" data-icon="trending_up">trending_up</span>
+              +4 from previous best
+            </div>
+</div>
+</div>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+<div class="bg-surface-container-low p-6 rounded-lg flex flex-col items-center text-center group hover:bg-surface-container transition-colors duration-300">
+<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary" data-icon="percent">percent</span>
+</div>
+<div class="font-label text-2xl font-bold text-on-surface">91.3%</div>
+<div class="text-xs font-semibold text-on-surface-variant uppercase mt-1">Accuracy</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-lg flex flex-col items-center text-center group hover:bg-surface-container transition-colors duration-300">
+<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-secondary" data-icon="speed">speed</span>
+</div>
+<div class="font-label text-2xl font-bold text-on-surface">1.8s</div>
+<div class="text-xs font-semibold text-on-surface-variant uppercase mt-1">Avg Speed</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-lg flex flex-col items-center text-center group hover:bg-surface-container transition-colors duration-300">
+<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-orange-500" data-icon="local_fire_department" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<div class="font-label text-2xl font-bold text-on-surface">12</div>
+<div class="text-xs font-semibold text-on-surface-variant uppercase mt-1">Best Streak</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-lg flex flex-col items-center text-center group hover:bg-surface-container transition-colors duration-300">
+<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-tertiary" data-icon="military_tech" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+</div>
+<div class="font-label text-2xl font-bold text-on-surface">+520</div>
+<div class="text-xs font-semibold text-on-surface-variant uppercase mt-1">XP Earned</div>
+</div>
+</div>
+<!-- Two-Column Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+<!-- Performance Chart (2/3 width) -->
+<div class="lg:col-span-2 bg-surface-container-lowest p-8 rounded-lg border border-outline-variant/10 shadow-sm">
+<h3 class="font-headline text-xl text-on-surface mb-8 flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary" data-icon="insights">insights</span>
+            Performance Over Time
+          </h3>
+<div class="h-64 flex items-end gap-2 relative">
+<!-- Simulated Line Chart with SVG -->
+<svg class="absolute inset-0 w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 100 100">
+<path d="M0 80 Q 15 75, 25 50 T 50 40 T 75 15 T 100 5" fill="none" stroke="url(#lineGradient)" stroke-linecap="round" stroke-width="4"></path>
+<defs>
+<lineargradient id="lineGradient" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" style="stop-color:#a23760;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#11bea8;stop-opacity:1"></stop>
+</lineargradient>
+</defs>
+</svg>
+<!-- Grid lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-20">
+<div class="border-b border-on-surface-variant w-full h-0"></div>
+<div class="border-b border-on-surface-variant w-full h-0"></div>
+<div class="border-b border-on-surface-variant w-full h-0"></div>
+</div>
+</div>
+<div class="flex justify-between mt-4 font-label text-xs text-on-surface-variant">
+<span>START</span>
+<span>10s</span>
+<span>20s</span>
+<span>30s</span>
+<span>40s</span>
+<span>50s</span>
+<span>FINISH</span>
+</div>
+</div>
+<!-- Operations Breakdown (1/3 width) -->
+<div class="bg-surface-container-low p-8 rounded-lg flex flex-col">
+<h3 class="font-headline text-xl text-on-surface mb-8 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="analytics">analytics</span>
+            Breakdown
+          </h3>
+<div class="space-y-6 flex-1">
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<span class="font-bold text-on-surface">Addition</span>
+<span class="font-label text-sm text-primary">95.7% acc</span>
+</div>
+<div class="w-full h-3 bg-white rounded-full overflow-hidden">
+<div class="h-full w-[95.7%] bg-primary rounded-full"></div>
+</div>
+<div class="text-xs text-on-surface-variant font-medium tracking-tight">22 of 23 correct</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<span class="font-bold text-on-surface">Subtraction</span>
+<span class="font-label text-sm text-tertiary">87.0% acc</span>
+</div>
+<div class="w-full h-3 bg-white rounded-full overflow-hidden">
+<div class="h-full w-[87%] bg-tertiary-container rounded-full"></div>
+</div>
+<div class="text-xs text-on-surface-variant font-medium tracking-tight">20 of 23 correct</div>
+</div>
+</div>
+<div class="mt-8 p-4 bg-white rounded-lg border-2 border-dashed border-outline-variant/30 text-center">
+<div class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-1">Coach Tip</div>
+<p class="text-sm text-on-surface italic">"Try focusing on double-digit subtraction to break the 50 answer barrier!"</p>
+</div>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="flex flex-col md:flex-row items-center justify-center gap-6 pt-6 border-t border-surface-container-high">
+<button class="px-10 py-5 bg-gradient-to-br from-primary to-primary-container text-on-primary rounded-xl font-headline text-lg pressable-primary flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="replay">replay</span>
+          Retry Same Config
+        </button>
+<button class="px-10 py-5 bg-surface-container-high text-on-surface-variant rounded-xl font-headline text-lg pressable-secondary flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="tune">tune</span>
+          Change Settings
+        </button>
+<a class="font-headline text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2 group" href="#">
+          Home
+          <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</main>
+</div>
+<!-- Decorative Grain/Texture Layer -->
+<div class="fixed inset-0 pointer-events-none opacity-[0.03] mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/felt.png')]"></div>
+</body></html>

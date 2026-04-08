@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillSum 2.0 Mobile Screens</title>
+    
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Nunito', 'sans-serif'],
+                        body: ['DM Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Global CSS Tokens & Animations -->
+    <style>
+        :root {
+            /* Primary (Warm Pink) */
+            --pink-50:  #fff0f5;
+            --pink-100: #ffe0ec;
+            --pink-200: #ffb3cc;
+            --pink-300: #ff80ab;
+            --pink-400: #ff5c96;
+            --pink-500: #e0396e;
+            --pink-600: #c55f85;
+
+            /* Backgrounds */
+            --bg-canvas:   #fef6f9;
+            --bg-card:     #ffffff;
+            --bg-surface:  #fdf2f6;
+
+            /* Semantic */
+            --correct:  #4caf50;
+            --wrong:    #f44336;
+            --streak:   #ff6b35;
+            --xp-gold:  #ffd700;
+
+            /* Text */
+            --text-primary:   #1a1a2e;
+            --text-secondary: #6b7280;
+            --text-tertiary:  #9ca3af;
+
+            --shadow-btn-primary: 0 6px 0 #c55f85;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #f3f4f6; /* Gray background for the showcase */
+            color: var(--text-primary);
+            -webkit-font-smoothing: antialiased;
+            padding: 2rem;
+            margin: 0;
+        }
+
+        h1, h2, h3, .font-display { font-family: 'Nunito', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+        /* Mobile Mockup Container */
+        .mobile-mockup {
+            width: 390px;
+            height: 844px;
+            background-color: var(--bg-canvas);
+            background-image: radial-gradient(circle, rgba(255,128,171,0.08) 1px, transparent 1px);
+            background-size: 24px 24px;
+            border-radius: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border: 8px solid #1f2937;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        /* Hide scrollbar for mockups */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Component Styles */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 24px;
+            border-radius: 20px;
+            background: var(--pink-300);
+            color: white;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-btn-primary);
+            transition: transform 0.12s ease, box-shadow 0.12s ease;
+        }
+        .btn-primary:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #c55f85;
+        }
+        
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 24px;
+            border-radius: 20px;
+            background: #90caf9;
+            color: white;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            box-shadow: 0 6px 0 #5e8db0;
+        }
+
+        .world-1-gradient { background: linear-gradient(135deg, #ff8fab, #ff5c7a); }
+        .world-2-gradient { background: linear-gradient(135deg, #ff9a3c, #ff6b00); }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50%      { transform: translateY(-6px); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255,128,171, 0.4); }
+            50%      { box-shadow: 0 0 0 12px rgba(255,128,171, 0); }
+        }
+        @keyframes flicker {
+            0%, 100% { transform: scale(1) translateY(0); }
+            33%      { transform: scale(1.05) translateY(-2px); }
+            66%      { transform: scale(0.97) translateY(1px); }
+        }
+        @keyframes starShimmer {
+            0%, 100% { filter: brightness(1) drop-shadow(0 0 4px rgba(255,215,0,0.3)); }
+            50%      { filter: brightness(1.3) drop-shadow(0 0 12px rgba(255,215,0,0.8)); }
+        }
+
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        .animate-pulse-glow { animation: pulseGlow 2s ease-in-out infinite; }
+        .animate-flicker { animation: flicker 1.5s ease-in-out infinite; }
+        .animate-star-shimmer { animation: starShimmer 2s ease-in-out infinite; }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mb-10 text-center">
+        <h1 class="text-4xl font-black text-gray-800 mb-2 font-display">SkillSum 2.0 Mobile Screens</h1>
+        <p class="text-gray-500 font-medium">Scroll right to view all 9 screens</p>
+    </div>
+
+    <!-- Horizontal Scroll Container for Mockups -->
+    <div class="flex gap-10 overflow-x-auto pb-12 px-8 snap-x">
+
+        <!-- 7.1 Home Screen -->
+        <div class="mobile-mockup snap-center">
+            <!-- Header -->
+            <div class="flex justify-between items-center p-6 pb-2 sticky top-0 z-10 glass-panel border-b border-white/50">
+                <div class="font-display font-black text-2xl text-pink-400">SkillSum</div>
+                <div class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-xl shadow-sm border border-pink-200">👤</div>
+            </div>
+            
+            <div class="p-6 overflow-y-auto no-scrollbar flex flex-col gap-6">
+                <!-- Greeting -->
+                <div>
+                    <h1 class="text-3xl font-black font-display text-gray-800 leading-tight">Good morning,<br>Delin! 👋</h1>
+                    <div class="flex items-center gap-2 mt-2 text-sm font-semibold text-gray-600">
+                        <span class="text-orange-500 flex items-center gap-1"><span class="animate-flicker">🔥</span> 23 days</span> • 
+                        <span>Lv.14</span> • 
+                        <span>4,200 XP</span>
+                    </div>
+                </div>
+
+                <!-- Daily Challenge -->
+                <div>
+                    <div class="text-xs font-bold text-gray-400 tracking-widest uppercase mb-2">TODAY</div>
+                    <div class="bg-white rounded-3xl p-5 shadow-md border border-gray-100 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-pink-50 rounded-bl-full -z-10"></div>
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="text-2xl">📅</span>
+                            <span class="font-bold font-display text-lg">Daily Challenge</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm font-bold mb-2">
+                            <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                                <div class="h-full bg-pink-400 rounded-full" style="width: 33%"></div>
+                            </div>
+                            <span class="text-gray-500">1/3 complete</span>
+                        </div>
+                        <p class="text-xs text-gray-500 mb-4 font-medium">Reward: 2000 XP + 🏅 badge</p>
+                        <button class="w-full py-3 bg-pink-50 text-pink-600 font-bold rounded-xl hover:bg-pink-100 transition">Go →</button>
+                    </div>
+                </div>
+
+                <!-- Continue -->
+                <div>
+                    <div class="text-xs font-bold text-gray-400 tracking-widest uppercase mb-2">CONTINUE</div>
+                    <div class="bg-white rounded-3xl p-5 shadow-md border border-gray-100 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-full -z-10"></div>
+                        <div class="flex items-start gap-3 mb-4">
+                            <span class="text-2xl mt-1">📚</span>
+                            <div>
+                                <div class="font-bold font-display text-lg leading-tight">Level 7 — Adding 9 Trick</div>
+                                <div class="text-sm text-gray-500 font-medium">World 1: Addition • <span class="text-yellow-400">★☆☆</span></div>
+                            </div>
+                        </div>
+                        <button class="btn-primary w-full py-3 text-sm min-h-[48px]">Continue →</button>
+                    </div>
+                </div>
+
+                <!-- Modes Grid -->
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-white rounded-3xl p-5 shadow-md border border-gray-100 flex flex-col items-start gap-2">
+                        <span class="text-3xl mb-1">📚</span>
+                        <span class="font-bold font-display leading-tight">Learn<br>Mode</span>
+                        <div class="text-xs text-gray-400 font-medium mt-auto">400 Levels<br>8 Worlds</div>
+                    </div>
+                    <div class="bg-white rounded-3xl p-5 shadow-md border border-gray-100 flex flex-col items-start gap-2">
+                        <span class="text-3xl mb-1">⚡</span>
+                        <span class="font-bold font-display leading-tight">Practice<br>Mode</span>
+                        <div class="text-xs text-gray-400 font-medium mt-auto">Monkeytype<br>style</div>
+                    </div>
+                </div>
+
+                <!-- Progress Bottom -->
+                <div class="mt-2 pb-6">
+                    <div class="text-xs font-bold text-gray-400 tracking-widest uppercase mb-2">YOUR PROGRESS</div>
+                    <div class="flex justify-between text-xs text-gray-500 font-medium mb-1 px-1">
+                        <span>4,200 XP</span>
+                        <span>5,000 to Lv 15</span>
+                    </div>
+                    <div class="h-3 bg-gray-200 rounded-full overflow-hidden shadow-inner">
+                        <div class="h-full bg-gradient-to-r from-pink-300 to-pink-500 rounded-full" style="width: 84%"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Bottom Fade -->
+            <div class="absolute bottom-0 w-full h-12 bg-gradient-to-t from-[var(--bg-canvas)] to-transparent pointer-events-none"></div>
+        </div>
+
+        <!-- 7.2 World Select Screen -->
+        <div class="mobile-mockup snap-center bg-gray-50">
+            <div class="flex items-center gap-4 p-6 pb-4 sticky top-0 bg-gray-50/90 backdrop-blur z-10 border-b border-gray-200">
+                <button class="text-gray-400 text-xl font-bold">←</button>
+                <h1 class="font-display font-black text-xl text-gray-800">Choose Your World</h1>
+            </div>
+            
+            <div class="p-6 overflow-y-auto no-scrollbar flex flex-col gap-5">
+                <!-- World 1 -->
+                <div class="rounded-[28px] p-6 text-white shadow-xl w-full world-1-gradient relative overflow-hidden">
+                    <div class="absolute -right-4 -bottom-4 text-8xl opacity-10 font-black">1</div>
+                    <div class="flex gap-4 items-center mb-6">
+                        <div class="text-3xl bg-white/20 w-12 h-12 rounded-2xl flex items-center justify-center backdrop-blur-sm shadow-sm">➕</div>
+                        <div>
+                            <div class="font-black text-xl font-display leading-tight">World 1</div>
+                            <div class="text-sm font-medium opacity-90">Addition Foundation</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm font-bold">
+                        <div class="flex-1 h-2.5 bg-black/15 rounded-full overflow-hidden">
+                            <div class="h-full bg-white rounded-full shadow-sm" style="width: 68%"></div>
+                        </div>
+                        <span class="bg-black/10 px-2 py-0.5 rounded-md text-xs">34/50</span>
+                    </div>
+                </div>
+
+                <!-- World 2 -->
+                <div class="rounded-[28px] p-6 text-white shadow-xl w-full world-2-gradient relative overflow-hidden">
+                    <div class="absolute -right-4 -bottom-4 text-8xl opacity-10 font-black">2</div>
+                    <div class="flex gap-4 items-center mb-6">
+                        <div class="text-3xl bg-white/20 w-12 h-12 rounded-2xl flex items-center justify-center backdrop-blur-sm shadow-sm">➖</div>
+                        <div>
+                            <div class="font-black text-xl font-display leading-tight">World 2</div>
+                            <div class="text-sm font-medium opacity-90">Subtraction Strategies</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm font-bold">
+                        <div class="flex-1 h-2.5 bg-black/15 rounded-full overflow-hidden">
+                            <div class="h-full bg-white rounded-full shadow-sm" style="width: 0%"></div>
+                        </div>
+                        <span class="bg-black/10 px-2 py-0.5 rounded-md text-xs">0/50</span>
+                    </div>
+                </div>
+
+                <!-- World 3 (Locked) -->
+                <div class="rounded-[28px] p-6 bg-white border-2 border-gray-200 text-gray-400 shadow-sm w-full relative overflow-hidden border-dashed opacity-70">
+                    <div class="flex gap-4 items-center mb-2">
+                        <div class="text-3xl bg-gray-100 w-12 h-12 rounded-2xl flex items-center justify-center shadow-inner">✖️</div>
+                        <div>
+                            <div class="font-black text-xl font-display leading-tight text-gray-500">World 3</div>
+                        </div>
+                        <div class="ml-auto text-2xl">🔒</div>
+                    </div>
+                    <div class="text-xs font-bold mt-2 ml-16">Complete World 2 to unlock</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7.3 World Map -->
+        <div class="mobile-mockup snap-center bg-gray-50">
+            <div class="p-4 bg-white shadow-sm z-20 relative">
+                <div class="flex items-center gap-3 mb-2">
+                    <button class="text-gray-400 font-bold">←</button>
+                    <h1 class="font-display font-bold text-sm text-gray-800 truncate">World 1: Addition Foundation</h1>
+                </div>
+                <div class="flex items-center gap-3 text-xs font-bold text-gray-500 px-7">
+                    <div class="flex-1 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                        <div class="h-full bg-pink-400 rounded-full" style="width: 68%"></div>
+                    </div>
+                    <span>34/50</span>
+                </div>
+            </div>
+
+            <!-- Scrollable Map Area -->
+            <div class="flex-1 overflow-y-auto no-scrollbar relative p-8 flex justify-center py-12">
+                <!-- SVG Path connecting nodes -->
+                <svg class="absolute top-0 w-full h-[600px] z-0" style="left: 0;">
+                    <path d="M195,50 C195,120 100,150 100,220 C100,290 280,320 280,390 C280,460 195,490 195,560 C195,630 195,630 195,630" fill="none" stroke="#ffb3cc" stroke-width="4" stroke-dasharray="10 10" />
+                </svg>
+
+                <div class="flex flex-col gap-10 items-center w-full z-10 relative">
+                    <!-- Boss Node (Top) -->
+                    <div class="relative flex flex-col items-center">
+                        <div class="text-xs mb-1">⭐⭐⭐</div>
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center font-black text-white text-xl shadow-xl border-4 border-yellow-400 bg-gradient-to-br from-yellow-300 to-yellow-500">💪</div>
+                        <div class="absolute bg-white px-2 py-1 rounded-lg shadow border text-[10px] font-bold right-full mr-4 whitespace-nowrap">10. Boss</div>
+                    </div>
+
+                    <!-- Node 9 -->
+                    <div class="relative flex flex-col items-center self-start ml-8">
+                        <div class="text-xs mb-1">⭐⭐<span class="opacity-30">⭐</span></div>
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center font-bold text-white shadow-md bg-gradient-to-br from-pink-400 to-pink-500">9</div>
+                    </div>
+
+                    <!-- Node 8 -->
+                    <div class="relative flex flex-col items-center self-end mr-8">
+                        <div class="text-xs mb-1">⭐⭐⭐</div>
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center font-bold text-white shadow-md bg-gradient-to-br from-yellow-300 to-yellow-500 animate-star-shimmer">8</div>
+                    </div>
+
+                    <!-- Node 7 (Current/Pulsing) -->
+                    <div class="relative flex flex-col items-center">
+                        <div class="absolute -top-6 text-pink-500 font-black text-[10px] tracking-widest uppercase animate-bounce">NEXT!</div>
+                        <div class="text-xs mb-1 opacity-0">⭐</div>
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center font-bold text-white shadow-md bg-pink-400 animate-pulse-glow">7</div>
+                    </div>
+
+                    <!-- Node 6 -->
+                    <div class="relative flex flex-col items-center self-start ml-16">
+                        <div class="text-xs mb-1">⭐⭐⭐</div>
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center font-bold text-white shadow-md bg-gradient-to-br from-yellow-300 to-yellow-500">6</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7.4 Level Detail Popup (Overlaid on map) -->
+        <div class="mobile-mockup snap-center bg-gray-50 relative">
+            <!-- Background Map (Blurred) -->
+            <div class="absolute inset-0 opacity-40 blur-sm pointer-events-none">
+                <!-- Simplified map visual for background -->
+                <div class="p-4 bg-white"><div class="h-4 bg-gray-200 rounded w-1/2"></div></div>
+                <div class="flex flex-col gap-10 items-center py-20"><div class="w-12 h-12 rounded-full bg-pink-300"></div></div>
+            </div>
+            <div class="absolute inset-0 bg-black/20"></div>
+
+            <!-- Bottom Sheet -->
+            <div class="absolute bottom-0 w-full bg-white rounded-t-[32px] shadow-2xl flex flex-col p-6 z-30 transition-transform translate-y-0">
+                <div class="w-12 h-1.5 bg-gray-200 rounded-full mx-auto mb-6"></div>
+                
+                <div class="text-xs font-bold text-pink-400 uppercase tracking-wider mb-1">Level 7</div>
+                <h2 class="font-display font-black text-2xl text-gray-800 leading-tight mb-2">The 'Adding 9' Trick</h2>
+                <p class="text-sm text-gray-500 mb-6">Add 9 by adding 10, then subtracting 1.</p>
+
+                <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 text-center">STAR TARGETS</div>
+                <div class="flex gap-2 mb-6">
+                    <div class="flex-1 bg-gray-50 border border-gray-100 rounded-xl p-2 text-center">
+                        <div class="text-sm">⭐</div><div class="text-xs font-bold mt-1 text-gray-700">8 pts</div>
+                    </div>
+                    <div class="flex-1 bg-gray-50 border border-gray-100 rounded-xl p-2 text-center">
+                        <div class="text-sm">⭐⭐</div><div class="text-xs font-bold mt-1 text-gray-700">12 pts</div>
+                    </div>
+                    <div class="flex-1 bg-yellow-50 border border-yellow-200 rounded-xl p-2 text-center">
+                        <div class="text-sm">⭐⭐⭐</div><div class="text-xs font-bold mt-1 text-yellow-700">16 pts</div>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2 text-sm text-gray-600 font-medium mb-6 bg-blue-50 p-3 rounded-xl">
+                    <span>⏱</span> Time limit: 75 seconds
+                </div>
+
+                <div class="border-t border-gray-100 pt-5 mb-6">
+                    <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">YOUR BEST</div>
+                    <div class="font-bold text-sm text-gray-700">⭐⭐☆ | 11 correct | 85% accuracy</div>
+                </div>
+
+                <div class="flex flex-col gap-3">
+                    <button class="btn-primary w-full shadow-[0_6px_0_#c55f85]">🚀 Start Level!</button>
+                    <button class="w-full py-4 text-sm font-bold text-gray-500 bg-gray-100 rounded-[20px]">📖 See the tip first</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7.5 Pre-Lesson / Tip Screen -->
+        <div class="mobile-mockup snap-center bg-white">
+            <div class="flex justify-between items-center p-6">
+                <button class="text-gray-400 text-sm font-bold">← Back</button>
+                <div class="text-xs font-bold text-gray-400">Level 7 / 50</div>
+            </div>
+
+            <div class="px-6 flex-1 flex flex-col">
+                <div class="inline-block px-3 py-1 bg-yellow-100 text-yellow-800 text-[10px] font-black uppercase tracking-widest rounded-lg w-fit mb-3">💡 Today's Trick</div>
+                <h1 class="font-display font-black text-3xl text-gray-800 leading-tight mb-6">The 'Adding 9'<br>Method</h1>
+
+                <!-- Interactive Diagram -->
+                <div class="border-2 border-pink-100 bg-pink-50/50 rounded-[24px] p-5 mb-4 shadow-sm">
+                    <div class="text-center font-display font-black text-3xl text-pink-500 mb-6">34 + 9 = ?</div>
+                    
+                    <div class="flex flex-col gap-3">
+                        <div class="bg-white p-3 rounded-xl shadow-sm border border-pink-100 flex items-center gap-3 animate-fade-up">
+                            <div class="w-6 h-6 rounded-full bg-green-500 text-white flex items-center justify-center text-xs font-bold shrink-0">1</div>
+                            <div class="text-sm font-bold text-gray-700 flex-1">34 + 10 = 44 <span class="text-xs text-gray-400 font-medium block">(add 10 instead)</span></div>
+                        </div>
+                        
+                        <div class="bg-white p-3 rounded-xl shadow-sm border border-pink-100 flex items-center gap-3 animate-fade-up" style="animation-delay: 0.2s">
+                            <div class="w-6 h-6 rounded-full bg-green-500 text-white flex items-center justify-center text-xs font-bold shrink-0">2</div>
+                            <div class="text-sm font-bold text-gray-700 flex-1">44 − 1 = 43 <span class="text-xs text-gray-400 font-medium block">(then minus 1)</span></div>
+                        </div>
+
+                        <div class="bg-green-100 p-3 rounded-xl border border-green-200 text-center animate-fade-up" style="animation-delay: 0.4s">
+                            <span class="font-bold text-green-700">✓ Answer: 43 ✓</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Explanation -->
+                <div class="mb-auto">
+                    <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 mt-4">WHY IT WORKS</div>
+                    <p class="text-sm text-gray-600 leading-relaxed font-medium">9 is one less than 10. Adding 10 is easy (just add 1 to the tens digit), so use that trick and adjust!</p>
+                </div>
+
+                <div class="pb-8 pt-4">
+                    <button class="btn-primary w-full shadow-[0_6px_0_#c55f85] animate-pulse">I'm Ready — Let's Go! 🚀</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7.6 Gameplay Screen -->
+        <div class="mobile-mockup snap-center bg-white flex flex-col">
+            <!-- Top Bar -->
+            <div class="flex justify-between items-center px-4 pt-6 pb-2">
+                <div class="text-xs font-bold text-gray-400">World 1 · Lv7</div>
+                <div class="flex gap-3 items-center">
+                    <button class="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full text-sm">⏸</button>
+                    <div class="bg-gray-100 px-3 py-1.5 rounded-full text-sm font-mono font-bold flex items-center gap-1">
+                        ⏱ 37s
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="px-4 py-2 w-full">
+                <div class="relative h-2.5 rounded-full bg-gray-200">
+                    <div class="absolute top-0 left-0 h-full rounded-full transition-all duration-500" style="width: 68%; background: linear-gradient(90deg, var(--pink-200), var(--pink-300));"></div>
+                    <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-[50%] text-sm grayscale opacity-60 bg-gray-200 rounded-full p-0.5">⭐</div>
+                    <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-[75%] text-sm grayscale opacity-60 bg-gray-200 rounded-full p-0.5">⭐</div>
+                    <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-[100%] text-sm grayscale opacity-60 bg-gray-200 rounded-full p-0.5">⭐</div>
+                </div>
+                <div class="flex justify-between text-[10px] mt-1.5 font-bold text-gray-400 px-1">
+                    <span>0</span><span>8</span><span>12</span><span>16</span>
+                </div>
+            </div>
+
+            <!-- Question Area -->
+            <div class="flex-1 flex flex-col justify-center items-center relative">
+                <!-- Floating XP Toast Mockup -->
+                <div class="absolute top-0 right-4 bg-yellow-400 text-yellow-900 text-xs font-black px-2 py-1 rounded-lg animate-xp-float shadow-sm">⚡ +12 XP</div>
+                
+                <div class="font-display font-black text-[5rem] text-gray-800 leading-none tracking-tighter" style="font-feature-settings: 'tnum';">
+                    47 + 9
+                </div>
+            </div>
+
+            <!-- Score & Input -->
+            <div class="px-6 flex justify-between items-end mb-4">
+                <div class="font-bold text-gray-500 text-sm">Score: 11</div>
+                <div class="font-bold text-orange-500 text-sm animate-flicker">🔥 5 streak</div>
+            </div>
+
+            <div class="px-4 mb-4">
+                <div class="w-full bg-gray-50 border-2 border-gray-200 rounded-2xl h-20 flex items-center justify-center font-display font-black text-4xl text-gray-800 shadow-inner">
+                    56<span class="w-1 h-10 bg-pink-400 ml-1 animate-pulse"></span>
+                </div>
+            </div>
+
+            <div class="px-4 mb-2">
+                <button class="btn-primary w-full shadow-[0_6px_0_#c55f85]">✓ Submit</button>
+            </div>
+
+            <!-- Custom Numpad -->
+            <div class="grid grid-cols-3 gap-2 px-4 pb-6 bg-gray-50 pt-3 border-t border-gray-100">
+                <button class="h-[60px] bg-white rounded-[14px] border-2 border-gray-100 shadow-[0_2px_0_#e5e7eb] font-display font-black text-2xl text-gray-800 active:scale-95 active:shadow-none transition-all">7</button>
+                <button class="h-[60px] bg-white rounded-[14px] border-2 border-gray-100 shadow-[0_2px_0_#e5e7eb] font-display font-black text-2xl text-gray-800 active:scale-95 active:shadow-none transition-all">8</button>
+                <button class="h-[60px] bg-white rounded-[14px] border-2 border-gray-100 shadow-[0_2px_0_#e5e7eb] font-display font-black text-2xl text-gray-800 active:scale-95 active:shadow-none transition-all">9</button>
+                <button class="h-[60px] bg-white rounded-[14px] border-2 border-gray-100 shadow-[0_2px_0_#e5e7eb] font-display font-black text-2xl text-gray-800 active:scale-95 active:shadow-none transition-all">4</button>
+                <button class="h-[60px] bg-white rounded-[14px] border-2 border-gray-100 shadow-[0_2px_0_#e5e7eb] font-display font-black text-2xl text-gray-800 active:scale-95 active:shadow-none transition-all">5</button>
+                <button class="h-[60px] bg-white rounded-[14px] border-2 border-gray-100 shadow-[0_2px_0_#e5e7eb] font-display font-black text-2xl text-gray-800 active:scale-95 active:shadow-none transition-all">6</button>
+                <button class="h-[60px] bg-white rounded-[14px] border-2 border-gray-100 shadow-[0_2px_0_#e5e7eb] font-display font-black text-2xl text-gray-800 active:scale-95 active:shadow-none transition-all">1</button>
+                <button class="h-[60px] bg-white rounded-[14px] border-2 border-gray-100 shadow-[0_2px_0_#e5e7eb] font-display font-black text-2xl text-gray-800 active:scale-95 active:shadow-none transition-all">2</button>
+                <button class="h-[60px] bg-white rounded-[14px] border-2 border-gray-100 shadow-[0_2px_0_#e5e7eb] font-display font-black text-2xl text-gray-800 active:scale-95 active:shadow-none transition-all">3</button>
+                <button class="h-[60px] bg-white rounded-[14px] border-2 border-gray-100 shadow-[0_2px_0_#e5e7eb] font-display font-black text-2xl text-orange-400 active:scale-95 active:shadow-none transition-all">─</button>
+                <button class="h-[60px] bg-white rounded-[14px] border-2 border-gray-100 shadow-[0_2px_0_#e5e7eb] font-display font-black text-2xl text-gray-800 active:scale-95 active:shadow-none transition-all">0</button>
+                <button class="h-[60px] bg-white rounded-[14px] border-2 border-gray-100 shadow-[0_2px_0_#e5e7eb] font-display font-black text-xl text-red-500 active:scale-95 active:shadow-none transition-all flex items-center justify-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"></path><line x1="18" y1="9" x2="12" y2="15"></line><line x1="12" y1="9" x2="18" y2="15"></line></svg></button>
+            </div>
+        </div>
+
+        <!-- 7.7 Post-Lesson Results -->
+        <div class="mobile-mockup snap-center bg-white justify-center py-10 px-6 overflow-y-auto no-scrollbar">
+            <!-- Stars Reveal -->
+            <div class="flex justify-center gap-4 mb-4">
+                <span class="text-[3rem] animate-star-earn" style="animation-delay: 0.1s; filter: drop-shadow(0 0 10px rgba(255,215,0,0.6))">⭐</span>
+                <span class="text-[4rem] -mt-6 animate-star-earn" style="animation-delay: 0.5s; filter: drop-shadow(0 0 10px rgba(255,215,0,0.6))">⭐</span>
+                <span class="text-[3rem] animate-star-earn" style="animation-delay: 0.9s; filter: drop-shadow(0 0 10px rgba(255,215,0,0.6))">⭐</span>
+            </div>
+            
+            <h2 class="text-3xl font-display font-black text-center text-gray-800 mb-8 animate-level-up" style="animation-delay: 1.2s;">Level Complete!</h2>
+
+            <!-- Stats Grid 1 -->
+            <div class="grid grid-cols-3 gap-3 mb-3 animate-fade-up" style="animation-delay: 1.4s;">
+                <div class="bg-gray-50 rounded-2xl p-3 text-center border border-gray-100">
+                    <div class="text-xl font-bold font-mono text-green-500">14</div>
+                    <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wide">Correct</div>
+                </div>
+                <div class="bg-gray-50 rounded-2xl p-3 text-center border border-gray-100">
+                    <div class="text-xl font-bold font-mono text-red-500">2</div>
+                    <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wide">Wrong</div>
+                </div>
+                <div class="bg-gray-50 rounded-2xl p-3 text-center border border-gray-100">
+                    <div class="text-xl font-bold font-mono text-blue-500">87.5%</div>
+                    <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wide">Accuracy</div>
+                </div>
+            </div>
+
+            <!-- Stats Grid 2 -->
+            <div class="grid grid-cols-3 gap-3 mb-8 animate-fade-up" style="animation-delay: 1.5s;">
+                <div class="bg-gray-50 rounded-2xl p-3 text-center border border-gray-100">
+                    <div class="text-xl font-bold font-mono text-orange-500">🔥8</div>
+                    <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wide">Best Strk</div>
+                </div>
+                <div class="bg-gray-50 rounded-2xl p-3 text-center border border-gray-100">
+                    <div class="text-xl font-bold font-mono text-purple-500">2.1s</div>
+                    <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wide">Avg Spd</div>
+                </div>
+                <div class="bg-pink-50 rounded-2xl p-3 text-center border border-pink-100">
+                    <div class="text-xl font-bold font-mono text-pink-500">+380</div>
+                    <div class="text-[10px] font-bold text-pink-400 uppercase tracking-wide">XP Won</div>
+                </div>
+            </div>
+
+            <!-- Speed Chart -->
+            <div class="mb-8 animate-fade-up" style="animation-delay: 1.6s;">
+                <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3 text-center">SPEED CHART</div>
+                <div class="h-16 flex items-end justify-between gap-1 px-4 border-b-2 border-gray-100 pb-1">
+                    <div class="w-full bg-pink-200 rounded-t-sm" style="height: 20%"></div>
+                    <div class="w-full bg-pink-300 rounded-t-sm" style="height: 40%"></div>
+                    <div class="w-full bg-pink-400 rounded-t-sm" style="height: 60%"></div>
+                    <div class="w-full bg-pink-500 rounded-t-sm" style="height: 90%"></div>
+                    <div class="w-full bg-pink-400 rounded-t-sm" style="height: 70%"></div>
+                    <div class="w-full bg-pink-500 rounded-t-sm" style="height: 95%"></div>
+                    <div class="w-full bg-pink-500 rounded-t-sm" style="height: 90%"></div>
+                    <div class="w-full bg-pink-400 rounded-t-sm" style="height: 60%"></div>
+                    <div class="w-full bg-pink-400 rounded-t-sm" style="height: 75%"></div>
+                    <div class="w-full bg-pink-500 rounded-t-sm" style="height: 90%"></div>
+                    <div class="w-full bg-pink-500 rounded-t-sm" style="height: 85%"></div>
+                    <div class="w-full bg-pink-400 rounded-t-sm" style="height: 60%"></div>
+                    <div class="w-full bg-pink-300 rounded-t-sm" style="height: 45%"></div>
+                    <div class="w-full bg-pink-400 rounded-t-sm" style="height: 80%"></div>
+                    <div class="w-full bg-pink-500 rounded-t-sm" style="height: 80%"></div>
+                </div>
+                <div class="text-center text-[9px] text-gray-400 mt-1">Answers per 15s block</div>
+            </div>
+
+            <div class="flex flex-col gap-3 animate-fade-up" style="animation-delay: 1.7s;">
+                <button class="btn-primary w-full shadow-[0_6px_0_#c55f85]">Next Level →</button>
+                <button class="btn-secondary w-full">↺ Retry for More Stats</button>
+            </div>
+        </div>
+
+        <!-- 7.8 Practice Setup Screen -->
+        <div class="mobile-mockup snap-center bg-white">
+            <div class="flex items-center gap-3 p-6 pb-2">
+                <button class="text-gray-400 text-xl font-bold">←</button>
+                <h1 class="font-display font-black text-xl text-gray-800">⚡ Practice Mode</h1>
+            </div>
+
+            <div class="p-6 flex-1 flex flex-col gap-6 overflow-y-auto no-scrollbar">
+                <!-- Mode -->
+                <div>
+                    <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">MODE</div>
+                    <div class="flex gap-2">
+                        <div class="bg-pink-300 text-white font-bold py-2 px-4 rounded-xl text-sm shadow-sm">⏱ Time</div>
+                        <div class="bg-gray-100 text-gray-500 font-bold py-2 px-4 rounded-xl text-sm">🎯 Count</div>
+                        <div class="bg-gray-100 text-gray-500 font-bold py-2 px-4 rounded-xl text-sm">🧘 Zen</div>
+                    </div>
+                </div>
+
+                <!-- Time Limit -->
+                <div>
+                    <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">TIME LIMIT</div>
+                    <div class="flex gap-2">
+                        <div class="bg-gray-100 text-gray-500 font-bold py-2 px-4 rounded-xl text-sm">15s</div>
+                        <div class="bg-gray-100 text-gray-500 font-bold py-2 px-4 rounded-xl text-sm">30s</div>
+                        <div class="bg-pink-300 text-white font-bold py-2 px-4 rounded-xl text-sm shadow-sm">60s</div>
+                        <div class="bg-gray-100 text-gray-500 font-bold py-2 px-4 rounded-xl text-sm">120s</div>
+                    </div>
+                </div>
+
+                <!-- Operations -->
+                <div>
+                    <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">OPERATIONS</div>
+                    <div class="flex gap-2">
+                        <div class="bg-pink-300 text-white font-bold py-2 px-5 rounded-xl text-lg shadow-sm">+</div>
+                        <div class="bg-pink-300 text-white font-bold py-2 px-5 rounded-xl text-lg shadow-sm">-</div>
+                        <div class="bg-gray-100 text-gray-500 font-bold py-2 px-5 rounded-xl text-lg">×</div>
+                        <div class="bg-gray-100 text-gray-500 font-bold py-2 px-5 rounded-xl text-lg">÷</div>
+                    </div>
+                </div>
+
+                <!-- Difficulty -->
+                <div>
+                    <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">DIFFICULTY</div>
+                    <div class="flex gap-2">
+                        <div class="bg-pink-300 text-white font-bold py-2 px-4 rounded-xl text-sm shadow-sm">Easy 1-15</div>
+                        <div class="bg-gray-100 text-gray-500 font-bold py-2 px-4 rounded-xl text-sm">Medium</div>
+                        <div class="bg-gray-100 text-gray-500 font-bold py-2 px-4 rounded-xl text-sm">Hard</div>
+                    </div>
+                </div>
+
+                <hr class="border-gray-100">
+
+                <!-- PB Card -->
+                <div class="bg-yellow-50 border-2 border-yellow-200 rounded-2xl p-4 text-center shadow-sm">
+                    <div class="text-xs font-bold text-yellow-700 uppercase tracking-wider mb-2">🏆 Your PB for this config:</div>
+                    <div class="font-display font-black text-2xl text-yellow-800">42 correct <span class="text-base text-yellow-600 font-bold font-sans">| 91% acc</span></div>
+                    <div class="text-xs text-yellow-600 font-medium mt-1">Set on March 12</div>
+                </div>
+
+                <div class="mt-auto pb-4">
+                    <button class="btn-primary w-full shadow-[0_6px_0_#c55f85]">▶ Start Practice</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7.9 Profile Screen -->
+        <div class="mobile-mockup snap-center bg-white">
+            <!-- Header -->
+            <div class="flex justify-between items-center p-6 bg-gradient-to-b from-pink-50 to-white">
+                <button class="text-gray-400 text-xl font-bold">←</button>
+                <button class="text-gray-400 text-sm font-bold">⚙️ Edit</button>
+            </div>
+
+            <!-- Profile Info -->
+            <div class="px-6 flex items-center gap-4 mb-5">
+                <div class="text-[4rem] leading-none drop-shadow-sm">🧠</div>
+                <div>
+                    <h1 class="font-display font-black text-2xl text-gray-800">Delin</h1>
+                    <div class="text-sm font-bold text-pink-500 mb-1">Level 14 · 4,200 XP</div>
+                    <div class="h-2 w-32 bg-gray-100 rounded-full overflow-hidden">
+                        <div class="h-full bg-pink-400" style="width: 84%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="px-6 flex gap-4 mb-6 text-sm font-bold text-gray-600">
+                <div class="bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-100">🔥 23 days</div>
+                <div class="bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-100">📚 34 levels done</div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="flex border-b border-gray-100 px-6 mb-6">
+                <div class="pb-3 border-b-2 border-pink-400 text-pink-500 font-bold text-sm mr-6">Stats</div>
+                <div class="pb-3 text-gray-400 font-bold text-sm mr-6">Achievements</div>
+                <div class="pb-3 text-gray-400 font-bold text-sm">History</div>
+            </div>
+
+            <div class="px-6 overflow-y-auto no-scrollbar pb-8">
+                <!-- Stats Grid -->
+                <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">STATS</div>
+                <div class="grid grid-cols-2 gap-3 mb-8">
+                    <div class="bg-gray-50 rounded-2xl p-4 border border-gray-100">
+                        <div class="text-2xl font-display font-black text-gray-800 mb-1">1,247 ✅</div>
+                        <div class="text-xs font-bold text-gray-400">Correct</div>
+                    </div>
+                    <div class="bg-gray-50 rounded-2xl p-4 border border-gray-100">
+                        <div class="text-2xl font-display font-black text-gray-800 mb-1">89.3% 🎯</div>
+                        <div class="text-xs font-bold text-gray-400">Accuracy</div>
+                    </div>
+                    <div class="bg-gray-50 rounded-2xl p-4 border border-gray-100">
+                        <div class="text-xl font-display font-black text-gray-800 mb-1">23 Sessions</div>
+                        <div class="text-xs font-bold text-gray-400">this week</div>
+                    </div>
+                    <div class="bg-gray-50 rounded-2xl p-4 border border-gray-100">
+                        <div class="text-xl font-display font-black text-gray-800 mb-1">2.3s Avg</div>
+                        <div class="text-xs font-bold text-gray-400">per answer</div>
+                    </div>
+                </div>
+
+                <!-- World Progress -->
+                <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">WORLD PROGRESS</div>
+                <div class="flex flex-col gap-4">
+                    <div>
+                        <div class="flex justify-between text-xs font-bold text-gray-600 mb-1">
+                            <span>World 1</span>
+                            <span>34/50</span>
+                        </div>
+                        <div class="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
+                            <div class="h-full bg-pink-400 rounded-full" style="width: 68%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs font-bold text-gray-600 mb-1">
+                            <span>World 2</span>
+                            <span>0/50</span>
+                        </div>
+                        <div class="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
+                            <div class="h-full bg-orange-400 rounded-full" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

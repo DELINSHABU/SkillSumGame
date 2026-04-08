@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&amp;family=Be+Vietnam+Pro:wght@400;500;700&amp;family=DM+Sans:wght@400;500;700&amp;family=Space+Grotesk:wght@500;700&amp;family=Nunito:wght@700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#332f32",
+                    "primary-fixed-dim": "#ffb1c7",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#dfd8db",
+                    "primary-fixed": "#ffd9e2",
+                    "on-primary-fixed-variant": "#831e48",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#f4ecef",
+                    "secondary": "#904d00",
+                    "inverse-primary": "#ffb1c7",
+                    "on-surface": "#1e1b1d",
+                    "surface": "#fff7fa",
+                    "surface-container-high": "#eee6e9",
+                    "secondary-fixed": "#ffdcc3",
+                    "on-secondary-fixed": "#2f1500",
+                    "tertiary": "#006b5e",
+                    "tertiary-fixed": "#6bf9e1",
+                    "on-primary-fixed": "#3e001c",
+                    "primary": "#a23760",
+                    "on-tertiary-fixed": "#00201b",
+                    "inverse-on-surface": "#f7eff2",
+                    "primary-container": "#ff80ab",
+                    "on-primary-container": "#77133f",
+                    "error": "#ba1a1a",
+                    "error-container": "#ffdad6",
+                    "outline-variant": "#dbc0c6",
+                    "on-tertiary-container": "#00473e",
+                    "on-surface-variant": "#554247",
+                    "surface-variant": "#e8e0e3",
+                    "surface-tint": "#a23760",
+                    "background": "#fff7fa",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#49dcc5",
+                    "on-tertiary-fixed-variant": "#005046",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "outline": "#887177",
+                    "surface-container-highest": "#e8e0e3",
+                    "on-secondary-fixed-variant": "#6e3900",
+                    "secondary-fixed-dim": "#ffb77d",
+                    "surface-container-low": "#f9f2f5",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#693600",
+                    "secondary-container": "#fd983a",
+                    "tertiary-container": "#11bea8",
+                    "surface-bright": "#fff7fa",
+                    "on-background": "#1e1b1d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans", "Nunito"],
+                    "body": ["Be Vietnam Pro", "DM Sans"],
+                    "label": ["Space Grotesk"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .dot-grid {
+            background-image: radial-gradient(#dbc0c6 1px, transparent 1px);
+            background-size: 24px 24px;
+            opacity: 0.15;
+        }
+        .glass-panel {
+            background: rgba(255, 247, 250, 0.8);
+            backdrop-filter: blur(24px);
+        }
+        .button-3d-pink {
+            box-shadow: 0 4px 0 #c55f85;
+        }
+        .button-3d-pink:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #c55f85;
+        }
+        .node-gloss {
+            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 50%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body text-on-surface min-h-screen selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-[#fff7fa] dark:bg-pink-950/20 backdrop-blur-xl shadow-[0_24px_24px_rgba(162,55,96,0.06)] flex justify-between items-center px-6 py-4">
+<div class="flex items-center gap-4">
+<button class="text-[#a23760] hover:scale-105 transition-transform duration-200 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h1 class="font-['Plus_Jakarta_Sans'] font-bold tracking-tight text-2xl text-[#a23760]">Speed Drills</h1>
+</div>
+<button class="text-[#a23760] hover:scale-105 transition-transform duration-200 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-2xl">settings</span>
+</button>
+</header>
+<main class="relative pb-32">
+<!-- Dot Grid Background Layer -->
+<div class="absolute inset-0 dot-grid pointer-events-none"></div>
+<div class="max-w-lg mx-auto px-6 pt-8 relative">
+<!-- Path Mastery Card -->
+<section class="mb-12">
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_24px_48px_rgba(162,55,96,0.08)] border border-outline-variant/10 relative overflow-hidden">
+<div class="flex justify-between items-end mb-4">
+<div>
+<p class="font-label text-primary text-sm tracking-wider uppercase mb-1">Current Progress</p>
+<h2 class="font-headline font-extrabold text-2xl text-on-surface">Path Mastery 0% Complete</h2>
+</div>
+<div class="text-right">
+<span class="font-label text-primary font-bold text-lg">0 of 50</span>
+<p class="text-xs text-on-surface-variant">Levels</p>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="h-4 w-full bg-surface-container rounded-full overflow-hidden flex items-center p-1">
+<div class="h-full w-0 bg-gradient-to-r from-primary to-primary-container rounded-full"></div>
+</div>
+<div class="mt-4 flex gap-2">
+<span class="bg-secondary-container/20 text-secondary text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-tighter">New World Unlocked</span>
+<span class="bg-tertiary-container/20 text-tertiary text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-tighter">Speed Challenge</span>
+</div>
+</div>
+</section>
+<!-- World Map / Central Winding Path -->
+<section class="flex flex-col items-center gap-16 py-8">
+<!-- BOSS Node: Level 350 -->
+<div class="relative group">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap">
+<span class="bg-gradient-to-b from-[#ffd700] to-[#fd983a] text-white font-headline font-black text-[10px] px-3 py-1 rounded-full shadow-lg flex items-center gap-1 border-b-2 border-orange-700">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                             SPEED CHAMPION BOSS
+                        </span>
+</div>
+<div class="w-32 h-32 rounded-full bg-gradient-to-br from-[#f72585] to-[#ffd700] p-1.5 shadow-[0_20px_40px_rgba(247,37,133,0.3)] hover:scale-110 transition-transform cursor-pointer relative overflow-hidden">
+<div class="w-full h-full rounded-full bg-white/10 flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 node-gloss"></div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-white text-5xl mb-1" style="font-variation-settings: 'FILL' 1;">crown</span>
+<span class="font-label text-white font-black text-xl">L350</span>
+</div>
+</div>
+</div>
+<!-- Connector Path (Implicitly created by spacing and visual flow) -->
+</div>
+<!-- Path Bend 1 -->
+<div class="w-1 h-16 bg-gradient-to-b from-outline-variant/30 to-transparent rounded-full ml-12"></div>
+<!-- Locked Node: L304 -->
+<div class="relative ml-24 group">
+<div class="w-24 h-24 rounded-full bg-surface-dim shadow-[0_12px_0_#bfc3c9] flex items-center justify-center cursor-not-allowed relative">
+<span class="material-symbols-outlined text-on-surface-variant text-4xl">lock</span>
+<div class="absolute -right-32 top-1/2 -translate-y-1/2 w-28 opacity-50">
+<p class="font-headline font-bold text-sm text-on-surface-variant leading-tight">L304: Rapid Addition</p>
+</div>
+</div>
+</div>
+<!-- Locked Node: L303 -->
+<div class="relative -ml-24 group">
+<div class="w-24 h-24 rounded-full bg-surface-dim shadow-[0_12px_0_#bfc3c9] flex items-center justify-center cursor-not-allowed relative">
+<span class="material-symbols-outlined text-on-surface-variant text-4xl">lock</span>
+<div class="absolute -left-32 top-1/2 -translate-y-1/2 w-28 text-right opacity-50">
+<p class="font-headline font-bold text-sm text-on-surface-variant leading-tight">L303: Quick-Fire Mixed</p>
+</div>
+</div>
+</div>
+<!-- Path Bend 2 -->
+<div class="w-1 h-16 bg-gradient-to-t from-primary/30 to-transparent rounded-full -ml-12"></div>
+<!-- Active Node: Level 301 -->
+<div class="relative group">
+<!-- Next Badge -->
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 animate-bounce">
+<span class="bg-primary text-white font-label font-bold text-[10px] px-3 py-1 rounded-full shadow-md">NEXT</span>
+</div>
+<!-- Pulsing Glow -->
+<div class="absolute inset-0 rounded-full bg-primary/20 scale-125 animate-pulse"></div>
+<button class="w-32 h-32 rounded-full bg-gradient-to-br from-[#f72585] to-primary p-1 shadow-[0_12px_0_#77133f] hover:scale-105 active:translate-y-2 active:shadow-none transition-all relative overflow-hidden">
+<div class="w-full h-full rounded-full flex flex-col items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 node-gloss"></div>
+<span class="material-symbols-outlined text-white text-5xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+<span class="font-label text-white font-black text-xl">L301</span>
+</div>
+</button>
+<div class="absolute -bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap">
+<p class="font-headline font-extrabold text-lg text-primary tracking-tight">Speed Start</p>
+</div>
+</div>
+</section>
+<!-- Decorative Info Cards (Bento Style) -->
+<section class="mt-20 grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-5 rounded-lg flex flex-col gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-sm text-on-surface">Blitz Mode</h3>
+<p class="text-[11px] text-on-surface-variant leading-relaxed">Reactive speed challenges that double your XP.</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-5 rounded-lg flex flex-col gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/20 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">trophy</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-sm text-on-surface">Ranks</h3>
+<p class="text-[11px] text-on-surface-variant leading-relaxed">Reach L350 to unlock the 'Mach 1' Badge.</p>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 bg-white/80 dark:bg-black/40 backdrop-blur-3xl shadow-[0_-10px_30px_rgba(162,55,96,0.08)] rounded-t-[3rem] pb-safe">
+<!-- Worlds -->
+<a class="flex flex-col items-center justify-center text-[#a23760]/50 px-6 py-2 hover:text-[#a23760] transition-all group active:translate-y-1" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform" data-icon="public">public</span>
+<span class="font-['DM_Sans'] text-xs font-semibold">Worlds</span>
+</a>
+<!-- Practice (ACTIVE) -->
+<a class="flex flex-col items-center justify-center bg-[#ff80ab] text-[#a23760] rounded-[2rem] px-6 py-2 shadow-[0_4px_0_#c55f85] transition-all group active:translate-y-1 active:shadow-none" href="#">
+<span class="material-symbols-outlined" data-icon="exercise" style="font-variation-settings: 'FILL' 1;">exercise</span>
+<span class="font-['DM_Sans'] text-xs font-semibold">Practice</span>
+</a>
+<!-- Ranks -->
+<a class="flex flex-col items-center justify-center text-[#a23760]/50 px-6 py-2 hover:text-[#a23760] transition-all group active:translate-y-1" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform" data-icon="leaderboard">leaderboard</span>
+<span class="font-['DM_Sans'] text-xs font-semibold">Ranks</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-[#a23760]/50 px-6 py-2 hover:text-[#a23760] transition-all group active:translate-y-1" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform" data-icon="person">person</span>
+<span class="font-['DM_Sans'] text-xs font-semibold">Profile</span>
+</a>
+</nav>
+<!-- Floating Action Element (Optional, but adds to the depth) -->
+<div class="fixed right-6 bottom-32 flex flex-col gap-4">
+<button class="w-14 h-14 rounded-full glass-panel shadow-lg flex items-center justify-center text-primary border border-white/20 hover:scale-110 transition-all active:scale-95">
+<span class="material-symbols-outlined">rocket_launch</span>
+</button>
+</div>
+</body></html>

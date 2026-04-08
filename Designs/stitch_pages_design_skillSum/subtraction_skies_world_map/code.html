@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>World 2: Subtraction Skies - World Map</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;family=Nunito:wght@700;800;900&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary-fixed": "#6bf9e1",
+                        "tertiary": "#006b5e",
+                        "surface-dim": "#dfd8db",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#ff80ab",
+                        "on-primary-fixed": "#3e001c",
+                        "secondary-fixed-dim": "#ffb77d",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#00201b",
+                        "surface": "#fff7fa",
+                        "secondary": "#904d00",
+                        "on-secondary-fixed": "#2f1500",
+                        "surface-container": "#f4ecef",
+                        "secondary-container": "#fd983a",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#693600",
+                        "on-primary-container": "#77133f",
+                        "primary-fixed-dim": "#ffb1c7",
+                        "on-secondary-fixed-variant": "#6e3900",
+                        "inverse-primary": "#ffb1c7",
+                        "primary": "#a23760",
+                        "on-surface-variant": "#554247",
+                        "secondary-fixed": "#ffdcc3",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#11bea8",
+                        "surface-tint": "#a23760",
+                        "primary-fixed": "#ffd9e2",
+                        "on-primary-fixed-variant": "#831e48",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#e8e0e3",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#49dcc5",
+                        "surface-container-low": "#f9f2f5",
+                        "surface-bright": "#fff7fa",
+                        "inverse-on-surface": "#f7eff2",
+                        "outline": "#887177",
+                        "outline-variant": "#dbc0c6",
+                        "on-tertiary-container": "#00473e",
+                        "inverse-surface": "#332f32",
+                        "surface-variant": "#e8e0e3",
+                        "surface-container-high": "#eee6e9",
+                        "on-tertiary-fixed-variant": "#005046",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#1e1b1d",
+                        "background": "#fff7fa",
+                        "on-surface": "#1e1b1d"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        "headline": ["Nunito", "Plus Jakarta Sans", "sans-serif"],
+                        "body": ["Be Vietnam Pro", "DM Sans", "sans-serif"],
+                        "label": ["Space Grotesk", "JetBrains Mono", "monospace"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .dot-grid {
+            background-image: radial-gradient(circle, #dbc0c6 1.5px, transparent 1.5px);
+            background-size: 24px 24px;
+            opacity: 0.15;
+        }
+        .bubble-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 128, 171, 0.4); }
+            50% { box-shadow: 0 0 20px 10px rgba(255, 128, 171, 0.2); }
+        }
+        .winding-path {
+            stroke-dasharray: 8 8;
+            filter: drop-shadow(0 2px 2px rgba(162, 55, 96, 0.1));
+        }
+        .pressable-3d {
+            transition: transform 0.1s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .pressable-3d:active {
+            transform: translateY(4px);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(24px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body text-on-surface overflow-x-hidden min-h-screen">
+<!-- Header Section (TopAppBar) -->
+<header class="fixed top-0 w-full z-[200] bg-[#fff7fa] px-4 py-2 flex justify-between items-center shadow-[0_4px_0_0_rgba(197,95,133,0.1)]">
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-low text-primary pressable-3d">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<div class="flex flex-col">
+<h1 class="font-headline font-extrabold text-lg tracking-tight text-primary">Subtraction Skies</h1>
+<p class="font-label text-[10px] uppercase tracking-widest text-primary/60">World 2</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="bg-surface-container-highest px-3 py-1 rounded-full flex items-center gap-2 shadow-[inset_0_2px_4px_rgba(0,0,0,0.05)]">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="local_fire_department" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-label font-bold text-on-surface text-sm">7</span>
+</div>
+<div class="bg-surface-container-highest px-3 py-1 rounded-full flex items-center gap-2 shadow-[inset_0_2px_4px_rgba(0,0,0,0.05)]">
+<span class="material-symbols-outlined text-tertiary text-sm" data-icon="database" style="font-variation-settings: 'FILL' 1;">database</span>
+<span class="font-label font-bold text-on-surface text-sm">1,240</span>
+</div>
+</div>
+</header>
+<main class="relative pt-24 pb-32 min-h-screen max-w-2xl mx-auto px-4 overflow-hidden">
+<!-- Ambient Dot Grid Background -->
+<div class="absolute inset-0 dot-grid pointer-events-none"></div>
+<!-- World Stats Card -->
+<div class="relative z-10 bg-white rounded-xl p-6 shadow-[0_8px_0_0_#eee6e9] mb-12 border-none">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-xl bg-gradient-to-br from-secondary-container to-secondary flex items-center justify-center text-white shadow-[0_6px_0_0_#693600]">
+<span class="material-symbols-outlined text-4xl" data-icon="remove">remove</span>
+</div>
+<div>
+<h2 class="font-headline font-bold text-xl text-on-surface">Path Mastery</h2>
+<p class="text-on-surface-variant font-medium">12 of 50 levels cleared</p>
+</div>
+</div>
+<div class="text-right">
+<span class="font-label text-2xl font-bold text-secondary">24%</span>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="h-4 w-full bg-surface-container-high rounded-full overflow-hidden relative">
+<div class="h-full bg-gradient-to-r from-secondary-container to-secondary rounded-full w-[24%] shadow-[inset_0_-2px_4px_rgba(0,0,0,0.1)]"></div>
+</div>
+</div>
+<!-- World Map SVG Path (Simplified for visual representation) -->
+<div class="absolute left-0 right-0 top-64 h-[2000px] pointer-events-none flex justify-center">
+<svg class="w-full h-full opacity-30" fill="none" viewbox="0 0 400 2000">
+<path class="winding-path" d="M200 50 C280 150 120 250 200 350 S280 550 200 650 S120 850 200 950 S280 1150 200 1250 S120 1450 200 1550" stroke="#a23760" stroke-linecap="round" stroke-width="4"></path>
+</svg>
+</div>
+<!-- Level Nodes Container (Asymmetric Layout) -->
+<div class="relative z-20 flex flex-col items-center gap-24">
+<!-- BOSS LEVEL (Locked/Target at Top) -->
+<div class="flex flex-col items-center translate-x-4 mb-12">
+<div class="relative">
+<div class="w-32 h-32 rounded-full bg-surface-container-highest flex items-center justify-center shadow-[0_8px_0_0_#dfd8db] border-4 border-white">
+<span class="material-symbols-outlined text-5xl text-outline/40" data-icon="lock">lock</span>
+</div>
+<div class="absolute -top-4 -right-4 bg-primary text-white p-2 rounded-full shadow-lg">
+<span class="material-symbols-outlined text-2xl" data-icon="crown">crown</span>
+</div>
+</div>
+<div class="mt-4 text-center">
+<h3 class="font-label font-bold text-outline uppercase tracking-widest text-xs">SUBTRACTION SPRINT</h3>
+<p class="font-headline font-extrabold text-on-surface-variant text-sm">Boss Level 50</p>
+</div>
+</div>
+<!-- Level 15 (Locked) -->
+<div class="flex flex-col items-center -translate-x-12 opacity-60">
+<div class="w-20 h-20 rounded-full bg-surface-container-high flex items-center justify-center shadow-[0_6px_0_0_#e8e0e3] border-4 border-white">
+<span class="material-symbols-outlined text-on-surface-variant/40" data-icon="lock">lock</span>
+</div>
+<div class="mt-2 font-label font-bold text-on-surface-variant/60">15</div>
+</div>
+<!-- Level 14 (Locked) -->
+<div class="flex flex-col items-center translate-x-16 opacity-60">
+<div class="w-20 h-20 rounded-full bg-surface-container-high flex items-center justify-center shadow-[0_6px_0_0_#e8e0e3] border-4 border-white">
+<span class="material-symbols-outlined text-on-surface-variant/40" data-icon="lock">lock</span>
+</div>
+<div class="mt-2 font-label font-bold text-on-surface-variant/60">14</div>
+</div>
+<!-- Level 13: NEXT LEVEL (The "Bloom" Pulse) -->
+<div class="flex flex-col items-center -translate-x-4">
+<div class="relative cursor-pointer pressable-3d">
+<div class="w-28 h-28 rounded-full bg-gradient-to-br from-primary-container to-primary flex items-center justify-center shadow-[0_8px_0_0_#77133f] border-4 border-white pulse-glow bubble-float">
+<span class="material-symbols-outlined text-white text-4xl" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+<div class="absolute -top-4 -left-4 bg-tertiary text-white px-4 py-1 rounded-full font-label font-bold text-xs shadow-md">
+                        NEXT
+                    </div>
+</div>
+<div class="mt-4 text-center">
+<h3 class="font-headline font-extrabold text-primary text-lg">Subtracting 9 Trick</h3>
+<p class="font-body text-xs text-on-surface-variant/80">Lesson 13</p>
+</div>
+</div>
+<!-- Level 12: Completed (2 Stars) -->
+<div class="flex flex-col items-center translate-x-10">
+<div class="relative cursor-pointer pressable-3d">
+<div class="w-20 h-20 rounded-full bg-gradient-to-br from-secondary-container to-secondary flex items-center justify-center shadow-[0_6px_0_0_#693600] border-4 border-white">
+<span class="font-label font-extrabold text-white text-2xl">12</span>
+</div>
+<div class="absolute -bottom-6 left-1/2 -translate-x-1/2 flex gap-1">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-outline-variant text-sm" data-icon="star" style="font-variation-settings: 'FILL' 0;">star</span>
+</div>
+</div>
+<div class="mt-8 text-center">
+<h3 class="font-headline font-bold text-on-surface text-sm">The Ten Rule</h3>
+</div>
+</div>
+<!-- Level 11: Completed (3 Stars) -->
+<div class="flex flex-col items-center -translate-x-14">
+<div class="relative cursor-pointer pressable-3d">
+<div class="w-20 h-20 rounded-full bg-gradient-to-br from-secondary-container to-secondary flex items-center justify-center shadow-[0_6px_0_0_#693600] border-4 border-white">
+<span class="font-label font-extrabold text-white text-2xl">11</span>
+</div>
+<div class="absolute -bottom-6 left-1/2 -translate-x-1/2 flex gap-1">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<div class="mt-8 text-center">
+<h3 class="font-headline font-bold text-on-surface text-sm">Subtracting Singles</h3>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (BottomNavBar) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-end px-4 pb-6 pt-2 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-[0_-8px_24px_rgba(162,55,96,0.06)] rounded-t-xl border-none">
+<a class="flex flex-col items-center justify-center bg-gradient-to-br from-[#a23760] to-[#ff80ab] text-white rounded-full px-6 py-2 mb-2 shadow-[0_4px_0_0_#c55f85] transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="map" style="font-variation-settings: 'FILL' 1;">map</span>
+<span class="font-headline text-[10px] font-bold uppercase tracking-wider mt-1">Worlds</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#a23760]/50 dark:text-[#ff80ab]/40 px-4 py-2 hover:text-[#a23760] transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="exercise">exercise</span>
+<span class="font-headline text-[10px] font-bold uppercase tracking-wider mt-1">Practice</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#a23760]/50 dark:text-[#ff80ab]/40 px-4 py-2 hover:text-[#a23760] transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+<span class="font-headline text-[10px] font-bold uppercase tracking-wider mt-1">Rankings</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#a23760]/50 dark:text-[#ff80ab]/40 px-4 py-2 hover:text-[#a23760] transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-headline text-[10px] font-bold uppercase tracking-wider mt-1">Profile</span>
+</a>
+</nav>
+<!-- Visual Floating Decoration -->
+<div class="fixed top-1/4 -right-10 w-32 h-32 bg-secondary-container/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="fixed bottom-1/4 -left-10 w-40 h-40 bg-primary-container/10 rounded-full blur-3xl pointer-events-none"></div>
+</body></html>

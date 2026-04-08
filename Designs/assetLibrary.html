@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillSum 2.0 Custom SVG Assets</title>
+    
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=DM+Sans:wght@500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Nunito', 'sans-serif'],
+                        body: ['DM Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            pink: '#ff80ab',
+                            gold: '#ffd700',
+                            silver: '#c0c0c0',
+                            bronze: '#cd7f32',
+                            green: '#4caf50',
+                            red: '#f44336',
+                            orange: '#ff9800',
+                            blue: '#42a5f5',
+                            purple: '#9b59d0'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #f8f9fa;
+            color: #1f2937;
+        }
+        .asset-card {
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid #f3f4f6;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .asset-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+        }
+        .asset-name {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #6b7280;
+            text-align: center;
+            word-break: break-all;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        /* SVG Baseline Styles for Soft Arcade Look */
+        svg {
+            overflow: visible;
+        }
+        .soft-stroke {
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+    </style>
+</head>
+<body class="p-8 md:p-12">
+
+    <div class="max-w-7xl mx-auto">
+        <div class="mb-12 text-center">
+            <h1 class="text-4xl font-black font-display text-brand-pink mb-4">SkillSum 2.0 Asset Library</h1>
+            <p class="text-gray-500 font-medium">All custom SVGs designed with the "Soft Arcade" aesthetic (rounded corners, thick strokes, warm colors).</p>
+        </div>
+
+        <!-- 1. Gamification & Core Progress Icons -->
+        <h2 class="text-2xl font-black font-display text-gray-800 mb-6 pb-2 border-b-2 border-gray-100">1. Gamification & Core Progress Icons</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 mb-16">
+            
+            <div class="asset-card">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="#e5e7eb" stroke="#9ca3af" stroke-width="2" class="soft-stroke">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                <span class="asset-name">star-empty.svg</span>
+            </div>
+
+            <div class="asset-card">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="#cd7f32" stroke="#8b5a2b" stroke-width="2" class="soft-stroke" style="filter: drop-shadow(0 4px 4px rgba(205,127,50,0.3));">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                <span class="asset-name">star-bronze.svg</span>
+            </div>
+
+            <div class="asset-card">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2" class="soft-stroke" style="filter: drop-shadow(0 4px 4px rgba(192,192,192,0.4));">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                <span class="asset-name">star-silver.svg</span>
+            </div>
+
+            <div class="asset-card">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="#ffd700" stroke="#d4af37" stroke-width="2" class="soft-stroke" style="filter: drop-shadow(0 4px 6px rgba(255,215,0,0.5));">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    <path d="M12 6L14 10L18 10L15 13L16 17L12 15" fill="#fff" opacity="0.4"></path>
+                </svg>
+                <span class="asset-name">star-gold.svg</span>
+            </div>
+
+            <div class="asset-card">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="url(#flameGrad)" stroke="#ea580c" stroke-width="1.5" class="soft-stroke" style="filter: drop-shadow(0 4px 8px rgba(249,115,22,0.4));">
+                    <defs>
+                        <linearGradient id="flameGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+                            <stop offset="0%" stop-color="#ea580c" />
+                            <stop offset="50%" stop-color="#f97316" />
+                            <stop offset="100%" stop-color="#fcd34d" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M12 2C12 2 5 8.5 5 14.5C5 18.64 8.13 22 12 22C15.87 22 19 18.64 19 14.5C19 8.5 12 2 12 2Z"></path>
+                    <path d="M12 10C12 10 9 13.5 9 16.5C9 18.43 10.34 20 12 20C13.66 20 15 18.43 15 16.5C15 13.5 12 10 12 10Z" fill="#fef08a" stroke="none"></path>
+                </svg>
+                <span class="asset-name">streak-flame.svg</span>
+            </div>
+
+            <div class="asset-card">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="#fbbf24" stroke="#d97706" stroke-width="2" class="soft-stroke" style="filter: drop-shadow(0 4px 6px rgba(251,191,36,0.4));">
+                    <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z"></path>
+                </svg>
+                <span class="asset-name">xp-lightning.svg</span>
+            </div>
+
+            <div class="asset-card">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" class="soft-stroke">
+                    <circle cx="12" cy="12" r="10" fill="#fee2e2"></circle>
+                    <circle cx="12" cy="12" r="6" fill="#fca5a5"></circle>
+                    <circle cx="12" cy="12" r="2" fill="#ef4444"></circle>
+                </svg>
+                <span class="asset-name">target-bullseye.svg</span>
+            </div>
+
+            <div class="asset-card">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="#4caf50" stroke="#2e7d32" stroke-width="2" class="soft-stroke" style="filter: drop-shadow(0 4px 4px rgba(76,175,80,0.3));">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M8 12.5L10.5 15L16 9" fill="none" stroke="#fff" stroke-width="3"></path>
+                </svg>
+                <span class="asset-name">check-correct.svg</span>
+            </div>
+
+            <div class="asset-card">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="#f44336" stroke="#c62828" stroke-width="2" class="soft-stroke" style="filter: drop-shadow(0 4px 4px rgba(244,67,54,0.3));">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M9 9L15 15M15 9L9 15" fill="none" stroke="#fff" stroke-width="3"></path>
+                </svg>
+                <span class="asset-name">cross-wrong.svg</span>
+            </div>
+        </div>
+
+        <!-- 2. Global Navigation & UI Elements -->
+        <h2 class="text-2xl font-black font-display text-gray-800 mb-6 pb-2 border-b-2 border-gray-100">2. Global Navigation & UI Elements</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 mb-16">
+            
+            <div class="asset-card">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#4b5563" stroke-width="2.5" class="soft-stroke">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                <span class="asset-name">nav-home.svg</span>
+            </div>
+
+            <div class="asset-card">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#4b5563" stroke-width="2.5" class="soft-stroke">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                </svg>
+                <span class="asset-name">nav-learn.svg</span>
+            </div>
+
+            <div class="asset-card">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#4b5563" stroke-width="2.5" class="soft-stroke">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                    <path d="M12 2v2M22 12h-2"></path>
+                </svg>
+                <span class="asset-name">nav-practice.svg</span>
+            </div>
+
+            <div class="asset-card">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#4b5563" stroke-width="2.5" class="soft-stroke">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                    <path d="M9 16l2 2 4-4" stroke="#ff80ab" stroke-width="3"></path>
+                </svg>
+                <span class="asset-name">nav-daily.svg</span>
+            </div>
+
+            <div class="asset-card">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#4b5563" stroke-width="2.5" class="soft-stroke">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span class="asset-name">nav-profile.svg</span>
+            </div>
+
+            <div class="asset-card">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="3" class="soft-stroke">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span class="asset-name">icon-back-arrow.svg</span>
+            </div>
+
+            <div class="asset-card">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2.5" class="soft-stroke">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+                <span class="asset-name">icon-settings.svg</span>
+            </div>
+
+            <div class="asset-card">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="#cbd5e1" stroke="none" class="soft-stroke">
+                    <rect x="6" y="4" width="4" height="16" rx="2"></rect>
+                    <rect x="14" y="4" width="4" height="16" rx="2"></rect>
+                </svg>
+                <span class="asset-name">icon-pause.svg</span>
+            </div>
+
+            <div class="asset-card">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="#e5e7eb" stroke="#9ca3af" stroke-width="2.5" class="soft-stroke">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <span class="asset-name">icon-lock.svg</span>
+            </div>
+
+            <div class="asset-card">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="#ff80ab" stroke="#e0396e" stroke-width="2" class="soft-stroke">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                <span class="asset-name">icon-play.svg</span>
+            </div>
+
+            <div class="asset-card">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="3" class="soft-stroke">
+                    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                    <polyline points="3 3 3 8 8 8"></polyline>
+                </svg>
+                <span class="asset-name">icon-retry.svg</span>
+            </div>
+        </div>
+
+        <!-- 3. World Themes -->
+        <h2 class="text-2xl font-black font-display text-gray-800 mb-6 pb-2 border-b-2 border-gray-100">3. World Themes (Curriculum Concepts)</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6 mb-16">
+            
+            <div class="asset-card" style="background: linear-gradient(135deg, #ff8fab, #ff5c7a);">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" class="soft-stroke" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                <span class="asset-name text-white">world-1-addition.svg</span>
+            </div>
+
+            <div class="asset-card" style="background: linear-gradient(135deg, #ff9a3c, #ff6b00);">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" class="soft-stroke" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                <span class="asset-name text-white">world-2-subtraction.svg</span>
+            </div>
+
+            <div class="asset-card" style="background: linear-gradient(135deg, #26c6b0, #00897b);">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" class="soft-stroke" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+                <span class="asset-name text-white">world-3-multiplication.svg</span>
+            </div>
+
+            <div class="asset-card" style="background: linear-gradient(135deg, #9b59d0, #6a1b9a);">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" class="soft-stroke" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <circle cx="12" cy="5" r="2" fill="#fff"></circle>
+                    <circle cx="12" cy="19" r="2" fill="#fff"></circle>
+                </svg>
+                <span class="asset-name text-white">world-4-division.svg</span>
+            </div>
+
+            <div class="asset-card" style="background: linear-gradient(135deg, #ef5350, #b71c1c);">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" class="soft-stroke" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));">
+                    <polyline points="16 3 21 3 21 8"></polyline>
+                    <line x1="4" y1="20" x2="21" y2="3"></line>
+                    <polyline points="21 16 21 21 16 21"></polyline>
+                    <line x1="15" y1="15" x2="21" y2="21"></line>
+                    <line x1="4" y1="4" x2="9" y2="9"></line>
+                </svg>
+                <span class="asset-name text-white">world-5-mixed.svg</span>
+            </div>
+
+            <div class="asset-card" style="background: linear-gradient(135deg, #42a5f5, #1565c0);">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" class="soft-stroke" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));">
+                    <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"></path>
+                    <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"></path>
+                </svg>
+                <span class="asset-name text-white">world-6-number-sense.svg</span>
+            </div>
+
+            <div class="asset-card" style="background: linear-gradient(135deg, #f72585, #c2185b);">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="#fff" stroke="none" class="soft-stroke" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));">
+                    <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z"></path>
+                    <line x1="2" y1="6" x2="6" y2="6" stroke="#fff" stroke-width="2"></line>
+                    <line x1="0" y1="10" x2="4" y2="10" stroke="#fff" stroke-width="2"></line>
+                </svg>
+                <span class="asset-name text-white">world-7-speed.svg</span>
+            </div>
+
+            <div class="asset-card" style="background: linear-gradient(135deg, #534bae, #1a237e);">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" class="soft-stroke" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));">
+                    <path d="M8 21h8"></path>
+                    <path d="M12 17v4"></path>
+                    <path d="M7 4h10c1.1 0 2 .9 2 2v4c0 3.31-2.69 6-6 6H9c-3.31 0-6-2.69-6-6V6c0-1.1.9-2 2-2z"></path>
+                    <path d="M3 6h4"></path>
+                    <path d="M17 6h4"></path>
+                </svg>
+                <span class="asset-name text-white">world-8-elite.svg</span>
+            </div>
+
+        </div>
+
+        <!-- 4. Map & Level Node Assets -->
+        <h2 class="text-2xl font-black font-display text-gray-800 mb-6 pb-2 border-b-2 border-gray-100">4. Map & Level Node Assets</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+            
+            <div class="asset-card bg-gray-50 flex-row">
+                <svg width="100" height="80" viewBox="0 0 100 80" fill="none" stroke="#ffb3cc" stroke-width="6" stroke-dasharray="12 12" class="soft-stroke">
+                    <path d="M10 10 Q 50 10 50 40 T 90 70"></path>
+                </svg>
+                <span class="asset-name">dotted-path.svg</span>
+            </div>
+
+            <div class="asset-card bg-gray-50 flex-row">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="#fbbf24" stroke="#d97706" stroke-width="1.5" class="soft-stroke" style="filter: drop-shadow(0 4px 6px rgba(251,191,36,0.5));">
+                    <path d="M2 20h20L19 4l-4 5-3-7-3 7-4-5-3 16z"></path>
+                </svg>
+                <span class="asset-name">node-boss-crown.svg</span>
+            </div>
+
+            <div class="asset-card bg-gray-50 flex-row">
+                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" class="soft-stroke">
+                    <circle cx="32" cy="32" r="28" stroke="#ff80ab" stroke-width="4" stroke-dasharray="8 6" opacity="0.5">
+                        <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="10s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="32" cy="32" r="20" fill="#ff80ab" stroke="#fff" stroke-width="2" style="filter: drop-shadow(0 0 10px rgba(255,128,171,0.6));">
+                        <animate attributeName="r" values="20; 22; 20" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                </svg>
+                <span class="asset-name">node-current-glow.svg</span>
+            </div>
+
+        </div>
+
+        <!-- 5. Achievement Badge System -->
+        <h2 class="text-2xl font-black font-display text-gray-800 mb-6 pb-2 border-b-2 border-gray-100">5. Achievement Badge System (Base + Emblems)</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 mb-16">
+            
+            <!-- Base Badge Definition -->
+            <svg style="display:none;">
+                <defs>
+                    <g id="badge-bg">
+                        <path d="M32 4 L56 18 L56 46 L32 60 L8 46 L8 18 Z" fill="#fff" stroke="#ffd700" stroke-width="4" stroke-linejoin="round" style="filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));"/>
+                        <path d="M32 8 L52 20 L52 44 L32 56 L12 44 L12 20 Z" fill="#fff9c4" stroke="none" />
+                    </g>
+                </defs>
+            </svg>
+
+            <!-- First Steps -->
+            <div class="asset-card bg-yellow-50/50">
+                <svg width="64" height="64" viewBox="0 0 64 64">
+                    <use href="#badge-bg" />
+                    <circle cx="32" cy="32" r="10" fill="#ef4444" />
+                    <circle cx="32" cy="32" r="6" fill="#fff" />
+                    <circle cx="32" cy="32" r="2" fill="#ef4444" />
+                </svg>
+                <span class="asset-name">badge-first-answer.svg</span>
+            </div>
+
+            <div class="asset-card bg-yellow-50/50">
+                <svg width="64" height="64" viewBox="0 0 64 64">
+                    <use href="#badge-bg" />
+                    <circle cx="32" cy="28" r="8" fill="#fbbf24" stroke="#d97706" stroke-width="2"/>
+                    <path d="M28 35 L26 46 L32 42 L38 46 L36 35 Z" fill="#ef4444" />
+                </svg>
+                <span class="asset-name">badge-level-up.svg</span>
+            </div>
+
+            <div class="asset-card bg-yellow-50/50">
+                <svg width="64" height="64" viewBox="0 0 64 64">
+                    <use href="#badge-bg" />
+                    <circle cx="32" cy="32" r="10" fill="#bae6fd" stroke="#0284c7" stroke-width="2"/>
+                    <path d="M26 28 C30 28, 30 36, 38 32" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+                <span class="asset-name">badge-world-done.svg</span>
+            </div>
+
+            <!-- Speed -->
+            <div class="asset-card bg-yellow-50/50">
+                <svg width="64" height="64" viewBox="0 0 64 64">
+                    <use href="#badge-bg" />
+                    <path d="M34 20 L24 34 H32 L30 44 L40 30 H32 L34 20 Z" fill="#3b82f6" stroke="#1d4ed8" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+                <span class="asset-name">badge-speed-1s.svg</span>
+            </div>
+
+            <div class="asset-card bg-yellow-50/50">
+                <svg width="64" height="64" viewBox="0 0 64 64">
+                    <use href="#badge-bg" />
+                    <path d="M32 18 C38 24, 40 32, 40 32 L24 32 C24 32, 26 24, 32 18 Z" fill="#ef4444" />
+                    <rect x="28" y="32" width="8" height="6" fill="#64748b" />
+                    <path d="M30 38 L32 44 L34 38 Z" fill="#f97316" />
+                </svg>
+                <span class="asset-name">badge-speed-2s.svg</span>
+            </div>
+
+            <!-- Accuracy & Streaks -->
+            <div class="asset-card bg-yellow-50/50">
+                <svg width="64" height="64" viewBox="0 0 64 64">
+                    <use href="#badge-bg" />
+                    <path d="M32 20 L40 28 L32 44 L24 28 Z" fill="#06b6d4" stroke="#0891b2" stroke-width="2" stroke-linejoin="round"/>
+                    <line x1="24" y1="28" x2="40" y2="28" stroke="#fff" stroke-width="1"/>
+                </svg>
+                <span class="asset-name">badge-perfect-100.svg</span>
+            </div>
+
+            <div class="asset-card bg-yellow-50/50">
+                <svg width="64" height="64" viewBox="0 0 64 64">
+                    <use href="#badge-bg" />
+                    <path d="M32 22 L34 28 H40 L35 32 L37 38 L32 34 L27 38 L29 32 L24 28 H30 Z" fill="#f97316" stroke="#c2410c" stroke-width="1" stroke-linejoin="round"/>
+                </svg>
+                <span class="asset-name">badge-streak-10.svg</span>
+            </div>
+
+            <div class="asset-card bg-yellow-50/50">
+                <svg width="64" height="64" viewBox="0 0 64 64">
+                    <use href="#badge-bg" />
+                    <path d="M22 36 L24 22 L32 28 L40 22 L42 36 Z" fill="#fbbf24" stroke="#b45309" stroke-width="2" stroke-linejoin="round"/>
+                </svg>
+                <span class="asset-name">badge-streak-25.svg</span>
+            </div>
+
+            <div class="asset-card bg-yellow-50/50">
+                <svg width="64" height="64" viewBox="0 0 64 64">
+                    <use href="#badge-bg" />
+                    <rect x="24" y="24" width="16" height="16" rx="2" fill="#fff" stroke="#64748b" stroke-width="2"/>
+                    <line x1="24" y1="28" x2="40" y2="28" stroke="#ef4444" stroke-width="2"/>
+                    <path d="M29 32 L31 35 L35 30" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <span class="asset-name">badge-daily-calendar.svg</span>
+            </div>
+
+            <!-- Mastery / Elite -->
+            <div class="asset-card bg-yellow-50/50">
+                <svg width="64" height="64" viewBox="0 0 64 64">
+                    <use href="#badge-bg" />
+                    <rect x="22" y="24" width="20" height="16" rx="2" fill="#334155" />
+                    <circle cx="27" cy="32" r="3" fill="#fbbf24" />
+                    <circle cx="37" cy="32" r="3" fill="#fbbf24" />
+                </svg>
+                <span class="asset-name">badge-total-1000.svg</span>
+            </div>
+
+            <div class="asset-card bg-yellow-50/50">
+                <svg width="64" height="64" viewBox="0 0 64 64">
+                    <use href="#badge-bg" />
+                    <circle cx="32" cy="32" r="14" fill="#fef08a" style="filter: blur(4px);" />
+                    <path d="M32 20 L35 28 H44 L37 34 L39 42 L32 37 L25 42 L27 34 L20 28 H29 Z" fill="#ffd700" stroke="#d4af37" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+                <span class="asset-name">badge-total-10000.svg</span>
+            </div>
+
+            <div class="asset-card bg-yellow-50/50">
+                <svg width="64" height="64" viewBox="0 0 64 64">
+                    <use href="#badge-bg" />
+                    <rect x="22" y="24" width="20" height="16" fill="#fef3c7" stroke="#92400e" stroke-width="1.5"/>
+                    <path d="M26 28 L30 36 L36 30 L40 38" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="2 2"/>
+                    <circle cx="40" cy="38" r="2" fill="#ef4444"/>
+                </svg>
+                <span class="asset-name">badge-all-worlds.svg</span>
+            </div>
+
+            <!-- Secret -->
+            <div class="asset-card bg-gray-100 border-gray-300" style="filter: grayscale(1);">
+                <svg width="64" height="64" viewBox="0 0 64 64">
+                    <path d="M32 4 L56 18 L56 46 L32 60 L8 46 L8 18 Z" fill="#f1f5f9" stroke="#94a3b8" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M32 20 C36 20, 38 23, 36 26 C34 29, 32 30, 32 34" fill="none" stroke="#64748b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="32" cy="40" r="2" fill="#64748b" />
+                </svg>
+                <span class="asset-name">badge-secret-locked.svg</span>
+            </div>
+
+            <div class="asset-card bg-yellow-50/50">
+                <svg width="64" height="64" viewBox="0 0 64 64">
+                    <use href="#badge-bg" />
+                    <path d="M24 34 C24 28, 40 28, 40 34 C40 40, 24 40, 24 34 Z" fill="#8b5cf6" />
+                    <circle cx="28" cy="34" r="3" fill="#fff" />
+                    <circle cx="36" cy="34" r="3" fill="#fff" />
+                    <circle cx="28" cy="34" r="1" fill="#000" />
+                    <circle cx="36" cy="34" r="1" fill="#000" />
+                </svg>
+                <span class="asset-name">badge-owl.svg</span>
+            </div>
+
+            <div class="asset-card bg-yellow-50/50">
+                <svg width="64" height="64" viewBox="0 0 64 64">
+                    <use href="#badge-bg" />
+                    <circle cx="32" cy="32" r="8" fill="#10b981" />
+                    <path d="M38 30 L44 32 L38 34 Z" fill="#f59e0b" />
+                    <circle cx="34" cy="28" r="2" fill="#fff" />
+                    <circle cx="34" cy="28" r="1" fill="#000" />
+                </svg>
+                <span class="asset-name">badge-bird.svg</span>
+            </div>
+
+        </div>
+
+        <!-- 6. Gameplay & Interactive Elements -->
+        <h2 class="text-2xl font-black font-display text-gray-800 mb-6 pb-2 border-b-2 border-gray-100">6. Gameplay & Interactive Elements</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6 mb-16">
+            
+            <div class="asset-card">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" class="soft-stroke">
+                    <path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"></path>
+                    <line x1="18" y1="9" x2="12" y2="15"></line>
+                    <line x1="12" y1="9" x2="18" y2="15"></line>
+                </svg>
+                <span class="asset-name">key-backspace.svg</span>
+            </div>
+
+            <div class="asset-card">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="3" class="soft-stroke">
+                    <rect x="3" y="6" width="18" height="12" rx="2" stroke="#e5e7eb"></rect>
+                    <line x1="8" y1="12" x2="16" y2="12"></line>
+                </svg>
+                <span class="asset-name">key-minus.svg</span>
+            </div>
+
+            <div class="asset-card">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="#fef08a" stroke="#d97706" stroke-width="2" class="soft-stroke" style="filter: drop-shadow(0 0 8px rgba(253,224,71,0.6));">
+                    <path d="M9 21h6"></path>
+                    <path d="M10 18h4"></path>
+                    <path d="M12 2a7 7 0 0 0-7 7c0 2 1.5 4 2 6h10c.5-2 2-4 2-6a7 7 0 0 0-7-7z"></path>
+                </svg>
+                <span class="asset-name">icon-tip-lightbulb.svg</span>
+            </div>
+
+            <div class="asset-card">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="#fef3c7" stroke="#f59e0b" stroke-width="2.5" class="soft-stroke">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+                <span class="asset-name">icon-warning.svg</span>
+            </div>
+
+        </div>
+
+        <!-- 7. App Icons & PWA Assets -->
+        <h2 class="text-2xl font-black font-display text-gray-800 mb-6 pb-2 border-b-2 border-gray-100">7. App Icons & PWA Assets</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            
+            <div class="asset-card col-span-1 md:col-span-2 lg:col-span-1 bg-gradient-to-r from-pink-50 to-white">
+                <svg width="200" height="60" viewBox="0 0 200 60" fill="none">
+                    <!-- Logo mark -->
+                    <circle cx="30" cy="30" r="20" fill="#ff80ab" />
+                    <path d="M30 18 L33 26 H41 L34 31 L37 39 L30 34 L23 39 L26 31 L19 26 H27 Z" fill="#fff" />
+                    <!-- Typography -->
+                    <text x="60" y="40" font-family="'Nunito', sans-serif" font-weight="900" font-size="32" fill="#c55f85">SkillSum</text>
+                </svg>
+                <span class="asset-name mt-2">logo-full.svg</span>
+            </div>
+
+            <div class="asset-card bg-pink-100 border-pink-200">
+                <svg width="96" height="96" viewBox="0 0 192 192" fill="none" style="border-radius: 40px; background: #ff80ab; box-shadow: 0 10px 15px rgba(255,128,171,0.4);">
+                    <circle cx="96" cy="96" r="80" fill="#ff5c96" />
+                    <path d="M96 40 L110 75 H145 L115 95 L125 130 L96 110 L67 130 L77 95 L47 75 H82 Z" fill="#fff" style="filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));"/>
+                </svg>
+                <span class="asset-name">icon-192.png (Export SVG)</span>
+            </div>
+
+            <div class="asset-card bg-pink-100 border-pink-200">
+                <svg width="96" height="96" viewBox="0 0 512 512" fill="none" style="border-radius: 20px; background: #fff; box-shadow: 0 10px 15px rgba(0,0,0,0.1);">
+                    <rect width="512" height="512" rx="120" fill="#ff80ab" />
+                    <path d="M256 120 L295 215 H395 L315 275 L345 370 L256 315 L167 370 L197 275 L117 215 H217 Z" fill="#fff" style="filter: drop-shadow(0 10px 15px rgba(197,95,133,0.5));"/>
+                </svg>
+                <span class="asset-name">icon-512.png (Export SVG)</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

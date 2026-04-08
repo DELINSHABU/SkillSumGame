@@ -1,12 +1,12 @@
 {
-  "name": "Skill Sum - Mental Math Game",
-  "short_name": "Skill Sum",
-  "description": "A fun mental math game with timed challenges and achievements",
+  "name": "SkillSum — Mental Math Mastery",
+  "short_name": "SkillSum",
+  "description": "Learn mental math tricks through 400 progressive levels",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#fff8e1",
+  "background_color": "#fce4ec",
   "theme_color": "#ff80ab",
-  "orientation": "any",
+  "orientation": "portrait-primary",
   "icons": [
     {
       "src": "/icon-192.png",
@@ -38,24 +38,13 @@
   "categories": ["education", "games"],
   "shortcuts": [
     {
-      "name": "Start Easy Game",
-      "short_name": "Easy",
-      "description": "Start a new easy difficulty game",
-      "url": "/?difficulty=easy",
+      "name": "Continue Learning",
+      "url": "/?screen=worldMap",
       "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
     },
     {
-      "name": "Start Hard Game",
-      "short_name": "Hard",
-      "description": "Start a new hard difficulty game",
-      "url": "/?difficulty=hard",
-      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
-    },
-    {
-      "name": "View Leaderboard",
-      "short_name": "Scores",
-      "description": "View top scores",
-      "url": "/?view=leaderboard",
+      "name": "Quick Practice",
+      "url": "/?screen=practiceSetup",
       "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
     }
   ]

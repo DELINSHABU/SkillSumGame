@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillSum 2.0 Component Library</title>
+    
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (for layout utilities matching the plan) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Nunito', 'sans-serif'],
+                        body: ['DM Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- SkillSum 2.0 Global CSS Tokens & Animations -->
+    <style>
+        :root {
+            /* Primary (Warm Pink) */
+            --pink-50:  #fff0f5;
+            --pink-100: #ffe0ec;
+            --pink-200: #ffb3cc;
+            --pink-300: #ff80ab;
+            --pink-400: #ff5c96;
+            --pink-500: #e0396e;
+            --pink-600: #c55f85;
+
+            /* Backgrounds */
+            --bg-canvas:   #fef6f9;
+            --bg-card:     #ffffff;
+            --bg-surface:  #fdf2f6;
+
+            /* Semantic */
+            --correct:  #4caf50;
+            --wrong:    #f44336;
+            --streak:   #ff6b35;
+            --xp-gold:  #ffd700;
+
+            /* Text */
+            --text-primary:   #1a1a2e;
+            --text-secondary: #6b7280;
+            --text-tertiary:  #9ca3af;
+
+            /* Shadows & Glows */
+            --shadow-btn-primary: 0 6px 0 #c55f85;
+            --glow-primary: 0 0 20px rgba(255, 128, 171, 0.4);
+            --glow-gold:    0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg-canvas);
+            background-image: radial-gradient(circle, rgba(255,128,171,0.08) 1px, transparent 1px);
+            background-size: 24px 24px;
+            color: var(--text-primary);
+            -webkit-font-smoothing: antialiased;
+            padding: 2rem;
+        }
+
+        h1, h2, h3, .font-display {
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* 6.1 Primary Button */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 32px;
+            min-height: 56px;
+            border-radius: 20px;
+            background: var(--pink-300);
+            color: white;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-btn-primary);
+            transform: translateY(0);
+            transition: transform 0.12s ease, box-shadow 0.12s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .btn-primary:hover {
+            transform: translateY(2px);
+            box-shadow: 0 4px 0 #c55f85;
+        }
+        .btn-primary:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #c55f85;
+        }
+
+        /* World Gradients */
+        .world-1-gradient { background: linear-gradient(135deg, #ff8fab, #ff5c7a); }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50%      { transform: translateY(-6px); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255,128,171, 0.4); }
+            50%      { box-shadow: 0 0 0 12px rgba(255,128,171, 0); }
+        }
+        @keyframes flicker {
+            0%, 100% { transform: scale(1) translateY(0); }
+            33%      { transform: scale(1.05) translateY(-2px); }
+            66%      { transform: scale(0.97) translateY(1px); }
+        }
+        @keyframes starShimmer {
+            0%, 100% { filter: brightness(1) drop-shadow(0 0 4px rgba(255,215,0,0.3)); }
+            50%      { filter: brightness(1.3) drop-shadow(0 0 12px rgba(255,215,0,0.8)); }
+        }
+
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        .animate-pulse-glow { animation: pulseGlow 2s ease-in-out infinite; }
+        .animate-flicker { animation: flicker 1.5s ease-in-out infinite; }
+        .animate-star-shimmer { animation: starShimmer 2s ease-in-out infinite; }
+
+        /* Layout helpers for presentation */
+        .component-card {
+            background: white;
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 4px 0 0 rgba(0,0,0,0.05);
+            margin-bottom: 32px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .component-title {
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            margin-bottom: 24px;
+            border-bottom: 2px dashed #f0f0f0;
+            padding-bottom: 8px;
+        }
+    </style>
+</head>
+<body class="max-w-4xl mx-auto">
+
+    <div class="mb-10 text-center">
+        <h1 class="text-4xl font-black text-pink-500 mb-2 font-display">SkillSum 2.0 UI</h1>
+        <p class="text-gray-500 font-medium">Component Library Representation ("Soft Arcade")</p>
+    </div>
+
+    <!-- 6.1 Primary Button -->
+    <div class="component-card">
+        <div class="component-title">6.1 Primary Button</div>
+        <div class="flex gap-6 items-end">
+            <button class="btn-primary">
+                <span class="text-xl">🚀</span> Start Level
+            </button>
+            <div class="text-xs text-gray-400 font-medium mb-4">(Hover & Click to see 3D press effect)</div>
+        </div>
+    </div>
+
+    <!-- 6.2 Level Node (World Map Bubble) -->
+    <div class="component-card">
+        <div class="component-title">6.2 Level Node (World Map Bubble)</div>
+        <div class="flex flex-wrap items-end gap-10 justify-center py-6 bg-gray-50 rounded-2xl border border-gray-100">
+            
+            <!-- Boss Node -->
+            <div class="flex flex-col items-center gap-2 animate-float" style="animation-delay: 0s;">
+                <div class="text-sm">⭐⭐⭐</div>
+                <div class="w-16 h-16 rounded-full flex items-center justify-center font-black text-white text-xl shadow-lg border-4 border-yellow-400" style="background: linear-gradient(135deg, #ffd700, #fbc02d)">
+                    💪
+                </div>
+                <div class="text-xs font-bold text-center text-gray-800">Boss Level</div>
+            </div>
+
+            <!-- Completed (3 stars) -->
+            <div class="flex flex-col items-center gap-2 animate-float" style="animation-delay: 0.2s;">
+                <div class="text-sm">⭐⭐⭐</div>
+                <div class="w-12 h-12 rounded-full flex items-center justify-center font-bold text-white shadow-md animate-star-shimmer" style="background: linear-gradient(135deg, #ffd700, #fbc02d)">
+                    42
+                </div>
+                <div class="text-xs font-bold text-center text-gray-800">Adding 9</div>
+            </div>
+
+            <!-- Completed (<3 stars) -->
+            <div class="flex flex-col items-center gap-2 animate-float" style="animation-delay: 0.4s;">
+                <div class="text-sm">⭐⭐<span class="opacity-30">⭐</span></div>
+                <div class="w-12 h-12 rounded-full flex items-center justify-center font-bold text-white shadow-md" style="background: linear-gradient(135deg, #42a5f5, #1565c0)">
+                    43
+                </div>
+                <div class="text-xs font-bold text-center text-gray-800">Adding 8</div>
+            </div>
+
+            <!-- Next to play (Pulsing Pink) -->
+            <div class="flex flex-col items-center gap-2 animate-float" style="animation-delay: 0.6s;">
+                <div class="text-sm opacity-0">⭐</div> <!-- spacing placeholder -->
+                <div class="w-12 h-12 rounded-full flex items-center justify-center font-bold text-white shadow-md animate-pulse-glow" style="background: var(--pink-300)">
+                    44
+                </div>
+                <div class="text-xs font-bold text-center text-pink-500">Next!</div>
+            </div>
+
+            <!-- Locked -->
+            <div class="flex flex-col items-center gap-2">
+                <div class="text-sm opacity-0">⭐</div>
+                <div class="w-12 h-12 rounded-full flex items-center justify-center font-bold text-white shadow-sm opacity-60 bg-gray-400">
+                    🔒
+                </div>
+                <div class="text-xs font-bold text-center text-gray-400">Locked</div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 6.3 Progress Bar (In-Game Stars) -->
+    <div class="component-card">
+        <div class="component-title">6.3 Progress Bar (In-Game Stars)</div>
+        <div class="w-full max-w-md mx-auto py-8">
+            <div class="relative h-3 rounded-full bg-gray-200">
+                <!-- Fill -->
+                <div class="absolute top-0 left-0 h-full rounded-full transition-all duration-500 shadow-sm" style="width: 75%; background: linear-gradient(90deg, var(--pink-200), var(--pink-300)); box-shadow: 0 0 8px rgba(255,128,171,0.4);"></div>
+                
+                <!-- Markers -->
+                <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center" style="left: 50%;">
+                    <span class="text-2xl animate-star-shimmer" style="filter: drop-shadow(0 0 6px rgba(255,215,0,0.8))">⭐</span>
+                </div>
+                <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center" style="left: 75%;">
+                    <span class="text-2xl animate-star-shimmer" style="filter: drop-shadow(0 0 6px rgba(255,215,0,0.8))">⭐</span>
+                </div>
+                <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center" style="left: 100%;">
+                    <span class="text-2xl grayscale opacity-40">⭐</span>
+                </div>
+            </div>
+            
+            <div class="flex justify-between text-xs mt-2 px-1 text-gray-500 font-medium">
+                <span>12 correct</span>
+                <span>16 for ⭐⭐⭐</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6.4 XP Toast Notification -->
+    <div class="component-card">
+        <div class="component-title">6.4 XP Toast Notification</div>
+        <div class="flex justify-center p-6 bg-pink-50 rounded-2xl">
+            <div class="flex flex-col items-end gap-0.5 px-5 py-3 rounded-2xl shadow-lg border border-yellow-300" style="background-color: var(--xp-gold); color: #1a1a2e">
+                <span class="font-black text-xl font-display">⚡ +240 XP</span>
+                <span class="text-xs font-bold opacity-80 uppercase tracking-wide">×1.3 streak</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6.5 Streak Counter -->
+    <div class="component-card">
+        <div class="component-title">6.5 Streak Counter</div>
+        <div class="flex justify-center gap-6 p-6">
+            <!-- Basic Streak -->
+            <div class="inline-block px-4 py-2 rounded-xl bg-white border border-gray-200 shadow-sm">
+                <div class="font-bold text-lg flex items-center gap-2 text-gray-800 font-display">
+                    🔥 4 STREAK
+                </div>
+            </div>
+            
+            <!-- High Streak (On Fire) -->
+            <div class="inline-block px-5 py-2.5 rounded-xl bg-white border-2 shadow-md relative overflow-hidden" style="border-color: var(--streak); box-shadow: 0 4px 15px rgba(255,107,53,0.2)">
+                <div class="font-bold text-xl flex items-center gap-2 font-display" style="color: var(--streak)">
+                    <span class="animate-flicker text-2xl inline-block drop-shadow-md">🔥</span> 
+                    <span>12 STREAK</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6.6 World Card (World Select Screen) -->
+    <div class="component-card">
+        <div class="component-title">6.6 World Card (World Select Screen)</div>
+        <div class="flex justify-center p-4">
+            <div class="rounded-[28px] p-6 text-white shadow-xl w-full max-w-sm world-1-gradient hover:translate-y-[-4px] transition-transform duration-300 cursor-pointer border border-pink-400">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="flex gap-4 items-center">
+                        <div class="text-4xl bg-white/20 w-14 h-14 rounded-2xl flex items-center justify-center backdrop-blur-sm shadow-sm">➕</div>
+                        <div>
+                            <div class="font-black text-2xl font-display leading-tight">World 1</div>
+                            <div class="text-sm font-medium opacity-90">Addition Foundation</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-3 text-sm font-bold mb-2">
+                    <div class="flex-1 h-3 bg-black/10 rounded-full overflow-hidden inset-shadow-sm">
+                        <div class="h-full bg-white rounded-full shadow-sm" style="width: 68%"></div>
+                    </div>
+                    <span class="bg-black/10 px-2 py-0.5 rounded-md backdrop-blur-sm">34/50 levels</span>
+                </div>
+                
+                <div class="text-xs font-bold opacity-90 mt-3 flex justify-between bg-black/5 p-2 rounded-xl backdrop-blur-sm">
+                    <span>⭐⭐⭐ <span class="opacity-75">×12</span></span>
+                    <span>⭐⭐ <span class="opacity-75">×8</span></span>
+                    <span>⭐ <span class="opacity-75">×14</span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6.7 Achievement Badge -->
+    <div class="component-card">
+        <div class="component-title">6.7 Achievement Badge</div>
+        <div class="flex flex-wrap gap-6 justify-center p-4">
+            
+            <!-- Unlocked -->
+            <div class="p-4 rounded-2xl bg-yellow-50 border-2 border-yellow-400 flex gap-4 w-64 shadow-sm hover:shadow-md transition-shadow">
+                <div class="text-4xl flex items-center justify-center">🔥</div>
+                <div class="flex flex-col justify-center">
+                    <div class="font-black text-gray-800 font-display">On Fire!</div>
+                    <div class="text-xs font-medium text-gray-600 mb-1">5 in a row</div>
+                    <div class="text-xs text-yellow-600 font-bold bg-yellow-200/50 inline-block px-2 py-0.5 rounded-md w-fit">✓ Today</div>
+                </div>
+            </div>
+
+            <!-- Locked / Secret -->
+            <div class="p-4 rounded-2xl bg-gray-50 border-2 border-gray-200 flex gap-4 w-64 opacity-70 grayscale">
+                <div class="text-4xl flex items-center justify-center opacity-60">❓</div>
+                <div class="flex flex-col justify-center">
+                    <div class="font-black text-gray-500 font-display">???</div>
+                    <div class="text-xs font-medium text-gray-400">Keep playing to discover...</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 6.8 Daily Streak Widget (Home Screen) -->
+    <div class="component-card">
+        <div class="component-title">6.8 Daily Streak Widget (Home Screen)</div>
+        <div class="flex justify-center p-4">
+            <div class="bg-white rounded-[24px] p-6 shadow-lg border border-gray-100 w-full max-w-sm">
+                <div class="font-black text-2xl mb-5 font-display flex items-center gap-2" style="color: var(--streak)">
+                    <span class="animate-flicker">🔥</span> 23-Day Streak!
+                </div>
+                
+                <div class="flex justify-between items-end">
+                    <!-- Past Days (Completed) -->
+                    <div class="flex flex-col items-center gap-2">
+                        <span class="text-xs text-gray-400 font-bold uppercase">M</span>
+                        <div class="w-9 h-9 rounded-full flex items-center justify-center bg-green-100 text-green-600 font-black text-md shadow-sm">✓</div>
+                    </div>
+                    <div class="flex flex-col items-center gap-2">
+                        <span class="text-xs text-gray-400 font-bold uppercase">T</span>
+                        <div class="w-9 h-9 rounded-full flex items-center justify-center bg-green-100 text-green-600 font-black text-md shadow-sm">✓</div>
+                    </div>
+                    <div class="flex flex-col items-center gap-2">
+                        <span class="text-xs text-gray-400 font-bold uppercase">W</span>
+                        <div class="w-9 h-9 rounded-full flex items-center justify-center bg-green-100 text-green-600 font-black text-md shadow-sm">✓</div>
+                    </div>
+                    <div class="flex flex-col items-center gap-2">
+                        <span class="text-xs text-gray-400 font-bold uppercase">T</span>
+                        <div class="w-9 h-9 rounded-full flex items-center justify-center bg-green-100 text-green-600 font-black text-md shadow-sm">✓</div>
+                    </div>
+                    
+                    <!-- Today (Pending/Active) -->
+                    <div class="flex flex-col items-center gap-2 relative">
+                        <span class="text-xs text-pink-500 font-black uppercase tracking-wider absolute -top-5">Today</span>
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center bg-pink-100 text-pink-500 font-black text-xs animate-pulse-glow border-2 border-pink-300">
+                            ⬤
+                        </div>
+                    </div>
+                    
+                    <!-- Future Days -->
+                    <div class="flex flex-col items-center gap-2">
+                        <span class="text-xs text-gray-300 font-bold uppercase">S</span>
+                        <div class="w-9 h-9 rounded-full flex items-center justify-center bg-gray-50 text-gray-300 border border-gray-200 border-dashed font-bold text-sm"></div>
+                    </div>
+                    <div class="flex flex-col items-center gap-2">
+                        <span class="text-xs text-gray-300 font-bold uppercase">S</span>
+                        <div class="w-9 h-9 rounded-full flex items-center justify-center bg-gray-50 text-gray-300 border border-gray-200 border-dashed font-bold text-sm"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

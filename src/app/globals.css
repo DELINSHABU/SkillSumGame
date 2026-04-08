@@ -4,7 +4,38 @@
 :root {
   --background: #fce4ec;
   --foreground: #4a4a4a;
+  --color-primary: #ff80ab;
+  --color-primary-dark: #c55f85;
+  --color-success: #4caf50;
+  --color-warning: #ff9800;
+  --color-info: #2196f3;
+  --color-xp: #ffd700;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+
 }
+@keyframes starPop {
+  0%   { transform: scale(0) rotate(0deg); opacity: 0; }
+  60%  { transform: scale(1.4) rotate(200deg); opacity: 1; }
+  100% { transform: scale(1) rotate(360deg); opacity: 1; }
+}
+
+@keyframes xpFloat {
+  0%   { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-50px); }
+}
+
+@keyframes levelUp {
+  0%   { transform: scale(1); }
+  25%  { transform: scale(1.3); }
+  50%  { transform: scale(0.95); }
+  75%  { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.animate-star-earn { animation: starPop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards; }
+.animate-xp-float  { animation: xpFloat 1.5s ease-out forwards; }
+.animate-level-up  { animation: levelUp 0.6s ease-in-out; }
 
 @theme inline {
   --color-background: var(--background);

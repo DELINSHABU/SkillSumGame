@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SkillSum 2.0 - Lesson Results</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800;900&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;family=Nunito:wght@700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f9f2f5",
+                    "surface-container-high": "#eee6e9",
+                    "on-secondary-fixed": "#2f1500",
+                    "secondary": "#904d00",
+                    "primary-fixed-dim": "#ffb1c7",
+                    "tertiary": "#006b5e",
+                    "on-surface": "#1e1b1d",
+                    "inverse-on-surface": "#f7eff2",
+                    "inverse-surface": "#332f32",
+                    "surface-bright": "#fff7fa",
+                    "secondary-fixed-dim": "#ffb77d",
+                    "surface": "#fff7fa",
+                    "error": "#ba1a1a",
+                    "primary": "#a23760",
+                    "on-secondary-fixed-variant": "#6e3900",
+                    "on-primary-container": "#77133f",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#6bf9e1",
+                    "tertiary-container": "#11bea8",
+                    "on-tertiary-fixed-variant": "#005046",
+                    "background": "#fff7fa",
+                    "primary-fixed": "#ffd9e2",
+                    "surface-tint": "#a23760",
+                    "on-tertiary-fixed": "#00201b",
+                    "primary-container": "#ff80ab",
+                    "surface-dim": "#dfd8db",
+                    "outline-variant": "#dbc0c6",
+                    "on-primary-fixed-variant": "#831e48",
+                    "on-error": "#ffffff",
+                    "on-background": "#1e1b1d",
+                    "surface-container-highest": "#e8e0e3",
+                    "inverse-primary": "#ffb1c7",
+                    "surface-variant": "#e8e0e3",
+                    "on-secondary-container": "#693600",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#3e001c",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#49dcc5",
+                    "on-tertiary-container": "#00473e",
+                    "secondary-container": "#fd983a",
+                    "secondary-fixed": "#ffdcc3",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#f4ecef",
+                    "outline": "#887177",
+                    "on-surface-variant": "#554247"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Be Vietnam Pro"],
+                    "label": ["Space Grotesk"],
+                    "arcade": ["Nunito"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .dot-grid {
+            background-image: radial-gradient(rgba(219, 192, 198, 0.3) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        .glass-card {
+            background: rgba(255, 247, 250, 0.8);
+            backdrop-filter: blur(24px);
+        }
+        .star-gloss {
+            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 50%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body min-h-screen overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar Shell -->
+<nav class="w-full pt-4 flex justify-between items-center px-6 z-50 sticky top-0 bg-transparent">
+<button class="text-[#a23760] dark:text-[#ff80ab] hover:scale-105 transition-transform active:scale-95 duration-150">
+<span class="material-symbols-outlined text-2xl" data-icon="close">close</span>
+</button>
+<h1 class="font-['Plus_Jakarta_Sans'] font-black tracking-tighter text-xl text-[#a23760] dark:text-[#ff80ab]">Lesson Complete</h1>
+<button class="text-[#a23760] dark:text-[#ff80ab] hover:scale-105 transition-transform active:scale-95 duration-150">
+<span class="material-symbols-outlined text-2xl" data-icon="stars">stars</span>
+</button>
+</nav>
+<!-- Main Content Area -->
+<main class="dot-grid px-6 pt-8 pb-32 max-w-2xl mx-auto space-y-8">
+<!-- Hero Section: Headline & Stars -->
+<section class="text-center space-y-6">
+<h2 class="font-arcade font-black text-4xl md:text-5xl text-primary tracking-tight">Level Complete! 🥳</h2>
+<!-- 3D Glowing Stars Container -->
+<div class="flex justify-center items-center gap-4 py-4">
+<!-- Star 1 -->
+<div class="relative group">
+<div class="absolute inset-0 bg-secondary-container blur-xl opacity-30 scale-125 rounded-full"></div>
+<div class="relative w-24 h-24 bg-gradient-to-br from-secondary-fixed to-secondary rounded-full shadow-lg flex items-center justify-center -rotate-12 transform hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-white text-5xl" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<div class="absolute inset-0 star-gloss rounded-full"></div>
+</div>
+</div>
+<!-- Star 2 (Center / Large) -->
+<div class="relative group -mt-4">
+<div class="absolute inset-0 bg-secondary-container blur-2xl opacity-40 scale-150 rounded-full"></div>
+<div class="relative w-32 h-32 bg-gradient-to-br from-secondary-fixed to-secondary rounded-full shadow-xl flex items-center justify-center transform hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-white text-7xl" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<div class="absolute inset-0 star-gloss rounded-full"></div>
+</div>
+</div>
+<!-- Star 3 -->
+<div class="relative group">
+<div class="absolute inset-0 bg-secondary-container blur-xl opacity-30 scale-125 rounded-full"></div>
+<div class="relative w-24 h-24 bg-gradient-to-br from-secondary-fixed to-secondary rounded-full shadow-lg flex items-center justify-center rotate-12 transform hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-white text-5xl" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<div class="absolute inset-0 star-gloss rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Bento Grid -->
+<section class="grid grid-cols-2 gap-4">
+<!-- Total XP Earned -->
+<div class="bg-surface-container-lowest rounded-xl p-5 flex flex-col items-center justify-center shadow-[0_4px_24px_rgba(162,55,96,0.06)] border-b-4 border-primary-container">
+<span class="material-symbols-outlined text-primary mb-2" data-icon="military_tech">military_tech</span>
+<span class="font-label text-on-surface-variant text-xs font-bold tracking-widest uppercase">Total XP Earned</span>
+<span class="font-arcade text-3xl text-primary">+380</span>
+</div>
+<!-- Best Streak -->
+<div class="bg-surface-container-lowest rounded-xl p-5 flex flex-col items-center justify-center shadow-[0_4px_24px_rgba(162,55,96,0.06)] border-b-4 border-secondary-container">
+<div class="relative">
+<span class="material-symbols-outlined text-secondary" data-icon="local_fire_department" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<div class="absolute -top-1 -right-1 w-2 h-2 bg-secondary rounded-full animate-pulse"></div>
+</div>
+<span class="font-label text-on-surface-variant text-xs font-bold tracking-widest uppercase">Best Streak</span>
+<span class="font-arcade text-3xl text-secondary">8</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed-variant text-[10px] px-2 py-0.5 rounded-full mt-1 font-bold">NEW RECORD!</span>
+</div>
+<!-- Accuracy -->
+<div class="bg-surface-container-lowest rounded-xl p-5 flex flex-col items-center justify-center shadow-[0_4px_24px_rgba(162,55,96,0.06)] border-b-4 border-tertiary-container">
+<div class="relative w-16 h-16 flex items-center justify-center mb-2">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-container-high" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-width="6"></circle>
+<circle class="text-tertiary-container" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-dasharray="175.9" stroke-dashoffset="22" stroke-width="6"></circle>
+</svg>
+<span class="absolute font-arcade text-sm text-on-tertiary-container">87.5%</span>
+</div>
+<span class="font-label text-on-surface-variant text-xs font-bold tracking-widest uppercase">Accuracy</span>
+</div>
+<!-- Avg Speed -->
+<div class="bg-surface-container-lowest rounded-xl p-5 flex flex-col items-center justify-center shadow-[0_4px_24px_rgba(162,55,96,0.06)] border-b-4 border-outline-variant">
+<span class="material-symbols-outlined text-outline mb-2" data-icon="avg_time">avg_time</span>
+<span class="font-label text-on-surface-variant text-xs font-bold tracking-widest uppercase">Avg Speed</span>
+<span class="font-arcade text-3xl text-on-surface">2.1s</span>
+</div>
+</section>
+<!-- Progress Row (Correct/Wrong) -->
+<section class="bg-surface-container-low rounded-xl p-4 flex items-center justify-between shadow-inner">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center shadow-[0_2px_0_#005046]">
+<span class="material-symbols-outlined text-on-tertiary-fixed-variant text-xl font-bold" data-icon="check">check</span>
+</div>
+<span class="font-arcade text-lg text-on-surface">14 Correct</span>
+</div>
+<div class="h-8 w-px bg-outline-variant"></div>
+<div class="flex items-center gap-3">
+<span class="font-arcade text-lg text-on-surface">2 Wrong</span>
+<div class="w-10 h-10 rounded-full bg-error-container flex items-center justify-center shadow-[0_2px_0_#93000a]">
+<span class="material-symbols-outlined text-on-error-container text-xl font-bold" data-icon="close">close</span>
+</div>
+</div>
+</section>
+<!-- Speed Chart: Answers per 15s Block -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="font-arcade text-xl text-primary">Performance Speed</h3>
+<span class="text-on-surface-variant text-xs font-medium">Answers per 15s block</span>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_4px_24px_rgba(162,55,96,0.06)]">
+<div class="flex items-end justify-between h-32 gap-3">
+<!-- Bar 1 -->
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-primary-container rounded-t-lg transition-all" style="height: 40%;"></div>
+<span class="font-label text-[10px] text-outline">0-15s</span>
+</div>
+<!-- Bar 2 -->
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-primary rounded-t-lg transition-all" style="height: 85%;"></div>
+<span class="font-label text-[10px] text-outline">15-30s</span>
+</div>
+<!-- Bar 3 -->
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-primary-container rounded-t-lg transition-all" style="height: 60%;"></div>
+<span class="font-label text-[10px] text-outline">30-45s</span>
+</div>
+<!-- Bar 4 -->
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-primary-container rounded-t-lg transition-all" style="height: 45%;"></div>
+<span class="font-label text-[10px] text-outline">45-60s</span>
+</div>
+<!-- Bar 5 -->
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full bg-primary-container rounded-t-lg transition-all" style="height: 70%;"></div>
+<span class="font-label text-[10px] text-outline">60-75s</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Decorative Illustration -->
+<div class="w-full aspect-video rounded-xl overflow-hidden relative shadow-lg group">
+<img alt="Retro gaming hardware and pixel art icons" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" data-alt="Modern high-end electronic gadgets and retro gaming collectibles on a pastel pink desk with soft cinematic lighting and bokeh" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIJlOB8mJqr4sIjn-3y55tY3-YyYRBoSmgqvvnpWnJ7dEFl3XWepZnTW3RxuMfYcqEFLoc6cSErojftC1q0EOhg23IcfOr7ipaTL1DCnf3jUFHFzQUa1ymFxyFoKvKBeSA-9xewHNx3kw2Nze8Uw_jQCwNocEZgssf-EFyUZU-H5ZishNuFWGoNnIYnPTIKw37s-bR36k4TI816Ti6Bp4XX0DJaRlZJA-nNeOEiS1-cR6RhbwjcBs29gPSmpXehoYE-a8Q-S4tMDEb"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<p class="text-white font-arcade text-lg drop-shadow-md">You're crushing these lessons! Keep up the momentum.</p>
+</div>
+</div>
+</main>
+<!-- BottomNavBar Shell -->
+<footer class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-6 pb-8 pt-4 bg-[#fff7fa]/80 dark:bg-[#1a1a1a]/80 backdrop-blur-xl rounded-t-[3rem] shadow-[0_-4px_24px_rgba(162,55,96,0.06)]">
+<button class="flex flex-col items-center justify-center text-[#a23760] opacity-70 px-6 py-4 hover:brightness-110 active:translate-y-1 active:shadow-none transition-all">
+<span class="material-symbols-outlined text-2xl" data-icon="replay">replay</span>
+<span class="font-['Plus_Jakarta_Sans'] font-bold text-sm">Retry</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-gradient-to-br from-[#a23760] to-[#ff80ab] text-white rounded-full px-8 py-4 shadow-[0_4px_0_#c55f85] hover:brightness-110 active:translate-y-1 active:shadow-none transition-all">
+<div class="flex items-center gap-2">
+<span class="font-['Plus_Jakarta_Sans'] font-bold text-sm">Next Level</span>
+<span class="material-symbols-outlined text-2xl" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</button>
+</footer>
+</body></html>

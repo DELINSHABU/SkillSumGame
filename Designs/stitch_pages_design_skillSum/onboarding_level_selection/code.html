@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SkillSum 2.0 - Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#11bea8",
+                        "secondary": "#904d00",
+                        "surface-variant": "#e8e0e3",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#2f1500",
+                        "on-secondary-fixed-variant": "#6e3900",
+                        "surface-dim": "#dfd8db",
+                        "on-secondary-container": "#693600",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#ffb1c7",
+                        "inverse-on-surface": "#f7eff2",
+                        "tertiary-fixed-dim": "#49dcc5",
+                        "surface-container-low": "#f9f2f5",
+                        "primary-container": "#ff80ab",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#77133f",
+                        "primary": "#a23760",
+                        "secondary-fixed-dim": "#ffb77d",
+                        "tertiary-fixed": "#6bf9e1",
+                        "surface": "#fff7fa",
+                        "secondary-fixed": "#ffdcc3",
+                        "on-surface": "#1e1b1d",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#fd983a",
+                        "on-tertiary-fixed": "#00201b",
+                        "on-tertiary-container": "#00473e",
+                        "outline-variant": "#dbc0c6",
+                        "surface-tint": "#a23760",
+                        "on-surface-variant": "#554247",
+                        "inverse-surface": "#332f32",
+                        "surface-bright": "#fff7fa",
+                        "tertiary": "#006b5e",
+                        "surface-container": "#f4ecef",
+                        "on-primary-fixed": "#3e001c",
+                        "outline": "#887177",
+                        "on-background": "#1e1b1d",
+                        "background": "#fff7fa",
+                        "primary-fixed-dim": "#ffb1c7",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#eee6e9",
+                        "primary-fixed": "#ffd9e2",
+                        "on-tertiary-fixed-variant": "#005046",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#e8e0e3",
+                        "on-primary-fixed-variant": "#831e48"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Be Vietnam Pro"],
+                        "label": ["Space Grotesk"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .dot-grid {
+            background-image: radial-gradient(circle, #dbc0c6 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .shadow-block-primary {
+            box-shadow: 0 4px 0 #c55f85;
+        }
+        .shadow-block-secondary {
+            box-shadow: 0 4px 0 #b36b2a;
+        }
+        .shadow-block-tertiary {
+            box-shadow: 0 4px 0 #0d8f7e;
+        }
+        .active-press:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 currentColor;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body text-on-surface min-h-screen selection:bg-primary-container selection:text-on-primary-container">
+<!-- Progress Header -->
+<header class="w-full pt-10 px-6 flex flex-col items-center gap-6">
+<div class="flex items-center justify-between w-full max-w-md mb-2">
+<span class="font-label text-primary font-bold text-sm tracking-widest">1 OF 3</span>
+<div class="flex gap-2">
+<div class="w-12 h-3 rounded-full bg-primary-container"></div>
+<div class="w-12 h-3 rounded-full bg-outline-variant/30"></div>
+<div class="w-12 h-3 rounded-full bg-outline-variant/30"></div>
+</div>
+</div>
+</header>
+<main class="flex flex-col items-center px-6 pb-12 w-full max-w-2xl mx-auto dot-grid bg-opacity-10">
+<!-- Character / Avatar Selection Hint Section -->
+<div class="relative mt-4 mb-8">
+<div class="w-32 h-32 rounded-full bg-primary-container/20 flex items-center justify-center border-4 border-dashed border-primary/30">
+<img alt="User Avatar Placeholder" class="w-24 h-24 object-contain" data-alt="3D rendered cute minimalist robot character with soft pink accents and friendly digital eyes, standing in a playful pose" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1ZxfenVNx-N76NPVqbs2JUYhHSw-n-ke7DAqHBK310JkWQvlq1QhA_qCtfsCAzZ9Gpf552OgF5vsRk0zrUXkYXY5RDM_2NjKKGK5ZpIF9MM6DE_ByuycADefVucsnbOj-EcmeRg5vGGi9EAf0xU7O26Y0yFJSpQ9CsM2BuVSFyi2ke4ca3ucjL24fzoKBw4MClYO6LQ1Jo-TCmQf6JEhJsVPgH_HkoGVJltinynWEypqsSaeo6Mf5AsgIxv3TOIyUSHtWjJbne-23"/>
+</div>
+<div class="absolute -bottom-2 -right-2 bg-secondary-container text-on-secondary-container p-2 rounded-full shadow-lg">
+<span class="material-symbols-outlined text-lg">edit</span>
+</div>
+</div>
+<!-- Question Section -->
+<div class="text-center mb-10 space-y-3">
+<h1 class="text-4xl font-headline font-extrabold tracking-tight text-on-surface leading-tight">
+                What's your <span class="text-primary italic">math level</span>?
+            </h1>
+<p class="text-on-surface-variant text-lg font-medium">
+                We'll tailor your daily training session.
+            </p>
+</div>
+<!-- Options: The Asymmetric Arcade Grid -->
+<div class="w-full flex flex-col gap-6 max-w-md">
+<!-- Option 1: Beginner -->
+<button class="group w-full bg-surface-container-lowest p-1 rounded-xl shadow-block-primary hover:opacity-95 transition-all active:translate-y-[2px] active:shadow-[0_2px_0_#c55f85]">
+<div class="bg-white border-2 border-primary-container/20 p-6 rounded-xl flex items-center gap-6">
+<div class="w-16 h-16 bg-primary-container/10 rounded-full flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-3xl text-primary" data-icon="child_care">child_care</span>
+</div>
+<div class="text-left">
+<h3 class="font-headline font-bold text-xl text-primary">Beginner</h3>
+<p class="text-on-surface-variant font-medium leading-tight">Focus on basic addition and visual counting.</p>
+</div>
+</div>
+</button>
+<!-- Option 2: Intermediate (Slightly Offset for Tactile Feel) -->
+<button class="group w-full bg-surface-container-lowest p-1 rounded-xl shadow-block-secondary hover:opacity-95 transition-all active:translate-y-[2px] active:shadow-[0_2px_0_#b36b2a] translate-x-2">
+<div class="bg-white border-2 border-secondary-container/20 p-6 rounded-xl flex items-center gap-6">
+<div class="w-16 h-16 bg-secondary-container/10 rounded-full flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-3xl text-secondary" data-icon="speed">speed</span>
+</div>
+<div class="text-left">
+<h3 class="font-headline font-bold text-xl text-secondary">Intermediate</h3>
+<p class="text-on-surface-variant font-medium leading-tight">Fast daily math for shopping and budgeting.</p>
+</div>
+</div>
+</button>
+<!-- Option 3: Confident -->
+<button class="group w-full bg-surface-container-lowest p-1 rounded-xl shadow-block-tertiary hover:opacity-95 transition-all active:translate-y-[2px] active:shadow-[0_2px_0_#0d8f7e]">
+<div class="bg-white border-2 border-tertiary-container/20 p-6 rounded-xl flex items-center gap-6">
+<div class="w-16 h-16 bg-tertiary-container/10 rounded-full flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-3xl text-tertiary" data-icon="rocket_launch">rocket_launch</span>
+</div>
+<div class="text-left">
+<h3 class="font-headline font-bold text-xl text-tertiary">Confident</h3>
+<p class="text-on-surface-variant font-medium leading-tight">Competitive speed and complex mental logic.</p>
+</div>
+</div>
+</button>
+</div>
+<!-- Next Action -->
+<div class="mt-16 w-full max-w-md flex flex-col items-center">
+<button class="w-full py-5 rounded-xl bg-gradient-to-br from-primary to-primary-container text-white font-headline font-extrabold text-xl shadow-block-primary hover:opacity-90 transition-all active:translate-y-[2px] active:shadow-[0_2px_0_#c55f85] flex items-center justify-center gap-2">
+                Next Step
+                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<p class="mt-6 text-on-surface-variant/60 font-label text-sm uppercase tracking-tighter">
+                You can change this later in settings
+            </p>
+</div>
+</main>
+<!-- Decorative Soft Arcade Elements -->
+<div class="fixed bottom-10 left-10 -z-10 opacity-20 pointer-events-none">
+<div class="w-40 h-40 bg-secondary-container rounded-full blur-[80px]"></div>
+</div>
+<div class="fixed top-20 right-10 -z-10 opacity-20 pointer-events-none">
+<div class="w-64 h-64 bg-tertiary-container rounded-full blur-[100px]"></div>
+</div>
+</body></html>

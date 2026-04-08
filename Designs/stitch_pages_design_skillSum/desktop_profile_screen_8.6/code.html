@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MathArcade | Profile Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-fixed-variant": "#6e3900",
+                      "on-tertiary-fixed-variant": "#005046",
+                      "surface-dim": "#dfd8db",
+                      "tertiary-fixed-dim": "#49dcc5",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-container": "#693600",
+                      "surface-container-highest": "#e8e0e3",
+                      "on-error": "#ffffff",
+                      "secondary-fixed-dim": "#ffb77d",
+                      "inverse-primary": "#ffb1c7",
+                      "outline": "#887177",
+                      "surface-container-high": "#eee6e9",
+                      "on-primary-container": "#77133f",
+                      "tertiary": "#006b5e",
+                      "surface-container-lowest": "#ffffff",
+                      "primary-fixed-dim": "#ffb1c7",
+                      "secondary-container": "#fd983a",
+                      "primary": "#a23760",
+                      "on-tertiary-container": "#00473e",
+                      "surface-tint": "#a23760",
+                      "on-background": "#1e1b1d",
+                      "primary-container": "#ff80ab",
+                      "on-error-container": "#93000a",
+                      "surface-variant": "#e8e0e3",
+                      "outline-variant": "#dbc0c6",
+                      "on-primary-fixed-variant": "#831e48",
+                      "on-primary": "#ffffff",
+                      "on-surface-variant": "#554247",
+                      "primary-fixed": "#ffd9e2",
+                      "background": "#fff7fa",
+                      "secondary-fixed": "#ffdcc3",
+                      "inverse-on-surface": "#f7eff2",
+                      "tertiary-fixed": "#6bf9e1",
+                      "surface-container": "#f4ecef",
+                      "inverse-surface": "#332f32",
+                      "on-secondary-fixed": "#2f1500",
+                      "surface-container-low": "#f9f2f5",
+                      "on-tertiary": "#ffffff",
+                      "tertiary-container": "#11bea8",
+                      "on-primary-fixed": "#3e001c",
+                      "on-surface": "#1e1b1d",
+                      "on-tertiary-fixed": "#00201b",
+                      "secondary": "#904d00",
+                      "error-container": "#ffdad6",
+                      "error": "#ba1a1a",
+                      "surface": "#fff7fa",
+                      "surface-bright": "#fff7fa"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Plus Jakarta Sans"],
+                      "body": ["Be Vietnam Pro"],
+                      "label": ["Space Grotesk"]
+              }
+            },
+          }
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .dot-grid {
+            background-image: radial-gradient(circle, #dbc0c6 1.5px, transparent 1.5px);
+            background-size: 24px 24px;
+        }
+        .pressable-primary {
+            box-shadow: 0 4px 0 0 #77133f;
+        }
+        .pressable-primary:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 0 #77133f;
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Anchor -->
+<header class="bg-rose-50/80 dark:bg-rose-950/80 backdrop-blur-xl sticky top-0 z-50 w-full flex justify-between items-center px-10 py-4 shadow-[0_4px_0_0_rgba(162,55,96,0.1)]">
+<div class="text-2xl font-black text-rose-700 dark:text-rose-400 -tracking-wider font-headline">MathArcade</div>
+<nav class="hidden md:flex items-center gap-8 font-headline font-bold tracking-tight">
+<a class="text-rose-400 dark:text-rose-500 hover:text-rose-600 hover:scale-105 transition-transform duration-200" href="#">Learn</a>
+<a class="text-rose-400 dark:text-rose-500 hover:text-rose-600 hover:scale-105 transition-transform duration-200" href="#">Practice</a>
+<a class="text-rose-400 dark:text-rose-500 hover:text-rose-600 hover:scale-105 transition-transform duration-200" href="#">Compete</a>
+<a class="text-rose-400 dark:text-rose-500 hover:text-rose-600 hover:scale-105 transition-transform duration-200" href="#">Shop</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-rose-400 hover:text-rose-600">notifications</button>
+<button class="material-symbols-outlined text-rose-400 hover:text-rose-600">settings</button>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-headline font-bold pressable-primary">Go Premium</button>
+</div>
+</header>
+<div class="flex min-h-screen">
+<!-- Left Column: SideNavBar (Persistent) -->
+<aside class="fixed left-0 top-0 hidden lg:flex flex-col w-72 h-screen py-8 bg-white dark:bg-rose-950 shadow-2xl shadow-rose-900/5 rounded-r-[3rem] z-40 border-r-0">
+<div class="px-8 mb-8">
+<div class="relative w-24 h-24 mx-auto mb-4 group">
+<img alt="User avatar" class="rounded-full bg-primary-container p-1 shadow-lg" data-alt="Stylized 3D avatar of a young mage wearing a magical headset and purple robes on a vibrant pink background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhLoGFVwVr8jdG0rHI1m-USEMsRbmxluxGhKRa-mFPBfkRqLYTdYCn1tiWe465rHIdpluN8P34WYuLQseYtFgfKZJuQsFeH3CEEmyAcKe9B_1VjBC_CniViEQOhBEY4V0mHC5MdHHC7MhLDxS83NiCOlm_UBkUuqVL6KL13LKo_7NuYRlyShMD7_20ekWoaJAUAn7mbeamiANdiv8qgdcWaSgYPoX8vsSxyrCrTxnoBEuuNHvyKJjdybYZ33HdxnXF9MXu-Lpt1BI5"/>
+<div class="absolute -bottom-2 -right-2 bg-secondary text-on-secondary px-3 py-1 rounded-full text-xs font-label font-bold shadow-md">Lv. 14</div>
+</div>
+<div class="text-center">
+<h2 class="font-headline font-extrabold text-lg text-rose-700 dark:text-rose-300">Level 42 Mage</h2>
+<p class="font-label text-rose-400 dark:text-rose-500 uppercase tracking-widest text-[10px] mt-1">12,450 XP</p>
+</div>
+</div>
+<!-- XP Progress Bar -->
+<div class="px-8 mb-10">
+<div class="flex justify-between items-end mb-2">
+<span class="text-xs font-label text-on-surface-variant">XP Progress</span>
+<span class="text-xs font-label font-bold text-primary">85%</span>
+</div>
+<div class="h-4 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-primary-container w-[85%] rounded-full relative">
+<div class="absolute inset-0 bg-white/20 opacity-50 skew-x-12 translate-x-1"></div>
+</div>
+</div>
+</div>
+<!-- Streak Counter -->
+<div class="px-8 mb-10">
+<div class="bg-secondary-container/20 rounded-2xl p-4 flex items-center gap-4">
+<div class="bg-secondary p-2 rounded-xl">
+<span class="material-symbols-outlined text-white" data-weight="fill">local_fire_department</span>
+</div>
+<div>
+<p class="text-[10px] uppercase font-label tracking-tighter text-secondary leading-none">Current Streak</p>
+<p class="text-xl font-headline font-extrabold text-on-secondary-container">23 Days</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-4 mx-4 my-1 p-3 text-rose-400 dark:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/50 rounded-2xl transition-all font-headline font-semibold" href="#">
+<span class="material-symbols-outlined">grid_view</span> Dashboard
+                </a>
+<a class="flex items-center gap-4 mx-4 my-1 p-3 text-rose-400 dark:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/50 rounded-2xl transition-all font-headline font-semibold" href="#">
+<span class="material-symbols-outlined">menu_book</span> Curriculum
+                </a>
+<a class="flex items-center gap-4 mx-4 my-1 p-3 text-rose-400 dark:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/50 rounded-2xl transition-all font-headline font-semibold" href="#">
+<span class="material-symbols-outlined">workspace_premium</span> Quests
+                </a>
+<a class="flex items-center gap-4 mx-4 my-1 p-3 text-rose-400 dark:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/50 rounded-2xl transition-all font-headline font-semibold" href="#">
+<span class="material-symbols-outlined">military_tech</span> Leaderboard
+                </a>
+<a class="flex items-center gap-4 mx-4 my-1 p-3 bg-rose-100 dark:bg-rose-900 text-rose-700 dark:text-rose-100 rounded-2xl transition-all font-headline font-semibold" href="#">
+<span class="material-symbols-outlined">person</span> Profile
+                </a>
+</nav>
+<div class="mt-auto px-4 space-y-1">
+<a class="flex items-center gap-4 p-3 text-rose-400 hover:bg-rose-50 rounded-2xl font-headline font-semibold" href="#">
+<span class="material-symbols-outlined">help_outline</span> Help
+                </a>
+<a class="flex items-center gap-4 p-3 text-rose-400 hover:bg-rose-50 rounded-2xl font-headline font-semibold" href="#">
+<span class="material-symbols-outlined">logout</span> Logout
+                </a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="flex-1 lg:ml-72 p-8 lg:p-12 dot-grid">
+<div class="max-w-7xl mx-auto grid grid-cols-1 xl:grid-cols-12 gap-8">
+<!-- Center Column: Statistics & Progress (Col 1-8) -->
+<div class="xl:col-span-8 space-y-8">
+<!-- Stats Bento Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm relative overflow-hidden group hover:scale-[1.02] transition-transform duration-300">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary-container/10 rounded-full blur-2xl group-hover:bg-primary-container/20 transition-colors"></div>
+<span class="text-[10px] font-label font-bold text-primary uppercase tracking-[0.2em] block mb-2">Total Correct</span>
+<p class="text-4xl font-headline font-extrabold text-on-surface tracking-tight">1,247</p>
+<div class="mt-4 flex items-center gap-2 text-tertiary font-label text-sm">
+<span class="material-symbols-outlined text-sm">trending_up</span> +12% this week
+                            </div>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm relative overflow-hidden group hover:scale-[1.02] transition-transform duration-300">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-tertiary-container/10 rounded-full blur-2xl"></div>
+<span class="text-[10px] font-label font-bold text-tertiary uppercase tracking-[0.2em] block mb-2">Accuracy</span>
+<p class="text-4xl font-headline font-extrabold text-on-surface tracking-tight">89.3%</p>
+<div class="mt-4 flex items-center gap-2 text-tertiary font-label text-sm">
+<span class="material-symbols-outlined text-sm">bolt</span> Master Tier
+                            </div>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm relative overflow-hidden group hover:scale-[1.02] transition-transform duration-300">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-secondary-container/10 rounded-full blur-2xl"></div>
+<span class="text-[10px] font-label font-bold text-secondary uppercase tracking-[0.2em] block mb-2">Total Sessions</span>
+<p class="text-4xl font-headline font-extrabold text-on-surface tracking-tight">156</p>
+<div class="mt-4 flex items-center gap-2 text-secondary font-label text-sm">
+<span class="material-symbols-outlined text-sm">history</span> Active Learner
+                            </div>
+</div>
+</div>
+<!-- World Progress Section -->
+<div class="bg-surface-container-lowest p-10 rounded-xl shadow-sm">
+<h3 class="font-headline font-extrabold text-2xl text-on-surface mb-8">World Progress</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+<!-- World 1 -->
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<span class="font-headline font-bold text-on-surface-variant">Addition Foundation</span>
+<span class="font-label font-bold text-primary">100%</span>
+</div>
+<div class="h-3 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-container w-full rounded-full shadow-[inset_0_2px_4px_rgba(0,0,0,0.1)]"></div>
+</div>
+</div>
+<!-- World 2 -->
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<span class="font-headline font-bold text-on-surface-variant">Subtraction Skies</span>
+<span class="font-label font-bold text-primary">82%</span>
+</div>
+<div class="h-3 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[82%] rounded-full shadow-[inset_0_2px_4px_rgba(0,0,0,0.1)]"></div>
+</div>
+</div>
+<!-- World 3 -->
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<span class="font-headline font-bold text-on-surface-variant">Multiplication Mountains</span>
+<span class="font-label font-bold text-primary">45%</span>
+</div>
+<div class="h-3 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary-container w-[45%] rounded-full shadow-[inset_0_2px_4px_rgba(0,0,0,0.1)]"></div>
+</div>
+</div>
+<!-- World 4 -->
+<div class="space-y-3 opacity-80">
+<div class="flex justify-between items-center">
+<span class="font-headline font-bold text-on-surface-variant">Division Deep</span>
+<span class="font-label font-bold text-primary">12%</span>
+</div>
+<div class="h-3 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[12%] rounded-full shadow-[inset_0_2px_4px_rgba(0,0,0,0.1)]"></div>
+</div>
+</div>
+<!-- World 5 -->
+<div class="space-y-3 opacity-60">
+<div class="flex justify-between items-center">
+<span class="font-headline font-bold text-on-surface-variant">Fraction Forest</span>
+<span class="font-label font-bold text-on-surface-variant">0%</span>
+</div>
+<div class="h-3 w-full bg-surface-container rounded-full"></div>
+</div>
+<!-- World 6 -->
+<div class="space-y-3 opacity-60">
+<div class="flex justify-between items-center">
+<span class="font-headline font-bold text-on-surface-variant">Decimal Dunes</span>
+<span class="font-label font-bold text-on-surface-variant">0%</span>
+</div>
+<div class="h-3 w-full bg-surface-container rounded-full"></div>
+</div>
+<!-- World 7 -->
+<div class="space-y-3 opacity-60">
+<div class="flex justify-between items-center">
+<span class="font-headline font-bold text-on-surface-variant">Algebraic Abyss</span>
+<span class="font-label font-bold text-on-surface-variant">0%</span>
+</div>
+<div class="h-3 w-full bg-surface-container rounded-full"></div>
+</div>
+<!-- World 8 -->
+<div class="space-y-3 opacity-60">
+<div class="flex justify-between items-center">
+<span class="font-headline font-bold text-on-surface-variant">Geometry Garden</span>
+<span class="font-label font-bold text-on-surface-variant">0%</span>
+</div>
+<div class="h-3 w-full bg-surface-container rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Achievements & History (Col 9-12) -->
+<div class="xl:col-span-4 space-y-8">
+<!-- Recent Achievements -->
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm">
+<h3 class="font-headline font-extrabold text-xl text-on-surface mb-6">Recent Achievements</h3>
+<div class="grid grid-cols-3 gap-4">
+<!-- Unlocked Badge 1 -->
+<div class="aspect-square bg-tertiary-container/20 rounded-2xl flex flex-col items-center justify-center p-2 text-center group cursor-help transition-transform hover:rotate-3">
+<span class="material-symbols-outlined text-tertiary text-4xl mb-1" data-weight="fill">verified</span>
+<span class="text-[9px] font-label font-bold uppercase text-on-tertiary-container">Speed Star</span>
+</div>
+<!-- Unlocked Badge 2 -->
+<div class="aspect-square bg-secondary-container/20 rounded-2xl flex flex-col items-center justify-center p-2 text-center group cursor-help transition-transform hover:-rotate-3">
+<span class="material-symbols-outlined text-secondary text-4xl mb-1" data-weight="fill">military_tech</span>
+<span class="text-[9px] font-label font-bold uppercase text-on-secondary-container">20 Day Club</span>
+</div>
+<!-- Unlocked Badge 3 -->
+<div class="aspect-square bg-primary-container/20 rounded-2xl flex flex-col items-center justify-center p-2 text-center group cursor-help transition-transform hover:rotate-3">
+<span class="material-symbols-outlined text-primary text-4xl mb-1" data-weight="fill">workspace_premium</span>
+<span class="text-[9px] font-label font-bold uppercase text-on-primary-container">Math Master</span>
+</div>
+<!-- Locked Badge 1 -->
+<div class="aspect-square bg-surface-container-high rounded-2xl flex flex-col items-center justify-center p-2 text-center opacity-40 grayscale">
+<span class="material-symbols-outlined text-outline text-4xl mb-1">lock</span>
+<span class="text-[9px] font-label font-bold uppercase text-outline">Century Club</span>
+</div>
+<!-- Locked Badge 2 -->
+<div class="aspect-square bg-surface-container-high rounded-2xl flex flex-col items-center justify-center p-2 text-center opacity-40 grayscale">
+<span class="material-symbols-outlined text-outline text-4xl mb-1">lock</span>
+<span class="text-[9px] font-label font-bold uppercase text-outline">Night Owl</span>
+</div>
+<!-- Locked Badge 3 -->
+<div class="aspect-square bg-surface-container-high rounded-2xl flex flex-col items-center justify-center p-2 text-center opacity-40 grayscale">
+<span class="material-symbols-outlined text-outline text-4xl mb-1">lock</span>
+<span class="text-[9px] font-label font-bold uppercase text-outline">Legendary</span>
+</div>
+</div>
+</div>
+<!-- Session History -->
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm">
+<h3 class="font-headline font-extrabold text-xl text-on-surface mb-6">Session History</h3>
+<div class="space-y-4">
+<div class="flex items-center gap-4 p-3 bg-surface-container-low rounded-2xl border-l-4 border-tertiary-container">
+<div class="bg-tertiary-container/30 p-2 rounded-xl">
+<span class="material-symbols-outlined text-tertiary text-sm">calculate</span>
+</div>
+<div class="flex-1">
+<h4 class="text-sm font-headline font-bold text-on-surface">Multiplication Sprint</h4>
+<p class="text-[10px] font-label text-on-surface-variant">Today • 14:20</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-label font-bold text-tertiary">+450 XP</p>
+</div>
+</div>
+<div class="flex items-center gap-4 p-3 bg-surface-container-low rounded-2xl border-l-4 border-primary-container">
+<div class="bg-primary-container/30 p-2 rounded-xl">
+<span class="material-symbols-outlined text-primary text-sm">rocket_launch</span>
+</div>
+<div class="flex-1">
+<h4 class="text-sm font-headline font-bold text-on-surface">Subtraction Skies</h4>
+<p class="text-[10px] font-label text-on-surface-variant">Yesterday • 18:45</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-label font-bold text-primary">+210 XP</p>
+</div>
+</div>
+<div class="flex items-center gap-4 p-3 bg-surface-container-low rounded-2xl border-l-4 border-secondary-container">
+<div class="bg-secondary-container/30 p-2 rounded-xl">
+<span class="material-symbols-outlined text-secondary text-sm">emoji_events</span>
+</div>
+<div class="flex-1">
+<h4 class="text-sm font-headline font-bold text-on-surface">Daily Challenge</h4>
+<p class="text-[10px] font-label text-on-surface-variant">2 days ago • 09:15</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-label font-bold text-secondary">+800 XP</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-3 border-2 border-dashed border-outline-variant rounded-2xl text-sm font-headline font-bold text-on-surface-variant hover:bg-surface-container hover:border-primary transition-all">View Full History</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Floating Action Button Contextual (Hidden as per profile screen rules but available for reference) -->
+<!-- Suppressed on Profile as per UX Mandate -->
+</body></html>

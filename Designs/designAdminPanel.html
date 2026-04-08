@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillSum 2.0 — Design Admin Panel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Nunito', 'sans-serif'],
+                        body: ['DM Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --pink-50:#fff0f5;--pink-100:#ffe0ec;--pink-200:#ffb3cc;--pink-300:#ff80ab;--pink-400:#ff5c96;--pink-500:#e0396e;--pink-600:#c55f85;
+            --bg-canvas:#fef6f9;--bg-card:#ffffff;--bg-surface:#fdf2f6;
+            --correct:#4caf50;--wrong:#f44336;--streak:#ff6b35;--xp-gold:#ffd700;
+            --text-primary:#1a1a2e;--text-secondary:#6b7280;--text-tertiary:#9ca3af;
+            --shadow-btn-primary:0 6px 0 #c55f85;--glow-primary:0 0 20px rgba(255,128,171,0.4);--glow-gold:0 0 20px rgba(255,215,0,0.5);
+        }
+        body{font-family:'DM Sans',sans-serif;background:#f8f9fa;color:var(--text-primary);-webkit-font-smoothing:antialiased;margin:0}
+        h1,h2,h3,.font-display{font-family:'Nunito',sans-serif}
+        .font-mono{font-family:'JetBrains Mono',monospace}
+        svg.soft-stroke{stroke-linecap:round;stroke-linejoin:round}
+
+        /* Tab system */
+        .tab-btn{padding:10px 20px;font-weight:700;font-size:0.85rem;border:none;background:transparent;cursor:pointer;color:var(--text-secondary);border-bottom:3px solid transparent;transition:all 0.2s;white-space:nowrap}
+        .tab-btn:hover{color:var(--pink-400)}
+        .tab-btn.active{color:var(--pink-400);border-bottom-color:var(--pink-400);background:var(--pink-50)}
+        .tab-content{display:none}
+        .tab-content.active{display:block}
+
+        /* Shared */
+        .section-title{font-size:1.5rem;font-weight:900;color:#1a1a2e;margin-bottom:8px;padding-bottom:8px;border-bottom:3px solid #f0f0f0}
+        .subsection{font-size:0.7rem;font-weight:700;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:12px;margin-top:24px}
+        .card{background:#fff;border-radius:20px;padding:24px;box-shadow:0 4px 0 rgba(0,0,0,0.04);border:1px solid rgba(0,0,0,0.05);margin-bottom:24px}
+        .swatch{width:64px;height:64px;border-radius:14px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:4px;font-size:0.55rem;font-weight:700;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,0.3);box-shadow:0 4px 0 rgba(0,0,0,0.08)}
+        .asset-card{background:#fff;border-radius:16px;padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;box-shadow:0 3px 5px rgba(0,0,0,0.04);border:1px solid #f3f4f6;transition:transform 0.2s}
+        .asset-card:hover{transform:translateY(-3px)}
+        .asset-name{font-size:0.65rem;font-weight:600;color:#6b7280;text-align:center;font-family:'JetBrains Mono',monospace}
+        .thumb-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 8px rgba(0,0,0,0.08);border:1px solid #e5e7eb;transition:transform 0.2s,box-shadow 0.2s;cursor:pointer}
+        .thumb-card:hover{transform:translateY(-4px);box-shadow:0 8px 16px rgba(0,0,0,0.12)}
+        .thumb-card img{width:100%;height:280px;object-fit:cover;object-position:top}
+        .thumb-card .label{padding:12px 16px;font-weight:700;font-size:0.85rem;color:#1a1a2e}
+        .thumb-card .sub{font-size:0.7rem;color:#6b7280;font-weight:500}
+
+        /* Btn */
+        .btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:16px 32px;min-height:56px;border-radius:20px;background:var(--pink-300);color:#fff;font-family:'Nunito';font-size:1.1rem;font-weight:800;border:none;cursor:pointer;box-shadow:var(--shadow-btn-primary);transform:translateY(0);transition:transform 0.12s,box-shadow 0.12s;-webkit-tap-highlight-color:transparent}
+        .btn-primary:hover{transform:translateY(2px);box-shadow:0 4px 0 #c55f85}
+        .btn-primary:active{transform:translateY(4px);box-shadow:0 2px 0 #c55f85}
+
+        /* Animations */
+        @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes scaleIn{from{opacity:0;transform:scale(0.85)}to{opacity:1;transform:scale(1)}}
+        @keyframes springPop{0%{transform:scale(1)}30%{transform:scale(1.25)}60%{transform:scale(0.92)}80%{transform:scale(1.08)}100%{transform:scale(1)}}
+        @keyframes shake{0%,100%{transform:translateX(0)}15%{transform:translateX(-8px)}35%{transform:translateX(8px)}55%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+        @keyframes starEarn{0%{transform:scale(0) rotate(-30deg);opacity:0}50%{transform:scale(1.4) rotate(10deg);opacity:1}70%{transform:scale(0.9) rotate(-5deg)}100%{transform:scale(1) rotate(0);opacity:1}}
+        @keyframes starShimmer{0%,100%{filter:brightness(1) drop-shadow(0 0 4px rgba(255,215,0,0.3))}50%{filter:brightness(1.3) drop-shadow(0 0 12px rgba(255,215,0,0.8))}}
+        @keyframes xpFloat{0%{opacity:1;transform:translateY(0) scale(1)}60%{opacity:1;transform:translateY(-30px) scale(1.1)}100%{opacity:0;transform:translateY(-60px) scale(0.9)}}
+        @keyframes float{0%,100%{transform:translateY(0px)}50%{transform:translateY(-6px)}}
+        @keyframes pulseGlow{0%,100%{box-shadow:0 0 0 0 rgba(255,128,171,0.4)}50%{box-shadow:0 0 0 12px rgba(255,128,171,0)}}
+        @keyframes flicker{0%,100%{transform:scale(1) translateY(0)}33%{transform:scale(1.05) translateY(-2px)}66%{transform:scale(0.97) translateY(1px)}}
+        @keyframes levelUp{0%{transform:scale(1)}20%{transform:scale(1.5)}40%{transform:scale(0.9)}60%{transform:scale(1.2)}80%{transform:scale(0.97)}100%{transform:scale(1)}}
+        @keyframes slideInLeft{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:translateX(0)}}
+        @keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
+        .animate-fade-up{animation:fadeUp 0.4s ease-out both}
+        .animate-scale-in{animation:scaleIn 0.35s cubic-bezier(0.34,1.56,0.64,1) both}
+        .animate-spring-pop{animation:springPop 0.5s ease both}
+        .animate-shake{animation:shake 0.5s ease both}
+        .animate-star-earn{animation:starEarn 0.7s cubic-bezier(0.34,1.56,0.64,1) both}
+        .animate-star-shimmer{animation:starShimmer 2s ease-in-out infinite}
+        .animate-float{animation:float 3s ease-in-out infinite}
+        .animate-pulse-glow{animation:pulseGlow 2s ease-in-out infinite}
+        .animate-flicker{animation:flicker 1.5s ease-in-out infinite}
+        .animate-level-up{animation:levelUp 0.8s ease both}
+        .animate-xp-float{animation:xpFloat 1.5s ease-out forwards}
+        .animate-slide-left{animation:slideInLeft 0.4s ease-out both}
+        .animate-wiggle{animation:wiggle 0.4s ease both}
+
+        .anim-box{width:80px;height:80px;background:var(--pink-300);border-radius:16px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:0.8rem;cursor:pointer}
+        .flow-node{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:12px;font-weight:700;font-size:0.8rem;border:2px solid #e5e7eb;background:#fff}
+        .flow-arrow{color:var(--pink-400);font-weight:900;font-size:1.2rem;margin:0 4px}
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div style="background:linear-gradient(135deg,var(--pink-300),var(--pink-500));padding:24px 32px;color:#fff;position:sticky;top:0;z-index:100">
+    <div style="max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+        <div>
+            <h1 style="font-size:1.6rem;font-weight:900;margin:0">SkillSum 2.0 — Design Admin Panel</h1>
+            <p style="font-size:0.8rem;opacity:0.85;margin:4px 0 0">Final Design Reference Hub • "Soft Arcade" / "Tactile Joy"</p>
+        </div>
+        <div style="font-size:0.75rem;opacity:0.7">April 2026</div>
+    </div>
+</div>
+
+<!-- TAB NAV -->
+<div style="background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:82px;z-index:99;overflow-x:auto;display:flex">
+    <div style="max-width:1400px;margin:0 auto;display:flex;min-width:max-content">
+        <button class="tab-btn active" onclick="switchTab('design-system')">🎨 Design System</button>
+        <button class="tab-btn" onclick="switchTab('components')">🧩 Components</button>
+        <button class="tab-btn" onclick="switchTab('assets')">⭐ SVG Assets</button>
+        <button class="tab-btn" onclick="switchTab('mobile')">📱 Mobile Pages</button>
+        <button class="tab-btn" onclick="switchTab('prototype')">🧪 Prototype</button>
+        <button class="tab-btn" onclick="switchTab('desktop')">🖥️ Desktop Pages</button>
+        <button class="tab-btn" onclick="switchTab('stitch')">🎭 Creative Designs</button>
+        <button class="tab-btn" onclick="switchTab('animations')">✨ Animations</button>
+        <button class="tab-btn" onclick="switchTab('flow')">🔄 Screen Flow</button>
+    </div>
+</div>
+
+<div style="max-width:1400px;margin:0 auto;padding:32px 24px">
+
+<!-- ====== TAB 1: DESIGN SYSTEM ====== -->
+<div id="tab-design-system" class="tab-content active">
+    <h2 class="section-title font-display">🎨 Design System Overview</h2>
+    <p style="color:var(--text-secondary);margin-bottom:24px">"Soft Arcade" aesthetic — Playful but not childish. Clean but not cold. Rewarding but not overwhelming.</p>
+
+    <!-- Philosophy -->
+    <div class="card">
+        <div class="subsection">Design Philosophy — "Tactile Joy"</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
+            <div style="padding:16px;background:var(--pink-50);border-radius:14px"><strong style="color:var(--pink-500)">Warmth</strong><br><span style="font-size:0.85rem;color:var(--text-secondary)">Soft pinks, rounded corners, gentle shadows</span></div>
+            <div style="padding:16px;background:#eff6ff;border-radius:14px"><strong style="color:#2563eb">Precision</strong><br><span style="font-size:0.85rem;color:var(--text-secondary)">8px grid, consistent spacing, clean alignment</span></div>
+            <div style="padding:16px;background:#fefce8;border-radius:14px"><strong style="color:#ca8a04">Delight</strong><br><span style="font-size:0.85rem;color:var(--text-secondary)">Spring animations, particle bursts, sound-visual sync</span></div>
+            <div style="padding:16px;background:#f0fdf4;border-radius:14px"><strong style="color:#16a34a">Clarity</strong><br><span style="font-size:0.85rem;color:var(--text-secondary)">High contrast questions, no clutter in game view</span></div>
+            <div style="padding:16px;background:#fdf4ff;border-radius:14px"><strong style="color:#9333ea">Progress</strong><br><span style="font-size:0.85rem;color:var(--text-secondary)">XP bars, stars, streak flames everywhere</span></div>
+        </div>
+        <div style="margin-top:16px;padding:16px;background:#1a1a2e;color:#fff;border-radius:14px;font-size:0.85rem">
+            <strong>Key Rules:</strong> No 1px borders (use surface shifts). No pure black. No flat buttons (use 3D shadow blocks). No standard easing (use spring/elastic). Every pixel molded from clay.
+        </div>
+    </div>
+
+    <!-- Colors -->
+    <div class="card">
+        <div class="subsection">Color Palette</div>
+        <p style="font-size:0.75rem;color:var(--text-tertiary);margin-bottom:16px">Primary (Warm Pink)</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px">
+            <div class="swatch" style="background:#fff0f5;color:#333;text-shadow:none">50</div>
+            <div class="swatch" style="background:#ffe0ec;color:#333;text-shadow:none">100</div>
+            <div class="swatch" style="background:#ffb3cc">200</div>
+            <div class="swatch" style="background:#ff80ab">300 ★</div>
+            <div class="swatch" style="background:#ff5c96">400</div>
+            <div class="swatch" style="background:#e0396e">500</div>
+            <div class="swatch" style="background:#c55f85">600</div>
+        </div>
+        <p style="font-size:0.75rem;color:var(--text-tertiary);margin-bottom:12px">World Colors</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px">
+            <div class="swatch" style="background:#ff8fab">W1 ➕</div>
+            <div class="swatch" style="background:#ff9a3c">W2 ➖</div>
+            <div class="swatch" style="background:#26c6b0">W3 ✖️</div>
+            <div class="swatch" style="background:#9b59d0">W4 ➗</div>
+            <div class="swatch" style="background:#ef5350">W5 🔀</div>
+            <div class="swatch" style="background:#42a5f5">W6 🧠</div>
+            <div class="swatch" style="background:#f72585">W7 ⚡</div>
+            <div class="swatch" style="background:#1a237e">W8 🏆</div>
+        </div>
+        <p style="font-size:0.75rem;color:var(--text-tertiary);margin-bottom:12px">Semantic</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px">
+            <div class="swatch" style="background:#4caf50">Correct</div>
+            <div class="swatch" style="background:#f44336">Wrong</div>
+            <div class="swatch" style="background:#ff9800">Warning</div>
+            <div class="swatch" style="background:#2196f3">Info</div>
+            <div class="swatch" style="background:#ffd700;color:#333;text-shadow:none">XP Gold</div>
+            <div class="swatch" style="background:#ff6b35">Streak</div>
+        </div>
+        <p style="font-size:0.75rem;color:var(--text-tertiary);margin-bottom:12px">Stars</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px">
+            <div class="swatch" style="background:#ffd700;color:#333;text-shadow:none">Gold</div>
+            <div class="swatch" style="background:#c0c0c0;color:#333;text-shadow:none">Silver</div>
+            <div class="swatch" style="background:#cd7f32">Bronze</div>
+            <div class="swatch" style="background:#e0e0e0;color:#333;text-shadow:none">Empty</div>
+        </div>
+        <div style="margin-top:20px;padding:12px 16px;background:var(--bg-canvas);border-radius:12px;font-family:'JetBrains Mono';font-size:0.7rem;color:var(--text-secondary)">
+            --bg-canvas: #fef6f9 &nbsp;|&nbsp; --bg-card: #ffffff &nbsp;|&nbsp; --bg-surface: #fdf2f6 &nbsp;|&nbsp; Background dot-grid: radial-gradient(circle, rgba(255,128,171,0.07) 1px, transparent 1px) / 24px 24px
+        </div>
+    </div>
+
+    <!-- Typography -->
+    <div class="card">
+        <div class="subsection">Typography</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px">
+            <div>
+                <div style="font-size:0.7rem;color:var(--text-tertiary);margin-bottom:8px;font-weight:700">DISPLAY — Nunito (scores, questions, headings)</div>
+                <div style="font-family:Nunito;font-weight:900;font-size:3rem;line-height:1.1;color:var(--text-primary)">47 + 9 = ?</div>
+                <div style="font-family:Nunito;font-weight:800;font-size:1.5rem;color:var(--text-primary);margin-top:8px">Level Complete!</div>
+                <div style="font-family:Nunito;font-weight:700;font-size:1.1rem;color:var(--text-primary);margin-top:4px">The Adding 9 Trick</div>
+            </div>
+            <div>
+                <div style="font-size:0.7rem;color:var(--text-tertiary);margin-bottom:8px;font-weight:700">BODY — DM Sans (descriptions, labels, UI copy)</div>
+                <div style="font-family:'DM Sans';font-size:1rem;line-height:1.6;color:var(--text-secondary)">9 is one less than 10. Adding 10 is easy (just add 1 to the tens digit), so use that trick and adjust!</div>
+                <div style="font-family:'DM Sans';font-size:0.75rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--text-tertiary);margin-top:12px">YOUR PROGRESS • STAR TARGETS</div>
+            </div>
+            <div>
+                <div style="font-size:0.7rem;color:var(--text-tertiary);margin-bottom:8px;font-weight:700">MONO — JetBrains Mono (stats, timers, numbers)</div>
+                <div style="font-family:'JetBrains Mono';font-weight:700;font-size:2rem;color:var(--pink-400)">87.5%</div>
+                <div style="font-family:'JetBrains Mono';font-weight:700;font-size:1.25rem;color:var(--text-primary);margin-top:4px">⏱ 37s &nbsp; 🔥12 &nbsp; +380 XP</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Spacing & Radius -->
+    <div class="card">
+        <div class="subsection">Spacing (8px Grid) & Border Radius</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px">
+            <div style="width:4px;height:40px;background:var(--pink-200);border-radius:2px" title="4px"></div>
+            <div style="width:8px;height:40px;background:var(--pink-200);border-radius:2px" title="8px"></div>
+            <div style="width:12px;height:40px;background:var(--pink-300);border-radius:2px" title="12px"></div>
+            <div style="width:16px;height:40px;background:var(--pink-300);border-radius:2px" title="16px"></div>
+            <div style="width:24px;height:40px;background:var(--pink-400);border-radius:2px" title="24px"></div>
+            <div style="width:32px;height:40px;background:var(--pink-400);border-radius:2px" title="32px"></div>
+            <div style="width:48px;height:40px;background:var(--pink-500);border-radius:2px" title="48px"></div>
+            <div style="width:64px;height:40px;background:var(--pink-500);border-radius:2px" title="64px"></div>
+        </div>
+        <div style="font-family:'JetBrains Mono';font-size:0.7rem;color:var(--text-tertiary);margin-bottom:20px">4 | 8 | 12 | 16 | 24 | 32 | 48 | 64 px</div>
+        <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:end">
+            <div style="width:60px;height:60px;background:var(--pink-100);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--pink-600)">sm 8px</div>
+            <div style="width:60px;height:60px;background:var(--pink-100);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--pink-600)">md 14px</div>
+            <div style="width:60px;height:60px;background:var(--pink-100);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--pink-600)">lg 20px</div>
+            <div style="width:60px;height:60px;background:var(--pink-100);border-radius:28px;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--pink-600)">xl 28px</div>
+            <div style="width:60px;height:60px;background:var(--pink-100);border-radius:9999px;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--pink-600)">full</div>
+        </div>
+    </div>
+
+    <!-- Shadows -->
+    <div class="card">
+        <div class="subsection">Elevation & Shadows</div>
+        <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:end">
+            <div style="width:100px;height:60px;background:#fff;border-radius:14px;box-shadow:0 2px 0 rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;color:var(--text-secondary)">sm</div>
+            <div style="width:100px;height:60px;background:#fff;border-radius:14px;box-shadow:0 4px 0 rgba(0,0,0,0.10);display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;color:var(--text-secondary)">md</div>
+            <div style="width:100px;height:60px;background:#fff;border-radius:14px;box-shadow:0 6px 0 rgba(0,0,0,0.12);display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;color:var(--text-secondary)">lg</div>
+            <div style="width:100px;height:60px;background:var(--pink-300);border-radius:14px;box-shadow:0 6px 0 #c55f85;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:800;color:#fff">btn-primary</div>
+            <div style="width:100px;height:60px;background:var(--pink-300);border-radius:14px;box-shadow:0 0 20px rgba(255,128,171,0.4);display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:800;color:#fff">glow</div>
+            <div style="width:100px;height:60px;background:#ffd700;border-radius:14px;box-shadow:0 0 20px rgba(255,215,0,0.5);display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:800;color:#333">glow-gold</div>
+        </div>
+    </div>
+</div>
+
+<!-- ====== TAB 2: COMPONENTS ====== -->
+<div id="tab-components" class="tab-content">
+    <h2 class="section-title font-display">🧩 Component Library</h2>
+    <p style="color:var(--text-secondary);margin-bottom:24px">All UI components following the "Soft Arcade" aesthetic. Hover/click to test interactions.</p>
+
+    <!-- Embed the component designs as iframes for full fidelity -->
+    <div class="card">
+        <div class="subsection">Full Interactive Component Library</div>
+        <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:16px">Embedded from <code style="background:#f3f4f6;padding:2px 6px;border-radius:6px;font-size:0.8rem">compomentDesgin.html</code> — includes buttons, level nodes, progress bar, XP toast, streak counter, world card, achievement badges, daily streak widget.</p>
+        <iframe src="compomentDesgin.html" style="width:100%;height:2000px;border:2px solid #e5e7eb;border-radius:16px" loading="lazy"></iframe>
+    </div>
+</div>
+
+<!-- ====== TAB 3: SVG ASSETS ====== -->
+<div id="tab-assets" class="tab-content">
+    <h2 class="section-title font-display">⭐ SVG Asset Library</h2>
+    <p style="color:var(--text-secondary);margin-bottom:24px">All custom SVGs designed with the "Soft Arcade" aesthetic (rounded corners, thick strokes, warm colors).</p>
+
+    <div class="card">
+        <div class="subsection">Full Asset Library</div>
+        <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:16px">Embedded from <code style="background:#f3f4f6;padding:2px 6px;border-radius:6px;font-size:0.8rem">assetLibrary.html</code> — includes gamification icons, nav icons, world themes, map assets, 15 achievement badges, gameplay elements, PWA icons.</p>
+        <iframe src="assetLibrary.html" style="width:100%;height:3000px;border:2px solid #e5e7eb;border-radius:16px" loading="lazy"></iframe>
+    </div>
+</div>
+
+<!-- ====== TAB 4: MOBILE PAGES ====== -->
+<div id="tab-mobile" class="tab-content">
+    <h2 class="section-title font-display">📱 Mobile Page Designs</h2>
+    <p style="color:var(--text-secondary);margin-bottom:24px">Individual mobile screens designed for 390×844 (iPhone 13/14/15) viewport.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px">
+        <div class="thumb-card">
+            <img src="stitch_pages_design_skillSum/onboarding_level_selection/screen.png" alt="Onboarding">
+            <div class="label">Home / Onboarding<div class="sub">Level Selection: Beginner, Intermediate, Confident</div></div>
+        </div>
+        <div class="thumb-card">
+            <img src="stitch_pages_design_skillSum/world_select/screen.png" alt="World Select">
+            <div class="label">World Selection<div class="sub">8 worlds with progress bars and themes</div></div>
+        </div>
+        <div class="thumb-card">
+            <img src="stitch_pages_design_skillSum/number_sense_world_map/screen.png" alt="World Map">
+            <div class="label">World Map (Mobile)<div class="sub">Bubble path navigation with star targets</div></div>
+        </div>
+        <div class="thumb-card">
+            <img src="stitch_pages_design_skillSum/pre_lesson_tip/screen.png" alt="Pre-Lesson Tip">
+            <div class="label">Pre-Lesson Tip<div class="sub">Step-by-step trick explanation with diagram</div></div>
+        </div>
+        <div class="thumb-card">
+            <img src="stitch_pages_design_skillSum/gameplay_screen/screen.png" alt="Gameplay">
+            <div class="label">Mobile Gameplay Screen<div class="sub">Custom numpad, star progress bar, huge question</div></div>
+        </div>
+        <div class="thumb-card">
+            <img src="stitch_pages_design_skillSum/post_lesson_results_v2/screen.png" alt="Post-Lesson Results">
+            <div class="label">Post-Lesson Results<div class="sub">Stars reveal, accuracy, speed chart, XP won</div></div>
+        </div>
+        <div class="thumb-card">
+            <img src="stitch_pages_design_skillSum/practice_setup/screen.png" alt="Practice Setup">
+            <div class="label">Practice Setup<div class="sub">Config: time limit, operations, difficulty, PB</div></div>
+        </div>
+        <div class="thumb-card">
+            <img src="stitch_pages_design_skillSum/user_profile/screen.png" alt="User Profile">
+            <div class="label">User Profile<div class="sub">Stats grid, achievements, world progress tracking</div></div>
+        </div>
+        <div class="thumb-card">
+            <img src="stitch_pages_design_skillSum/daily_challenges/screen.png" alt="Daily Challenges">
+            <div class="label">Daily Challenges Hub<div class="sub">3 tasks progress, rewards, and XP indicator</div></div>
+        </div>
+    </div>
+</div>
+
+<!-- ====== TAB 5: PROTOTYPE ====== -->
+<div id="tab-prototype" class="tab-content">
+    <h2 class="section-title font-display">🧪 Full Interactive Prototype</h2>
+    <p style="color:var(--text-secondary);margin-bottom:24px">9 mobile screen mockups (390×844 iPhone frames) — scroll horizontally inside the embed.</p>
+
+    <div class="card">
+        <div class="subsection">Full Mobile Screens (Interactive)</div>
+        <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:16px">Embedded from <code style="background:#f3f4f6;padding:2px 6px;border-radius:6px;font-size:0.8rem">PagesDesgins.html</code> — Home, World Select, World Map, Level Detail, Pre-Lesson, Gameplay, Post-Lesson, Practice Setup, Profile.</p>
+        <iframe src="PagesDesgins.html" style="width:100%;height:950px;border:2px solid #e5e7eb;border-radius:16px" loading="lazy"></iframe>
+    </div>
+</div>
+
+<!-- ====== TAB 6: DESKTOP PAGES ====== -->
+<div id="tab-desktop" class="tab-content">
+    <h2 class="section-title font-display">🖥️ Desktop Page Designs</h2>
+    <p style="color:var(--text-secondary);margin-bottom:24px">Desktop layouts from creative stitch page designs — persistent sidebar, multi-panel layouts.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:24px">
+        <div class="thumb-card">
+            <img src="stitch_pages_design_skillSum/desktop_navigation_sidebar/screen.png" alt="Desktop Navigation Sidebar">
+            <div class="label">Desktop Navigation Sidebar<div class="sub">Sidebar: profile, XP bar, streak, nav, quick stats</div></div>
+        </div>
+        <div class="thumb-card">
+            <img src="stitch_pages_design_skillSum/desktop_home_screen_reverted_style/screen.png" alt="Desktop Home Screen">
+            <div class="label">Desktop Home Screen<div class="sub">3-column: sidebar + main content + achievements/world map</div></div>
+        </div>
+        <div class="thumb-card">
+            <img src="stitch_pages_design_skillSum/desktop_world_map_8.3_final/screen.png" alt="Desktop World Map">
+            <div class="label">Desktop World Map (Two-Panel)<div class="sub">Bubble path (left) + level detail with star targets (right)</div></div>
+        </div>
+        <div class="thumb-card">
+            <img src="stitch_pages_design_skillSum/desktop_gameplay_screen_8.4/screen.png" alt="Desktop Gameplay">
+            <div class="label">Desktop Gameplay Screen<div class="sub">Huge question, star progress bar, timer/score/streak cards</div></div>
+        </div>
+        <div class="thumb-card">
+            <img src="stitch_pages_design_skillSum/desktop_practice_results_8.5/screen.png" alt="Desktop Practice Results">
+            <div class="label">Desktop Practice Results<div class="sub">Large score, stats row, performance chart, operation breakdown</div></div>
+        </div>
+        <div class="thumb-card">
+            <img src="stitch_pages_design_skillSum/desktop_profile_screen_8.6/screen.png" alt="Desktop Profile">
+            <div class="label">Desktop Profile Screen<div class="sub">Profile header, tabbed stats/achievements/history, world progress</div></div>
+        </div>
+    </div>
+</div>
+
+<!-- ====== TAB 7: CREATIVE STITCH DESIGNS ====== -->
+<div id="tab-stitch" class="tab-content">
+    <h2 class="section-title font-display">🎭 Creative Stitch Designs Gallery</h2>
+    <p style="color:var(--text-secondary);margin-bottom:24px">All 20 creative screen designs — click any thumbnail to open its full interactive HTML.</p>
+
+    <div class="subsection" style="margin-top:16px">Onboarding</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;margin-bottom:32px">
+        <a href="stitch_pages_design_skillSum/onboarding_level_selection/code.html" target="_blank" class="thumb-card" style="text-decoration:none;color:inherit">
+            <img src="stitch_pages_design_skillSum/onboarding_level_selection/screen.png" alt="Onboarding">
+            <div class="label">Onboarding — Level Selection<div class="sub">Math level: Beginner / Intermediate / Confident</div></div>
+        </a>
+    </div>
+
+    <div class="subsection">Home & Navigation</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;margin-bottom:32px">
+        <a href="stitch_pages_design_skillSum/desktop_home_screen_reverted_style/code.html" target="_blank" class="thumb-card" style="text-decoration:none;color:inherit">
+            <img src="stitch_pages_design_skillSum/desktop_home_screen_reverted_style/screen.png" alt="Home">
+            <div class="label">Desktop Home<div class="sub">Sidebar + Daily Quest + Continue Learning</div></div>
+        </a>
+        <a href="stitch_pages_design_skillSum/desktop_navigation_sidebar/code.html" target="_blank" class="thumb-card" style="text-decoration:none;color:inherit">
+            <img src="stitch_pages_design_skillSum/desktop_navigation_sidebar/screen.png" alt="Sidebar">
+            <div class="label">Navigation Sidebar<div class="sub">Profile, XP, Streak, Nav, Quick Stats</div></div>
+        </a>
+    </div>
+
+    <div class="subsection">World Maps</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;margin-bottom:32px">
+        <a href="stitch_pages_design_skillSum/world_select/code.html" target="_blank" class="thumb-card" style="text-decoration:none;color:inherit">
+            <img src="stitch_pages_design_skillSum/world_select/screen.png" alt="World Select"><div class="label">World Select<div class="sub">8 world cards with progress</div></div>
+        </a>
+        <a href="stitch_pages_design_skillSum/desktop_world_map_8.3_final/code.html" target="_blank" class="thumb-card" style="text-decoration:none;color:inherit">
+            <img src="stitch_pages_design_skillSum/desktop_world_map_8.3_final/screen.png" alt="World Map"><div class="label">Desktop World Map<div class="sub">Two-panel bubble path</div></div>
+        </a>
+        <a href="stitch_pages_design_skillSum/number_sense_world_map/code.html" target="_blank" class="thumb-card" style="text-decoration:none;color:inherit">
+            <img src="stitch_pages_design_skillSum/number_sense_world_map/screen.png" alt="Number Sense"><div class="label">Number Sense Map<div class="sub">World 6 themed map</div></div>
+        </a>
+        <a href="stitch_pages_design_skillSum/multiplication_meadows_map/code.html" target="_blank" class="thumb-card" style="text-decoration:none;color:inherit">
+            <img src="stitch_pages_design_skillSum/multiplication_meadows_map/screen.png" alt="Multiplication"><div class="label">Multiplication Meadows<div class="sub">World 3 themed map</div></div>
+        </a>
+        <a href="stitch_pages_design_skillSum/subtraction_skies_world_map/code.html" target="_blank" class="thumb-card" style="text-decoration:none;color:inherit">
+            <img src="stitch_pages_design_skillSum/subtraction_skies_world_map/screen.png" alt="Subtraction"><div class="label">Subtraction Skies<div class="sub">World 2 themed map</div></div>
+        </a>
+        <a href="stitch_pages_design_skillSum/division_dreams_world_map/code.html" target="_blank" class="thumb-card" style="text-decoration:none;color:inherit">
+            <img src="stitch_pages_design_skillSum/division_dreams_world_map/screen.png" alt="Division"><div class="label">Division Dreams<div class="sub">World 4 themed map</div></div>
+        </a>
+        <a href="stitch_pages_design_skillSum/mixed_operations_world_map/code.html" target="_blank" class="thumb-card" style="text-decoration:none;color:inherit">
+            <img src="stitch_pages_design_skillSum/mixed_operations_world_map/screen.png" alt="Mixed Ops"><div class="label">Mixed Operations<div class="sub">World 5 themed map</div></div>
+        </a>
+        <a href="stitch_pages_design_skillSum/speed_drills_world_map/code.html" target="_blank" class="thumb-card" style="text-decoration:none;color:inherit">
+            <img src="stitch_pages_design_skillSum/speed_drills_world_map/screen.png" alt="Speed"><div class="label">Speed Drills<div class="sub">World 7 themed map</div></div>
+        </a>
+        <a href="stitch_pages_design_skillSum/mental_math_elite_world_map/code.html" target="_blank" class="thumb-card" style="text-decoration:none;color:inherit">
+            <img src="stitch_pages_design_skillSum/mental_math_elite_world_map/screen.png" alt="Elite"><div class="label">Mental Math Elite<div class="sub">World 8 themed map</div></div>
+        </a>
+    </div>
+
+    <div class="subsection">Gameplay & Lessons</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;margin-bottom:32px">
+        <a href="stitch_pages_design_skillSum/pre_lesson_tip/code.html" target="_blank" class="thumb-card" style="text-decoration:none;color:inherit">
+            <img src="stitch_pages_design_skillSum/pre_lesson_tip/screen.png" alt="Pre-Lesson"><div class="label">Pre-Lesson Tip<div class="sub">Step-by-step trick explanation</div></div>
+        </a>
+        <a href="stitch_pages_design_skillSum/gameplay_screen/code.html" target="_blank" class="thumb-card" style="text-decoration:none;color:inherit">
+            <img src="stitch_pages_design_skillSum/gameplay_screen/screen.png" alt="Gameplay"><div class="label">Mobile Gameplay<div class="sub">Custom numpad, star progress bar</div></div>
+        </a>
+        <a href="stitch_pages_design_skillSum/desktop_gameplay_screen_8.4/code.html" target="_blank" class="thumb-card" style="text-decoration:none;color:inherit">
+            <img src="stitch_pages_design_skillSum/desktop_gameplay_screen_8.4/screen.png" alt="Desktop Gameplay"><div class="label">Desktop Gameplay<div class="sub">Keyboard input, stat cards</div></div>
+        </a>
+    </div>
+
+    <div class="subsection">Results & Practice</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;margin-bottom:32px">
+        <a href="stitch_pages_design_skillSum/post_lesson_results_v2/code.html" target="_blank" class="thumb-card" style="text-decoration:none;color:inherit">
+            <img src="stitch_pages_design_skillSum/post_lesson_results_v2/screen.png" alt="Results"><div class="label">Post-Lesson Results<div class="sub">Stars, XP, speed chart</div></div>
+        </a>
+        <a href="stitch_pages_design_skillSum/practice_setup/code.html" target="_blank" class="thumb-card" style="text-decoration:none;color:inherit">
+            <img src="stitch_pages_design_skillSum/practice_setup/screen.png" alt="Practice Setup"><div class="label">Practice Setup<div class="sub">Mode/time/ops/range config</div></div>
+        </a>
+        <a href="stitch_pages_design_skillSum/desktop_practice_results_8.5/code.html" target="_blank" class="thumb-card" style="text-decoration:none;color:inherit">
+            <img src="stitch_pages_design_skillSum/desktop_practice_results_8.5/screen.png" alt="Practice Results"><div class="label">Desktop Practice Results<div class="sub">Score, stats, chart, breakdown</div></div>
+        </a>
+    </div>
+
+    <div class="subsection">Profile & Daily</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;margin-bottom:32px">
+        <a href="stitch_pages_design_skillSum/user_profile/code.html" target="_blank" class="thumb-card" style="text-decoration:none;color:inherit">
+            <img src="stitch_pages_design_skillSum/user_profile/screen.png" alt="Profile"><div class="label">User Profile<div class="sub">Avatar, stats, achievements, history</div></div>
+        </a>
+        <a href="stitch_pages_design_skillSum/desktop_profile_screen_8.6/code.html" target="_blank" class="thumb-card" style="text-decoration:none;color:inherit">
+            <img src="stitch_pages_design_skillSum/desktop_profile_screen_8.6/screen.png" alt="Desktop Profile"><div class="label">Desktop Profile<div class="sub">Sidebar + tabbed content</div></div>
+        </a>
+        <a href="stitch_pages_design_skillSum/daily_challenges/code.html" target="_blank" class="thumb-card" style="text-decoration:none;color:inherit">
+            <img src="stitch_pages_design_skillSum/daily_challenges/screen.png" alt="Daily"><div class="label">Daily Challenges<div class="sub">3 tasks, grand reward</div></div>
+        </a>
+    </div>
+</div>
+
+<!-- ====== TAB 8: ANIMATIONS ====== -->
+<div id="tab-animations" class="tab-content">
+    <h2 class="section-title font-display">✨ Animation Reference</h2>
+    <p style="color:var(--text-secondary);margin-bottom:24px">Click any box to replay its animation. All use spring/elastic easing — never linear.</p>
+
+    <div class="card">
+        <div class="subsection">Entry Animations</div>
+        <div style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:24px">
+            <div class="anim-box" onclick="replay(this,'animate-fade-up')">fadeUp<br>0.4s</div>
+            <div class="anim-box" onclick="replay(this,'animate-scale-in')">scaleIn<br>0.35s</div>
+            <div class="anim-box" onclick="replay(this,'animate-slide-left')">slideLeft<br>0.4s</div>
+        </div>
+
+        <div class="subsection">Attention Animations</div>
+        <div style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:24px">
+            <div class="anim-box" onclick="replay(this,'animate-spring-pop')">springPop<br>0.5s</div>
+            <div class="anim-box" style="background:var(--wrong)" onclick="replay(this,'animate-shake')">shake<br>0.5s</div>
+            <div class="anim-box" onclick="replay(this,'animate-wiggle')">wiggle<br>0.4s</div>
+        </div>
+
+        <div class="subsection">Star & Reward Animations</div>
+        <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-bottom:24px">
+            <span style="font-size:3rem;cursor:pointer" onclick="replay(this,'animate-star-earn')">⭐</span>
+            <span style="font-size:3rem" class="animate-star-shimmer">⭐</span>
+            <div class="anim-box" style="background:var(--xp-gold);color:#333" onclick="replay(this,'animate-level-up')">levelUp<br>0.8s</div>
+        </div>
+
+        <div class="subsection">Continuous Animations</div>
+        <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-bottom:24px">
+            <div class="anim-box animate-float" style="background:#42a5f5">float<br>3s ∞</div>
+            <span style="font-size:2.5rem" class="animate-flicker">🔥</span>
+            <div style="width:48px;height:48px;border-radius:50%;background:var(--pink-300)" class="animate-pulse-glow"></div>
+            <span style="font-size:0.75rem;color:var(--text-tertiary)">pulseGlow (current level indicator)</span>
+        </div>
+
+        <div class="subsection">XP Float Toast</div>
+        <div style="position:relative;height:80px;background:var(--bg-surface);border-radius:14px;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;padding:12px">
+            <div id="xp-demo" style="position:absolute;bottom:12px;background:#ffd700;padding:4px 12px;border-radius:12px;font-weight:800;font-size:0.9rem;cursor:pointer" onclick="replayXP()">⚡ +240 XP — click to replay</div>
+        </div>
+    </div>
+
+    <!-- Quick Reference -->
+    <div class="card">
+        <div class="subsection">Quick Reference: Event → Animation → Duration</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 80px;gap:2px;font-size:0.8rem">
+            <div style="padding:8px 12px;background:var(--pink-50);font-weight:700;border-radius:8px 0 0 0">Event</div>
+            <div style="padding:8px 12px;background:var(--pink-50);font-weight:700">Animation</div>
+            <div style="padding:8px 12px;background:var(--pink-50);font-weight:700;border-radius:0 8px 0 0">Duration</div>
+
+            <div style="padding:6px 12px;background:#fafafa">Screen transition</div><div style="padding:6px 12px;background:#fafafa;font-family:monospace;font-size:0.75rem">fadeUp (staggered)</div><div style="padding:6px 12px;background:#fafafa">0.4s</div>
+            <div style="padding:6px 12px">Button tap</div><div style="padding:6px 12px;font-family:monospace;font-size:0.75rem">scale(0.94) → scale(1)</div><div style="padding:6px 12px">0.12s</div>
+            <div style="padding:6px 12px;background:#fafafa">Correct answer</div><div style="padding:6px 12px;background:#fafafa;font-family:monospace;font-size:0.75rem">green flash + springPop</div><div style="padding:6px 12px;background:#fafafa">0.3s</div>
+            <div style="padding:6px 12px">Wrong answer</div><div style="padding:6px 12px;font-family:monospace;font-size:0.75rem">shake</div><div style="padding:6px 12px">0.5s</div>
+            <div style="padding:6px 12px;background:#fafafa">Star earned</div><div style="padding:6px 12px;background:#fafafa;font-family:monospace;font-size:0.75rem">starEarn + sound</div><div style="padding:6px 12px;background:#fafafa">0.7s</div>
+            <div style="padding:6px 12px">3-star result</div><div style="padding:6px 12px;font-family:monospace;font-size:0.75rem">confetti + levelUp</div><div style="padding:6px 12px">Full</div>
+            <div style="padding:6px 12px;background:#fafafa">XP earned</div><div style="padding:6px 12px;background:#fafafa;font-family:monospace;font-size:0.75rem">xpFloat toast</div><div style="padding:6px 12px;background:#fafafa">1.5s</div>
+            <div style="padding:6px 12px">Streak milestone</div><div style="padding:6px 12px;font-family:monospace;font-size:0.75rem">flicker + border glow</div><div style="padding:6px 12px">∞</div>
+            <div style="padding:6px 12px;background:#fafafa">World map load</div><div style="padding:6px 12px;background:#fafafa;font-family:monospace;font-size:0.75rem">SVG dash-offset</div><div style="padding:6px 12px;background:#fafafa">1.0s</div>
+            <div style="padding:6px 12px">Achievement unlock</div><div style="padding:6px 12px;font-family:monospace;font-size:0.75rem">scaleIn + golden glow</div><div style="padding:6px 12px">0.6s</div>
+            <div style="padding:6px 12px;background:#fafafa;border-radius:0 0 0 8px">PB achieved</div><div style="padding:6px 12px;background:#fafafa;font-family:monospace;font-size:0.75rem">springPop + gold flash</div><div style="padding:6px 12px;background:#fafafa;border-radius:0 0 8px 0">0.8s</div>
+        </div>
+    </div>
+</div>
+
+<!-- ====== TAB 9: SCREEN FLOW ====== -->
+<div id="tab-flow" class="tab-content">
+    <h2 class="section-title font-display">🔄 Screen Flow & State Machine</h2>
+    <p style="color:var(--text-secondary);margin-bottom:24px">All screen states and transitions from the master guide.</p>
+...
+
+    <div class="card">
+        <div class="subsection">App States</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px">
+            <span class="flow-node" style="background:var(--pink-50);border-color:var(--pink-300)">onboarding</span>
+            <span class="flow-node" style="background:#eff6ff;border-color:#3b82f6">home</span>
+            <span class="flow-node">worldSelect</span>
+            <span class="flow-node">worldMap</span>
+            <span class="flow-node">levelDetail</span>
+            <span class="flow-node">preLesson</span>
+            <span class="flow-node" style="background:#fef3c7;border-color:#f59e0b">playing</span>
+            <span class="flow-node">postLesson</span>
+            <span class="flow-node">practiceSetup</span>
+            <span class="flow-node" style="background:#fef3c7;border-color:#f59e0b">practicing</span>
+            <span class="flow-node">practiceResults</span>
+            <span class="flow-node">dailyChallenge</span>
+            <span class="flow-node">profile</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="subsection">First-Time User Journey</div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:0.85rem">
+            <span class="flow-node" style="background:var(--pink-50);border-color:var(--pink-300)">Landing</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node">Onboarding (3 screens)</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node" style="background:#eff6ff;border-color:#3b82f6">Home</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="subsection">Learn Mode Flow</div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:0.85rem;margin-bottom:12px">
+            <span class="flow-node" style="background:#eff6ff;border-color:#3b82f6">Home</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node">World Select</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node">World Map</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node">Level Detail</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node">Pre-Lesson</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node" style="background:#fef3c7;border-color:#f59e0b">Playing</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node">Post-Lesson</span>
+        </div>
+        <div style="font-size:0.8rem;color:var(--text-secondary);padding-left:16px">
+            Post-Lesson → <strong>World Map</strong> (next level) &nbsp;|&nbsp; Post-Lesson → <strong>Playing</strong> (retry) &nbsp;|&nbsp; Post-Lesson → <strong>Practice Weak Spots</strong>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="subsection">Practice Mode Flow</div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:0.85rem;margin-bottom:12px">
+            <span class="flow-node" style="background:#eff6ff;border-color:#3b82f6">Home</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node">Practice Setup</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node" style="background:#fef3c7;border-color:#f59e0b">Practicing</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node">Practice Results</span>
+        </div>
+        <div style="font-size:0.8rem;color:var(--text-secondary);padding-left:16px">
+            Results → <strong>Practice Setup</strong> (change config) &nbsp;|&nbsp; Results → <strong>Practicing</strong> (retry same) &nbsp;|&nbsp; Results → <strong>Home</strong>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="subsection">Daily Challenge Flow</div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:0.85rem;margin-bottom:12px">
+            <span class="flow-node" style="background:#eff6ff;border-color:#3b82f6">Home</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node">Daily Challenge Hub</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node" style="background:#fef3c7;border-color:#f59e0b">Challenge Gameplay</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node">Challenge Complete</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-node">Daily Challenge Hub</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="subsection">Navigation (always accessible)</div>
+        <div style="font-size:0.85rem;color:var(--text-secondary)">
+            From <strong>Home</strong>: World Select (Learn) · Practice Setup · Daily Challenge · Profile<br>
+            <strong>Desktop sidebar</strong> persists across all screens (except active gameplay)<br>
+            <strong>Mobile</strong>: no bottom nav bar — everything accessible from home screen cards
+        </div>
+    </div>
+</div>
+
+</div><!-- end max-width container -->
+
+<div style="text-align:center;padding:32px;color:var(--text-tertiary);font-size:0.8rem">
+    SkillSum 2.0 Design Admin Panel — Final Design Reference • April 2026
+</div>
+
+<script>
+function switchTab(id) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+    window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function replay(el, cls) {
+    el.classList.remove(cls);
+    void el.offsetWidth;
+    el.classList.add(cls);
+}
+
+function replayXP() {
+    const el = document.getElementById('xp-demo');
+    el.style.animation = 'none';
+    void el.offsetWidth;
+    el.style.animation = 'xpFloat 1.5s ease-out forwards';
+    setTimeout(() => { el.style.animation = 'none'; el.style.opacity = 1; }, 1600);
+}
+</script>
+
+</body>
+</html>

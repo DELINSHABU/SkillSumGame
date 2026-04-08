@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed": "#00201b",
+                    "primary": "#a23760",
+                    "on-secondary-fixed": "#2f1500",
+                    "on-primary-fixed": "#3e001c",
+                    "on-error-container": "#93000a",
+                    "on-primary-container": "#77133f",
+                    "on-secondary-container": "#693600",
+                    "error-container": "#ffdad6",
+                    "surface-variant": "#e8e0e3",
+                    "surface-dim": "#dfd8db",
+                    "on-error": "#ffffff",
+                    "on-background": "#1e1b1d",
+                    "on-secondary": "#ffffff",
+                    "primary-container": "#ff80ab",
+                    "secondary-container": "#fd983a",
+                    "on-primary-fixed-variant": "#831e48",
+                    "primary-fixed": "#ffd9e2",
+                    "tertiary": "#006b5e",
+                    "surface-container-low": "#f9f2f5",
+                    "secondary": "#904d00",
+                    "inverse-primary": "#ffb1c7",
+                    "surface": "#fff7fa",
+                    "surface-container": "#f4ecef",
+                    "on-tertiary": "#ffffff",
+                    "background": "#fff7fa",
+                    "tertiary-fixed": "#6bf9e1",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#49dcc5",
+                    "on-tertiary-fixed-variant": "#005046",
+                    "on-surface": "#1e1b1d",
+                    "inverse-on-surface": "#f7eff2",
+                    "inverse-surface": "#332f32",
+                    "outline": "#887177",
+                    "outline-variant": "#dbc0c6",
+                    "error": "#ba1a1a",
+                    "surface-tint": "#a23760",
+                    "on-surface-variant": "#554247",
+                    "secondary-fixed": "#ffdcc3",
+                    "on-secondary-fixed-variant": "#6e3900",
+                    "surface-container-highest": "#e8e0e3",
+                    "secondary-fixed-dim": "#ffb77d",
+                    "primary-fixed-dim": "#ffb1c7",
+                    "tertiary-container": "#11bea8",
+                    "surface-container-high": "#eee6e9",
+                    "surface-bright": "#fff7fa",
+                    "on-tertiary-container": "#00473e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Be Vietnam Pro"],
+                    "label": ["Space Grotesk"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .dot-grid {
+            background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .soft-arcade-shadow {
+            box-shadow: 0 10px 0 0 rgba(0, 0, 0, 0.05);
+        }
+        .pressable-card {
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+        }
+        .pressable-card:active {
+            transform: translateY(4px);
+            box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.05);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-[#fff7fa] no-border">
+<div class="flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-4">
+<div class="p-2 rounded-full hover:bg-surface-container transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-[#a23760]">grid_view</span>
+</div>
+</div>
+<h1 class="text-2xl font-black text-[#a23760] tracking-tighter font-headline">SkillSum 2.0</h1>
+<div class="flex items-center gap-2">
+<img alt="User profile avatar" class="w-10 h-10 rounded-full border-2 border-primary-container" data-alt="profile avatar of a happy student with a minimalist colorful artistic style on a soft pink background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtZ12q4PocZNcugkwU5nOCyP0d6_ByGcvIk3e1-oG8yXJu8tZ5kn1Bf4vOj4pTyb2ybGPvKSJ7HOXmhnWP1lA7c7UIyBtf4RZlXZ6Jr982k1hZg_odr9kj0rdFsiz61VIh-mqWEpDVh9JYldfXS9RonZp4yhhco7mW9wcjaRAk4jy4cpx4WO8YIVFldVibCaWxVkgdR_oAcuTh_7gweGVstExZiPqJJH6wa3BfAXTF4KX41o5L18UgTnqXX-ccvI8nVVEAJhuXeMqG"/>
+</div>
+</div>
+</header>
+<main class="min-h-screen pb-32 pt-6 px-6 relative overflow-hidden">
+<!-- Background Texture -->
+<div class="absolute inset-0 dot-grid text-outline-variant opacity-15 pointer-events-none"></div>
+<div class="max-w-4xl mx-auto relative z-10">
+<header class="mb-10 text-center md:text-left">
+<h2 class="text-4xl font-extrabold tracking-tight font-headline text-on-surface mb-2">Select Your World</h2>
+<p class="text-on-surface-variant font-medium">Master the elements of mathematics one realm at a time.</p>
+</header>
+<!-- Bento-ish World Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- World 1: Addition -->
+<div class="pressable-card soft-arcade-shadow bg-surface-container-lowest p-8 rounded-xl relative overflow-hidden flex flex-col gap-6 cursor-pointer">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-container opacity-10 rounded-bl-full -mr-8 -mt-8"></div>
+<div class="flex items-center justify-between">
+<div class="w-16 h-16 rounded-xl bg-primary-container flex items-center justify-center text-white text-3xl font-bold shadow-lg">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">add</span>
+</div>
+<span class="font-label text-sm font-bold text-primary px-3 py-1 bg-primary-fixed rounded-full">World 1</span>
+</div>
+<div>
+<h3 class="text-2xl font-extrabold font-headline mb-1 text-on-surface">Addition Foundation</h3>
+<p class="text-on-surface-variant font-medium">34 / 50 levels</p>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold font-label text-on-surface-variant">
+<span>PROGRESS</span>
+<span>68%</span>
+</div>
+<div class="h-4 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 68%"></div>
+</div>
+</div>
+</div>
+<!-- World 2: Subtraction -->
+<div class="pressable-card soft-arcade-shadow bg-surface-container-lowest p-8 rounded-xl relative overflow-hidden flex flex-col gap-6 cursor-pointer">
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary-container opacity-10 rounded-bl-full -mr-8 -mt-8"></div>
+<div class="flex items-center justify-between">
+<div class="w-16 h-16 rounded-xl bg-secondary-container flex items-center justify-center text-white text-3xl font-bold shadow-lg">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">remove</span>
+</div>
+<span class="font-label text-sm font-bold text-secondary px-3 py-1 bg-secondary-fixed rounded-full">World 2</span>
+</div>
+<div>
+<h3 class="text-2xl font-extrabold font-headline mb-1 text-on-surface">Subtraction Skies</h3>
+<p class="text-on-surface-variant font-medium">12 / 50 levels</p>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold font-label text-on-surface-variant">
+<span>PROGRESS</span>
+<span>24%</span>
+</div>
+<div class="h-4 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary-container rounded-full" style="width: 24%"></div>
+</div>
+</div>
+</div>
+<!-- World 3: Multiplication -->
+<div class="pressable-card soft-arcade-shadow bg-surface-container-lowest p-8 rounded-xl relative overflow-hidden flex flex-col gap-6 cursor-pointer">
+<div class="absolute top-0 right-0 w-32 h-32 bg-tertiary-container opacity-10 rounded-bl-full -mr-8 -mt-8"></div>
+<div class="flex items-center justify-between">
+<div class="w-16 h-16 rounded-xl bg-tertiary-container flex items-center justify-center text-white text-3xl font-bold shadow-lg">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">close</span>
+</div>
+<span class="font-label text-sm font-bold text-tertiary px-3 py-1 bg-tertiary-fixed rounded-full">World 3</span>
+</div>
+<div>
+<h3 class="text-2xl font-extrabold font-headline mb-1 text-on-surface">Multiplication Meadows</h3>
+<p class="text-on-surface-variant font-medium">0 / 50 levels</p>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold font-label text-on-surface-variant">
+<span>PROGRESS</span>
+<span>0%</span>
+</div>
+<div class="h-4 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-container rounded-full" style="width: 2%"></div>
+</div>
+</div>
+</div>
+<!-- World 4: Division (Locked) -->
+<div class="opacity-40 bg-surface-container-low p-8 rounded-xl relative overflow-hidden flex flex-col gap-6 cursor-not-allowed">
+<div class="absolute inset-0 flex items-center justify-center z-20">
+<span class="material-symbols-outlined text-6xl text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">lock</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="w-16 h-16 rounded-xl bg-outline-variant flex items-center justify-center text-white text-3xl font-bold">
+<span class="material-symbols-outlined text-4xl">percent</span>
+</div>
+<span class="font-label text-sm font-bold text-on-surface-variant px-3 py-1 bg-surface-container-highest rounded-full">World 4</span>
+</div>
+<div>
+<h3 class="text-2xl font-extrabold font-headline mb-1 text-on-surface">Division Depths</h3>
+<p class="text-on-surface-variant font-medium">Locked</p>
+</div>
+<div class="space-y-2">
+<div class="h-4 w-full bg-surface-container rounded-full overflow-hidden"></div>
+</div>
+</div>
+<!-- World 5: Fractions (Locked) -->
+<div class="opacity-40 bg-surface-container-low p-8 rounded-xl relative overflow-hidden flex flex-col gap-6 cursor-not-allowed">
+<div class="absolute inset-0 flex items-center justify-center z-20">
+<span class="material-symbols-outlined text-6xl text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">lock</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="w-16 h-16 rounded-xl bg-outline-variant flex items-center justify-center text-white text-3xl font-bold">
+<span class="material-symbols-outlined text-4xl">pie_chart</span>
+</div>
+<span class="font-label text-sm font-bold text-on-surface-variant px-3 py-1 bg-surface-container-highest rounded-full">World 5</span>
+</div>
+<div>
+<h3 class="text-2xl font-extrabold font-headline mb-1 text-on-surface">Fraction Forests</h3>
+<p class="text-on-surface-variant font-medium">Locked</p>
+</div>
+<div class="space-y-2">
+<div class="h-4 w-full bg-surface-container rounded-full overflow-hidden"></div>
+</div>
+</div>
+<!-- World 6: Geometry (Locked) -->
+<div class="opacity-40 bg-surface-container-low p-8 rounded-xl relative overflow-hidden flex flex-col gap-6 cursor-not-allowed">
+<div class="absolute inset-0 flex items-center justify-center z-20">
+<span class="material-symbols-outlined text-6xl text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">lock</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="w-16 h-16 rounded-xl bg-outline-variant flex items-center justify-center text-white text-3xl font-bold">
+<span class="material-symbols-outlined text-4xl">category</span>
+</div>
+<span class="font-label text-sm font-bold text-on-surface-variant px-3 py-1 bg-surface-container-highest rounded-full">World 6</span>
+</div>
+<div>
+<h3 class="text-2xl font-extrabold font-headline mb-1 text-on-surface">Geometry Gardens</h3>
+<p class="text-on-surface-variant font-medium">Locked</p>
+</div>
+<div class="space-y-2">
+<div class="h-4 w-full bg-surface-container rounded-full overflow-hidden"></div>
+</div>
+</div>
+<!-- World 7: Algebra (Locked) -->
+<div class="opacity-40 bg-surface-container-low p-8 rounded-xl relative overflow-hidden flex flex-col gap-6 cursor-not-allowed">
+<div class="absolute inset-0 flex items-center justify-center z-20">
+<span class="material-symbols-outlined text-6xl text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">lock</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="w-16 h-16 rounded-xl bg-outline-variant flex items-center justify-center text-white text-3xl font-bold">
+<span class="material-symbols-outlined text-4xl">function</span>
+</div>
+<span class="font-label text-sm font-bold text-on-surface-variant px-3 py-1 bg-surface-container-highest rounded-full">World 7</span>
+</div>
+<div>
+<h3 class="text-2xl font-extrabold font-headline mb-1 text-on-surface">Algebra Arcades</h3>
+<p class="text-on-surface-variant font-medium">Locked</p>
+</div>
+<div class="space-y-2">
+<div class="h-4 w-full bg-surface-container rounded-full overflow-hidden"></div>
+</div>
+</div>
+<!-- World 8: Statistics (Locked) -->
+<div class="opacity-40 bg-surface-container-low p-8 rounded-xl relative overflow-hidden flex flex-col gap-6 cursor-not-allowed">
+<div class="absolute inset-0 flex items-center justify-center z-20">
+<span class="material-symbols-outlined text-6xl text-on-surface-variant" style="font-variation-settings: 'FILL' 1;">lock</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="w-16 h-16 rounded-xl bg-outline-variant flex items-center justify-center text-white text-3xl font-bold">
+<span class="material-symbols-outlined text-4xl">analytics</span>
+</div>
+<span class="font-label text-sm font-bold text-on-surface-variant px-3 py-1 bg-surface-container-highest rounded-full">World 8</span>
+</div>
+<div>
+<h3 class="text-2xl font-extrabold font-headline mb-1 text-on-surface">Statistic Summits</h3>
+<p class="text-on-surface-variant font-medium">Locked</p>
+</div>
+<div class="space-y-2">
+<div class="h-4 w-full bg-surface-container rounded-full overflow-hidden"></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-6 pb-6 pt-2 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-t-[3rem] shadow-[0_-4px_24px_rgba(162,55,96,0.06)]">
+<!-- Worlds (Active) -->
+<a class="flex flex-col items-center justify-center bg-[#ff80ab] text-white rounded-full p-3 scale-110 -translate-y-2 shadow-lg transition-all duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">public</span>
+<span class="font-headline text-[10px] font-bold mt-1">Worlds</span>
+</a>
+<!-- Practice -->
+<a class="flex flex-col items-center justify-center text-[#a23760]/50 p-2 hover:text-[#a23760] transition-colors" href="#">
+<span class="material-symbols-outlined">fitness_center</span>
+<span class="font-headline text-xs font-bold">Practice</span>
+</a>
+<!-- Rankings -->
+<a class="flex flex-col items-center justify-center text-[#a23760]/50 p-2 hover:text-[#a23760] transition-colors" href="#">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="font-headline text-xs font-bold">Rankings</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-[#a23760]/50 p-2 hover:text-[#a23760] transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-headline text-xs font-bold">Profile</span>
+</a>
+</nav>
+</body></html>

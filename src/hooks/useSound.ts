@@ -2,7 +2,7 @@
 
 import { useRef, useCallback, useEffect } from 'react';
 
-export type SoundType = 'correct' | 'wrong' | 'click' | 'tick' | 'gameStart' | 'gameEnd';
+export type SoundType = 'correct' | 'wrong' | 'click' | 'tick' | 'gameStart' | 'gameEnd' | 'starEarned' | 'levelComplete' | 'personalBest';
 
 // Simple oscillator-based sounds using Web Audio API
 export function useSound() {
@@ -139,6 +139,45 @@ export function useSound() {
             
             oscillator.start(now + i * 0.12);
             oscillator.stop(now + i * 0.12 + 0.3);
+          });
+          break;
+
+        case 'starEarned':
+          // Ascending chime
+          [659.25, 783.99, 1046.50].forEach((freq, i) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain); gain.connect(ctx.destination);
+            osc.frequency.value = freq; osc.type = 'sine';
+            gain.gain.setValueAtTime(0.25, now + i * 0.1);
+            gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.1 + 0.3);
+            osc.start(now + i * 0.1); osc.stop(now + i * 0.1 + 0.3);
+          });
+          break;
+
+        case 'levelComplete':
+          // Full fanfare
+          [523, 659, 784, 1047, 784, 1047].forEach((freq, i) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain); gain.connect(ctx.destination);
+            osc.frequency.value = freq; osc.type = 'triangle';
+            gain.gain.setValueAtTime(0.2, now + i * 0.1);
+            gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.1 + 0.25);
+            osc.start(now + i * 0.1); osc.stop(now + i * 0.1 + 0.25);
+          });
+          break;
+
+        case 'personalBest':
+          // Triumphant
+          [784, 880, 988, 1175].forEach((freq, i) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain); gain.connect(ctx.destination);
+            osc.frequency.value = freq; osc.type = 'sine';
+            gain.gain.setValueAtTime(0.3, now + i * 0.12);
+            gain.gain.exponentialRampToValueAtTime(0.01, now + i * 0.12 + 0.4);
+            osc.start(now + i * 0.12); osc.stop(now + i * 0.12 + 0.4);
           });
           break;
       }
