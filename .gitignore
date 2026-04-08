@@ -80,3 +80,8 @@ logs
 # Temporary folders
 tmp/
 temp/
+
+# AI
+GEMINI.md
+PROJECT_ANALYSIS.md
+WARP.md
