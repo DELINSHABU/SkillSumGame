@@ -199,6 +199,7 @@ export interface ChallengeTask {
 // ============================================================
 export type AppScreen =
   | 'onboarding'
+  | 'auth'
   | 'home'
   | 'worldSelect'
   | 'worldMap'

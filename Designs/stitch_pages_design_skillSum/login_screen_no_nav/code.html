@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SkillSum 2.0 - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .dot-grid {
+            background-image: radial-gradient(circle, #dbc0c6 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary": "#904d00",
+                      "on-secondary-fixed": "#2f1500",
+                      "inverse-surface": "#332f32",
+                      "on-error-container": "#93000a",
+                      "inverse-primary": "#ffb1c7",
+                      "secondary-fixed": "#ffdcc3",
+                      "on-tertiary": "#ffffff",
+                      "primary": "#a23760",
+                      "outline-variant": "#dbc0c6",
+                      "error-container": "#ffdad6",
+                      "background": "#fff7fa",
+                      "on-background": "#1e1b1d",
+                      "on-primary": "#ffffff",
+                      "on-tertiary-container": "#00473e",
+                      "on-tertiary-fixed-variant": "#005046",
+                      "on-surface": "#1e1b1d",
+                      "on-secondary": "#ffffff",
+                      "secondary-fixed-dim": "#ffb77d",
+                      "tertiary-fixed": "#6bf9e1",
+                      "on-primary-container": "#77133f",
+                      "surface-container-highest": "#e8e0e3",
+                      "outline": "#887177",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-bright": "#fff7fa",
+                      "on-primary-fixed": "#3e001c",
+                      "on-secondary-container": "#693600",
+                      "on-error": "#ffffff",
+                      "tertiary": "#006b5e",
+                      "surface-tint": "#a23760",
+                      "error": "#ba1a1a",
+                      "on-secondary-fixed-variant": "#6e3900",
+                      "surface-container": "#f4ecef",
+                      "on-surface-variant": "#554247",
+                      "primary-container": "#ff80ab",
+                      "tertiary-fixed-dim": "#49dcc5",
+                      "tertiary-container": "#11bea8",
+                      "primary-fixed-dim": "#ffb1c7",
+                      "surface-container-low": "#f9f2f5",
+                      "inverse-on-surface": "#f7eff2",
+                      "surface-container-high": "#eee6e9",
+                      "surface-variant": "#e8e0e3",
+                      "on-tertiary-fixed": "#00201b",
+                      "secondary-container": "#fd983a",
+                      "surface-dim": "#dfd8db",
+                      "primary-fixed": "#ffd9e2",
+                      "surface": "#fff7fa",
+                      "on-primary-fixed-variant": "#831e48"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Plus Jakarta Sans"],
+                      "body": ["Be Vietnam Pro"],
+                      "label": ["Space Grotesk"]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+          min-height: 100dvh;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container/30 flex flex-col">
+<header class="w-full top-0 sticky z-50 flex items-center justify-center px-6 py-4 bg-[#fff7fa] dark:bg-slate-950 no-border bg-transparent flat no shadows">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#a23760] dark:text-[#ff80ab] text-3xl" data-icon="videogame_asset">videogame_asset</span>
+<span class="font-headline font-black text-2xl text-[#a23760] dark:text-[#ff80ab] tracking-tighter">SkillSum 2.0</span>
+</div>
+</header>
+<main class="flex-grow dot-grid flex items-center justify-center px-4 py-8">
+<div class="relative w-full max-w-md">
+<!-- Decorative Floating Elements -->
+<div class="absolute -top-12 -left-12 w-24 h-24 bg-tertiary-fixed/40 rounded-full blur-2xl animate-pulse"></div>
+<div class="absolute -bottom-8 -right-8 w-32 h-32 bg-secondary-container/30 rounded-full blur-2xl"></div>
+<div class="glass-panel relative z-10 p-8 md:p-12 rounded-xl shadow-[0_24px_48px_-12px_rgba(162,55,96,0.12)] border-outline-variant/15 border">
+<div class="mb-10 text-center">
+<h1 class="font-headline text-4xl font-extrabold text-on-surface tracking-tight leading-tight mb-3">Welcome Back!</h1>
+<p class="text-on-surface-variant font-medium">Ready to jump back into your growth quest?</p>
+</div>
+<form class="space-y-6" onsubmit="return false">
+<div class="space-y-2">
+<label class="font-label text-xs uppercase tracking-widest text-primary font-bold ml-4">Email Address</label>
+<div class="relative group">
+<input class="w-full bg-surface-container-low border-transparent focus:border-primary-container focus:ring-0 rounded-lg px-6 py-4 font-body transition-all group-hover:bg-surface-container-lowest outline-variant/15 outline-1 outline" placeholder="hero@skillsum.com" type="email"/>
+<div class="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-focus-within:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary-container" data-icon="alternate_email">alternate_email</span>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label text-xs uppercase tracking-widest text-primary font-bold ml-4">Password</label>
+<div class="relative group">
+<input class="w-full bg-surface-container-low border-transparent focus:border-primary-container focus:ring-0 rounded-lg px-6 py-4 font-body transition-all group-hover:bg-surface-container-lowest outline-variant/15 outline-1 outline" placeholder="••••••••" type="password"/>
+<div class="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-focus-within:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary-container" data-icon="lock">lock</span>
+</div>
+</div>
+</div>
+<div class="flex justify-end pt-1">
+<a class="text-sm font-label text-primary hover:text-primary-container transition-colors font-bold" href="#">Forgot Secret?</a>
+</div>
+<button class="w-full relative group transform active:scale-[0.98] transition-all duration-200">
+<div class="absolute inset-0 bg-on-primary-container rounded-lg translate-y-1"></div>
+<div class="relative bg-gradient-to-br from-primary to-primary-container text-white font-headline font-bold text-lg py-4 rounded-lg flex items-center justify-center gap-2 group-active:translate-y-1 transition-transform">
+                            Login
+                            <span class="material-symbols-outlined text-xl" data-icon="rocket_launch">rocket_launch</span>
+</div>
+</button>
+</form>
+<div class="relative my-10">
+<div class="absolute inset-0 flex items-center"><div class="w-full border-t border-outline-variant/30"></div></div>
+<div class="relative flex justify-center text-xs uppercase tracking-[0.2em] font-label">
+<span class="bg-surface-container-lowest px-4 text-on-surface-variant/60 font-bold">OR</span>
+</div>
+</div>
+<div class="space-y-4">
+<button class="w-full flex items-center justify-center gap-3 bg-surface-container-lowest border border-outline-variant/30 text-on-surface font-body font-semibold py-4 rounded-lg hover:bg-surface-container-low transition-all hover:scale-[1.02] active:scale-95">
+<img alt="Google Logo" class="w-6 h-6" data-alt="Official Google G logo in brand colors on a transparent background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSYnYEzE3oPkxqE_CKltu8BXaRRdmAxKg9nGMByBmt6he1f5msr2OKMvnW053pNjcq2QdrvUECg7f_jbag1qUWoDiWjDtF09DlZnE97bfH1fxYdt4pQAhrk5LeWUtEdx24WT-nhY3YXh8-VBnH0PYINStg7MaSrR8g7A1qhy4mA2JrC0hPvBhFC4udJaxpO0xac3-T6FZbaAp5TE92S5nkogyzA22E8CSszy7YPZBgLkdffUdozc7zZluX99ftBDHr6d9GUS-hu9kH"/>
+                        Continue with Google
+                    </button>
+</div>
+<div class="mt-10 text-center">
+<p class="font-body text-on-surface-variant font-medium">
+                        New here? 
+                        <a class="text-primary font-bold hover:underline decoration-primary-container decoration-2 underline-offset-4 ml-1" href="#">Create an account</a>
+</p>
+</div>
+</div>
+<!-- Bento Preview Hint -->
+<div class="mt-12 flex justify-center gap-6 opacity-40">
+<div class="w-12 h-12 rounded-lg bg-tertiary-container rotate-6 shadow-sm"></div>
+<div class="w-12 h-12 rounded-full bg-secondary rotate-[-12deg] shadow-sm"></div>
+<div class="w-12 h-12 rounded-lg bg-primary-container rotate-12 shadow-sm"></div>
+</div>
+</div>
+</main>
+<!-- Background Decoration -->
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none overflow-hidden -z-10">
+<div class="absolute top-[20%] left-[-10%] w-[40%] h-[40%] bg-primary-container/5 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[10%] right-[-5%] w-[30%] h-[30%] bg-tertiary-container/5 rounded-full blur-[100px]"></div>
+</div>
+</body></html>

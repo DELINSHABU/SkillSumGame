@@ -2,16 +2,17 @@
 
 import { useState, useCallback } from 'react';
 import type { AppScreen, Level, PracticeConfig, SessionResult } from '@/lib/types';
-import { useUserProfile } from '@/hooks/useUserProfile';
+import { useSupabaseProfile } from '@/hooks/useSupabaseProfile';
 import { ALL_LEVELS, getLevelsByWorld, getNextLevel, WORLDS_META } from '@/lib/levels';
 import { calculateXP, getStarsFromScore } from '@/lib/xp';
 import { checkAchievements } from '@/lib/achievements';
 
 // Import all screen components
-import { HomeScreen } from './HomeScreen'; // build this last — wires nav
+import { AuthScreen } from './auth/AuthScreen';
+import { HomeScreen } from './HomeScreen';
 import { WorldMap } from './learn/WorldMap';
 import { PreLesson } from './learn/PreLesson';
-import { GameScreen } from './GameScreen'; // modified version
+import { GameScreen } from './GameScreen';
 import { PostLesson } from './learn/PostLesson';
 import { PracticeSetup } from './practice/PracticeSetup';
 import { PracticeResults } from './practice/PracticeResults';
@@ -20,18 +21,25 @@ import { ConfettiEffect } from './ConfettiEffect';
 
 export function SkillSumGame() {
   const {
-    profile, masteryMap, history, achievements, personalBests, isLoaded,
-    updateProfile, recordSession, updatePersonalBest, unlockAchievement,
-  } = useUserProfile();
+    profile, masteryMap, history, achievements, personalBests, isLoaded, isAuthenticated,
+    updateProfile, recordSession, updatePersonalBest, unlockAchievement, checkAndUpdateStreak,
+  } = useSupabaseProfile();
 
-  const [screen, setScreen] = useState<AppScreen>(
-    profile.onboardingComplete ? 'home' : 'onboarding'
-  );
   const [selectedWorldId, setSelectedWorldId] = useState(1);
   const [currentLevel, setCurrentLevel] = useState<Level | null>(null);
   const [currentPracticeConfig, setCurrentPracticeConfig] = useState<PracticeConfig | null>(null);
   const [lastSession, setLastSession] = useState<SessionResult | null>(null);
   const [showConfetti, setShowConfetti] = useState(false);
+
+  // Determine initial screen based on auth and onboarding status
+  const getInitialScreen = (): AppScreen => {
+    if (!isLoaded) return 'onboarding';
+    if (!isAuthenticated && profile.onboardingComplete) return 'auth';
+    if (!profile.onboardingComplete) return 'onboarding';
+    return 'home';
+  };
+
+  const [screen, setScreen] = useState<AppScreen>(getInitialScreen());
 
   // ─── Navigation helpers ───────────────────────────────────────────
   const go = useCallback((s: AppScreen) => setScreen(s), []);
@@ -87,11 +95,11 @@ export function SkillSumGame() {
     go('postLesson');
   }, [currentLevel, profile, history, achievements, recordSession, unlockAchievement, go]);
 
-  const handlePracticeSessionEnd = useCallback((session: SessionResult) => {
+  const handlePracticeSessionEnd = useCallback(async (session: SessionResult) => {
     if (!currentPracticeConfig) return;
 
     const configKey = JSON.stringify(currentPracticeConfig);
-    const isPB = updatePersonalBest(configKey, session.correct, session.accuracy);
+    const isPB = await updatePersonalBest(configKey, session.correct, session.accuracy);
 
     const xpInfo = calculateXP(session, {
       isPersonalBest: isPB,
@@ -124,6 +132,12 @@ export function SkillSumGame() {
       {showConfetti && <ConfettiEffect />}
       <div className="min-h-screen" style={{ backgroundColor: '#fce4ec' }}>
 
+        {screen === 'auth' && (
+          <AuthScreen
+            onAuthSuccess={() => go('home')}
+          />
+        )}
+
         {screen === 'onboarding' && (
           <div className="flex flex-col items-center justify-center min-h-screen p-6 text-center">
             <h1 className="text-4xl font-black mb-4" style={{ color: '#ff80ab', fontFamily: 'Poppins, sans-serif' }}>
@@ -153,10 +167,12 @@ export function SkillSumGame() {
           <HomeScreen
             profile={profile}
             masteryMap={masteryMap}
+            isAuthenticated={isAuthenticated}
             onLearnMode={() => go('worldSelect')}
             onPracticeMode={() => go('practiceSetup')}
             onDailyChallenge={() => go('dailyChallenge')}
             onProfile={() => go('profile')}
+            onAuthRequired={() => go('auth')}
           />
         )}
 

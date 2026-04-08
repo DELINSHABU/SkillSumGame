@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#fff7fa",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#fff7fa",
+                        "outline-variant": "#dbc0c6",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed-variant": "#831e48",
+                        "on-surface-variant": "#554247",
+                        "tertiary-fixed-dim": "#49dcc5",
+                        "secondary": "#904d00",
+                        "primary": "#a23760",
+                        "on-background": "#1e1b1d",
+                        "on-primary-container": "#77133f",
+                        "surface-container-low": "#f9f2f5",
+                        "surface-variant": "#e8e0e3",
+                        "primary-fixed-dim": "#ffb1c7",
+                        "on-secondary-fixed": "#2f1500",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#fd983a",
+                        "on-tertiary-fixed-variant": "#005046",
+                        "surface-tint": "#a23760",
+                        "secondary-fixed": "#ffdcc3",
+                        "on-tertiary-container": "#00473e",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#006b5e",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#887177",
+                        "on-tertiary-fixed": "#00201b",
+                        "on-primary-fixed": "#3e001c",
+                        "surface-dim": "#dfd8db",
+                        "surface-container-high": "#eee6e9",
+                        "inverse-on-surface": "#f7eff2",
+                        "secondary-fixed-dim": "#ffb77d",
+                        "tertiary-fixed": "#6bf9e1",
+                        "tertiary-container": "#11bea8",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#332f32",
+                        "error": "#ba1a1a",
+                        "background": "#fff7fa",
+                        "surface-container-highest": "#e8e0e3",
+                        "primary-container": "#ff80ab",
+                        "surface-container": "#f4ecef",
+                        "inverse-primary": "#ffb1c7",
+                        "on-secondary-fixed-variant": "#6e3900",
+                        "on-surface": "#1e1b1d",
+                        "primary-fixed": "#ffd9e2",
+                        "on-secondary-container": "#693600",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Be Vietnam Pro"],
+                        "label": ["Space Grotesk"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .dot-grid {
+            background-image: radial-gradient(circle, #dbc0c6 1.5px, transparent 1.5px);
+            background-size: 32px 32px;
+            opacity: 0.15;
+        }
+        .soft-arcade-shadow {
+            box-shadow: 0 24px 48px -12px rgba(162, 55, 96, 0.12);
+        }
+        .btn-3d-active:active {
+            transform: translateY(2px);
+        }
+        .btn-3d-active:active .btn-shadow {
+            height: 0px;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface min-h-screen relative overflow-hidden flex items-center justify-center p-6">
+<!-- Background Dot Grid -->
+<div class="absolute inset-0 dot-grid pointer-events-none"></div>
+<!-- Decorative Floating Elements -->
+<div class="absolute top-[-10%] left-[-5%] w-96 h-96 bg-primary-container/20 rounded-full blur-3xl"></div>
+<div class="absolute bottom-[-10%] right-[-5%] w-96 h-96 bg-tertiary-container/20 rounded-full blur-3xl"></div>
+<main class="relative z-10 w-full max-w-[540px]">
+<!-- Brand Logo Anchor -->
+<div class="flex justify-center mb-10">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 bg-gradient-to-br from-primary to-primary-container rounded-xl flex items-center justify-center text-white shadow-lg">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<span class="font-headline text-2xl font-extrabold tracking-tighter text-on-surface">SkillSum 2.0</span>
+</div>
+</div>
+<!-- Auth Card -->
+<div class="bg-surface-container-lowest rounded-xl soft-arcade-shadow p-10 md:p-14 border border-outline-variant/10">
+<header class="text-center mb-10">
+<h1 class="font-headline text-4xl md:text-5xl font-extrabold tracking-tight text-on-surface mb-3 leading-tight">Start Your Journey</h1>
+<p class="text-on-surface-variant font-medium text-lg">Level up your expertise in the mental arcade.</p>
+</header>
+<form class="space-y-6">
+<!-- Inputs -->
+<div class="space-y-4">
+<div class="group">
+<label class="block font-label text-sm font-bold text-primary mb-2 ml-2">Full Name</label>
+<div class="relative">
+<input class="w-full h-16 px-6 bg-surface-container-low border-none rounded-lg focus:ring-4 focus:ring-primary-container/30 text-on-surface font-medium placeholder:text-outline transition-all" placeholder="Enter your tactile name" type="text"/>
+</div>
+</div>
+<div class="group">
+<label class="block font-label text-sm font-bold text-primary mb-2 ml-2">Email</label>
+<div class="relative">
+<input class="w-full h-16 px-6 bg-surface-container-low border-none rounded-lg focus:ring-4 focus:ring-primary-container/30 text-on-surface font-medium placeholder:text-outline transition-all" placeholder="hello@skillsum.com" type="email"/>
+</div>
+</div>
+<div class="group">
+<label class="block font-label text-sm font-bold text-primary mb-2 ml-2">Secret Code</label>
+<div class="relative">
+<input class="w-full h-16 px-6 bg-surface-container-low border-none rounded-lg focus:ring-4 focus:ring-primary-container/30 text-on-surface font-medium placeholder:text-outline transition-all" placeholder="••••••••" type="password"/>
+</div>
+</div>
+</div>
+<!-- Primary 3D CTA -->
+<div class="pt-4">
+<button class="group relative w-full h-16 btn-3d-active transition-transform duration-100" type="submit">
+<!-- Shadow Block -->
+<div class="btn-shadow absolute inset-0 translate-y-1 bg-on-primary-container rounded-xl"></div>
+<!-- Button Surface -->
+<div class="absolute inset-0 bg-gradient-to-br from-primary to-primary-container rounded-xl flex items-center justify-center gap-2 text-white font-headline text-xl font-bold">
+<span>Sign Up</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</div>
+</button>
+</div>
+</form>
+<!-- Divider Section -->
+<div class="relative my-10 flex items-center gap-4">
+<div class="flex-grow h-[2px] bg-outline-variant/30"></div>
+<span class="font-label text-xs font-bold text-outline uppercase tracking-widest">Or continue with</span>
+<div class="flex-grow h-[2px] bg-outline-variant/30"></div>
+</div>
+<!-- Social Auth -->
+<div class="flex gap-4">
+<button class="flex-1 h-16 bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-xl flex items-center justify-center gap-3 group">
+<div class="w-6 h-6">
+<svg class="w-full h-full" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+</div>
+<span class="font-bold text-on-surface">Google</span>
+</button>
+</div>
+</div>
+<!-- Footer Link -->
+<div class="mt-8 text-center">
+<p class="text-on-surface-variant font-medium">
+                Already part of the squad? 
+                <a class="text-primary font-bold hover:underline ml-1" href="#">Log in</a>
+</p>
+</div>
+</main>
+<!-- Visual Polish: Floating Shapes -->
+<div class="fixed top-20 right-20 pointer-events-none opacity-20">
+<div class="w-20 h-20 bg-secondary-container rounded-full shadow-[inset_-4px_-4px_12px_rgba(0,0,0,0.1)]"></div>
+</div>
+<div class="fixed bottom-20 left-20 pointer-events-none opacity-20">
+<div class="w-16 h-16 bg-tertiary rounded-xl rotate-12 shadow-lg"></div>
+</div>
+</body></html>

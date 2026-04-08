@@ -7,19 +7,23 @@ import { ALL_LEVELS, getNextLevel } from '@/lib/levels';
 interface HomeScreenProps {
   profile: UserProfile;
   masteryMap: MasteryMap;
+  isAuthenticated: boolean;
   onLearnMode: () => void;
   onPracticeMode: () => void;
   onDailyChallenge: () => void;
   onProfile: () => void;
+  onAuthRequired: () => void;
 }
 
 export function HomeScreen({ 
   profile, 
   masteryMap, 
+  isAuthenticated,
   onLearnMode, 
   onPracticeMode, 
   onDailyChallenge, 
-  onProfile 
+  onProfile,
+  onAuthRequired
 }: HomeScreenProps) {
   const greeting = useMemo(() => {
     const hour = new Date().getHours();
@@ -52,13 +56,23 @@ export function HomeScreen({
         <h1 className="text-2xl font-black" style={{ color: '#ff80ab', fontFamily: 'Poppins, sans-serif' }}>
           SkillSum
         </h1>
-        <button 
-          onClick={onProfile}
-          className="text-2xl p-2 rounded-full hover:bg-pink-100 transition-colors"
-          aria-label="Go to profile"
-        >
-          {profile.avatarEmoji || '👤'}
-        </button>
+        {isAuthenticated ? (
+          <button 
+            onClick={onProfile}
+            className="text-2xl p-2 rounded-full hover:bg-pink-100 transition-colors"
+            aria-label="Go to profile"
+          >
+            {profile.avatarEmoji || '👤'}
+          </button>
+        ) : (
+          <button 
+            onClick={onAuthRequired}
+            className="text-2xl p-2 rounded-full hover:bg-pink-100 transition-colors"
+            aria-label="Login required"
+          >
+            👤
+          </button>
+        )}
       </div>
 
       {/* Greeting */}
@@ -75,27 +89,60 @@ export function HomeScreen({
         </div>
       </div>
 
+      {/* Login Required Banner */}
+      {!isAuthenticated && (
+        <button 
+          onClick={onAuthRequired}
+          className="w-full p-3 rounded-xl text-center transition-all hover:scale-[1.01]"
+          style={{ 
+            background: 'linear-gradient(135deg, #ff80ab 0%, #ff4081 100%)',
+            boxShadow: '0 4px 12px rgba(255, 128, 171, 0.4)'
+          }}
+        >
+          <span className="font-bold text-white">🔐 Login to unlock Learn Mode & save your progress!</span>
+        </button>
+      )}
+
       {/* Daily Challenge Card */}
-      <button 
-        onClick={onDailyChallenge}
-        className="w-full p-4 rounded-2xl text-left transition-all hover:scale-[1.02]"
-        style={{ 
-          background: 'linear-gradient(135deg, #fff9c4 0%, #fff59d 100%)',
-          border: '2px solid #ffd54f',
-          boxShadow: '0 4px 12px rgba(255, 213, 79, 0.3)'
-        }}
-      >
-        <div className="flex items-center justify-between mb-2">
-          <span className="font-bold text-lg" style={{ color: '#f57f17' }}>📅 Daily Challenge</span>
-          <span className="text-sm font-bold" style={{ color: '#f57f17' }}>Go →</span>
-        </div>
-        <div className="text-sm" style={{ color: '#f57f17' }}>
-          Test your skills with today's unique challenge!
-        </div>
-      </button>
+      {isAuthenticated ? (
+        <button 
+          onClick={onDailyChallenge}
+          className="w-full p-4 rounded-2xl text-left transition-all hover:scale-[1.02]"
+          style={{ 
+            background: 'linear-gradient(135deg, #fff9c4 0%, #fff59d 100%)',
+            border: '2px solid #ffd54f',
+            boxShadow: '0 4px 12px rgba(255, 213, 79, 0.3)'
+          }}
+        >
+          <div className="flex items-center justify-between mb-2">
+            <span className="font-bold text-lg" style={{ color: '#f57f17' }}>📅 Daily Challenge</span>
+            <span className="text-sm font-bold" style={{ color: '#f57f17' }}>Go →</span>
+          </div>
+          <div className="text-sm" style={{ color: '#f57f17' }}>
+            Test your skills with today's unique challenge!
+          </div>
+        </button>
+      ) : (
+        <button 
+          onClick={onAuthRequired}
+          className="w-full p-4 rounded-2xl text-left opacity-60"
+          style={{ 
+            background: 'linear-gradient(135deg, #fff9c4 0%, #fff59d 100%)',
+            border: '2px solid #ffd54f',
+            boxShadow: '0 4px 12px rgba(255, 213, 79, 0.3)'
+          }}
+        >
+          <div className="flex items-center justify-between mb-2">
+            <span className="font-bold text-lg" style={{ color: '#f57f17' }}>🔒 Daily Challenge</span>
+          </div>
+          <div className="text-sm" style={{ color: '#f57f17' }}>
+            Login to access daily challenges!
+          </div>
+        </button>
+      )}
 
       {/* Continue Learning Card */}
-      {nextLevel && (
+      {nextLevel && isAuthenticated && (
         <button 
           onClick={onLearnMode}
           className="w-full p-4 rounded-2xl text-left transition-all hover:scale-[1.02]"
@@ -118,19 +165,38 @@ export function HomeScreen({
         </button>
       )}
 
+      {!isAuthenticated && nextLevel && (
+        <button 
+          onClick={onAuthRequired}
+          className="w-full p-4 rounded-2xl text-left opacity-60"
+          style={{ 
+            background: 'linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%)',
+            border: '2px solid #81c784',
+            boxShadow: '0 4px 12px rgba(129, 199, 132, 0.3)'
+          }}
+        >
+          <div className="flex items-center justify-between mb-2">
+            <span className="font-bold text-lg" style={{ color: '#2e7d32' }}>🔒 Continue Learning</span>
+          </div>
+          <div className="text-sm" style={{ color: '#2e7d32' }}>
+            Login to continue your progress!
+          </div>
+        </button>
+      )}
+
       {/* Main Action Buttons */}
       <div className="grid grid-cols-2 gap-4 mt-2">
         <button 
-          onClick={onLearnMode}
-          className="flex flex-col items-center justify-center p-6 rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98]"
+          onClick={isAuthenticated ? onLearnMode : onAuthRequired}
+          className={`flex flex-col items-center justify-center p-6 rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98] ${!isAuthenticated ? 'opacity-50' : ''}`}
           style={{ 
             backgroundColor: '#ff80ab',
             boxShadow: '0 4px 12px rgba(255, 128, 171, 0.4)'
           }}
         >
-          <span className="text-4xl mb-2">📚</span>
-          <span className="font-bold text-white">Learn</span>
-          <span className="text-xs text-white/80">400 Levels</span>
+          <span className="text-4xl mb-2">{isAuthenticated ? '📚' : '🔒'}</span>
+          <span className="font-bold text-white">{isAuthenticated ? 'Learn' : 'Login'}</span>
+          <span className="text-xs text-white/80">{isAuthenticated ? '400 Levels' : 'Required'}</span>
         </button>
         
         <button 
